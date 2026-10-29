@@ -1,5 +1,6 @@
 [
  {
+  "cover": "",
   "id": "d00B",
   "epoch": 1793316600,
   "local": "2026-10-29 19:30",
@@ -9,6 +10,7 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V3_Dashboard_FR.jpg",
   "id": "d01A",
   "epoch": 1793377800,
   "local": "2026-10-30 12:30",
@@ -18,6 +20,7 @@
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d01B",
   "epoch": 1793403000,
   "local": "2026-10-30 19:30",
@@ -27,6 +30,7 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/Seat_and_Vow_Reel_Table_full_FR.jpg",
   "id": "d02A",
   "epoch": 1793464200,
   "local": "2026-10-31 12:30",
@@ -36,6 +40,7 @@
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d02B",
   "epoch": 1793489400,
   "local": "2026-10-31 19:30",
@@ -45,6 +50,7 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V2_Upkeep_FR.jpg",
   "id": "d03A",
   "epoch": 1793554200,
   "local": "2026-11-01 12:30",
@@ -54,6 +60,7 @@
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d03B",
   "epoch": 1793579400,
   "local": "2026-11-01 19:30",
@@ -63,6 +70,7 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/Seat_and_Vow_Reel_Find_your_table_FR.jpg",
   "id": "d04A",
   "epoch": 1793640600,
   "local": "2026-11-02 12:30",
@@ -72,6 +80,7 @@
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d04B",
   "epoch": 1793665800,
   "local": "2026-11-02 19:30",
@@ -81,6 +90,7 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V5_Profit_Per_Property_FR.jpg",
   "id": "d05A",
   "epoch": 1793727000,
   "local": "2026-11-03 12:30",
@@ -90,6 +100,7 @@
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d05B",
   "epoch": 1793752200,
   "local": "2026-11-03 19:30",
@@ -99,6 +110,7 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V4_Repairs_FR.jpg",
   "id": "d06A",
   "epoch": 1793813400,
   "local": "2026-11-04 12:30",
@@ -108,6 +120,7 @@
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d06B",
   "epoch": 1793838600,
   "local": "2026-11-04 19:30",
@@ -117,15 +130,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V6_Bilingual_File_FR.jpg",
   "id": "d07A",
   "epoch": 1793899800,
   "local": "2026-11-05 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/Seat_and_Vow_Facebook_30s_fr.mp4",
-  "caption": "Planifiez les tables de votre mariage dans Excel 💍\nLe classeur compte, vérifie et vous alerte ; c'est vous qui décidez qui s'assoit où.\n👉 Lien dans la bio\n#planDeTable #mariage #mariageQuébec",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V6_Bilingual_File_FR.mp4",
+  "caption": "Un seul fichier de location, deux langues. 🇨🇦\nKit Propriétaire : changez la langue de tout le classeur dans une seule case : français, English ou les deux.\n👉 Lien dans la bio\n#propriétaire #bilingue #québec",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d07B",
   "epoch": 1793925000,
   "local": "2026-11-05 19:30",
@@ -135,15 +150,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V3_Dashboard_EN.jpg",
   "id": "d08A",
   "epoch": 1793986200,
   "local": "2026-11-06 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V6_Bilingual_File_FR.mp4",
-  "caption": "Un seul fichier de location, deux langues. 🇨🇦\nKit Propriétaire : changez la langue de tout le classeur dans une seule case : français, English ou les deux.\n👉 Lien dans la bio\n#propriétaire #bilingue #québec",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V3_Dashboard_EN.mp4",
+  "caption": "Twelve numbers about your rentals, one screen. 📊\nThe Landlord Kit dashboard: rent collected, unpaid rent, occupancy, open repairs, overdue upkeep and more.\n👉 Link in bio\n#landlord #dashboard #excel",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d08B",
   "epoch": 1794011400,
   "local": "2026-11-06 19:30",
@@ -153,15 +170,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/Seat_and_Vow_Reel_Table_full_EN.jpg",
   "id": "d09A",
   "epoch": 1794072600,
   "local": "2026-11-07 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V3_Dashboard_EN.mp4",
-  "caption": "Twelve numbers about your rentals, one screen. 📊\nThe Landlord Kit dashboard: rent collected, unpaid rent, occupancy, open repairs, overdue upkeep and more.\n👉 Link in bio\n#landlord #dashboard #excel",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/Seat_and_Vow_Reel_Table_full_EN.mp4",
+  "caption": "Is this table too full? 🪑\nSeat & Vow checks your seating plan: full table, family split, two guests to keep apart. The alerts tell you what to fix.\nYou decide who sits where; the workbook counts and checks.\nExcel 2016 or newer, no macros. English / Français with one cell.\n👉 Link in bio\n#seatingchart #wedding #weddingplanning #excel",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d09B",
   "epoch": 1794097800,
   "local": "2026-11-07 19:30",
@@ -171,15 +190,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V2_Upkeep_EN.jpg",
   "id": "d10A",
   "epoch": 1794159000,
   "local": "2026-11-08 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/Seat_and_Vow_Reel_Table_full_EN.mp4",
-  "caption": "Is this table too full? 🪑\nSeat & Vow checks your seating plan: full table, family split, two guests to keep apart. The alerts tell you what to fix.\nYou decide who sits where; the workbook counts and checks.\nExcel 2016 or newer, no macros. English / Français with one cell.\n👉 Link in bio\n#seatingchart #wedding #weddingplanning #excel",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V2_Upkeep_EN.mp4",
+  "caption": "When did you last change the furnace filter? 🔧\nThe Landlord Kit's upkeep calendar shows the next due date and what is overdue.\n👉 Link in bio\n#landlord #maintenance #rental",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d10B",
   "epoch": 1794184200,
   "local": "2026-11-08 19:30",
@@ -189,15 +210,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V1_Who_Paid_EN.jpg",
   "id": "d11A",
   "epoch": 1794245400,
   "local": "2026-11-09 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V2_Upkeep_EN.mp4",
-  "caption": "When did you last change the furnace filter? 🔧\nThe Landlord Kit's upkeep calendar shows the next due date and what is overdue.\n👉 Link in bio\n#landlord #maintenance #rental",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V1_Who_Paid_EN.mp4",
+  "caption": "Who paid rent this month? 🟩🟥\nThe Landlord Kit (Excel): a grid where green = paid and red = short, for every unit and month.\nEnglish, French or both.\n👉 Link in bio\n#landlord #rent #canada",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d11B",
   "epoch": 1794270600,
   "local": "2026-11-09 19:30",
@@ -207,15 +230,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/Seat_and_Vow_Reel_Find_your_table_EN.jpg",
   "id": "d12A",
   "epoch": 1794331800,
   "local": "2026-11-10 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V1_Who_Paid_EN.mp4",
-  "caption": "Who paid rent this month? 🟩🟥\nThe Landlord Kit (Excel): a grid where green = paid and red = short, for every unit and month.\nEnglish, French or both.\n👉 Link in bio\n#landlord #rent #canada",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/Seat_and_Vow_Reel_Find_your_table_EN.mp4",
+  "caption": "Finding each guest's table 🔎\nSeat & Vow: an Excel workbook for planning your wedding tables. Excel 2016 or newer, no macros, English / Français.\n👉 Link in bio\n#seatingchart #wedding #weddingplanning",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d12B",
   "epoch": 1794357000,
   "local": "2026-11-10 19:30",
@@ -225,15 +250,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V5_Profit_Per_Property_EN.jpg",
   "id": "d13A",
   "epoch": 1794418200,
   "local": "2026-11-11 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/Seat_and_Vow_Reel_Find_your_table_EN.mp4",
-  "caption": "Finding each guest's table 🔎\nSeat & Vow: an Excel workbook for planning your wedding tables. Excel 2016 or newer, no macros, English / Français.\n👉 Link in bio\n#seatingchart #wedding #weddingplanning",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V5_Profit_Per_Property_EN.mp4",
+  "caption": "Which property really makes you money? 🏢\nLandlord Kit: compare occupancy, collection, expense ratio and result for each property, from your own figures.\n👉 Link in bio\n#landlord #realestate #excel",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d13B",
   "epoch": 1794443400,
   "local": "2026-11-11 19:30",
@@ -243,15 +270,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V4_Repairs_EN.jpg",
   "id": "d14A",
   "epoch": 1794504600,
   "local": "2026-11-12 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V5_Profit_Per_Property_EN.mp4",
-  "caption": "Which property really makes you money? 🏢\nLandlord Kit: compare occupancy, collection, expense ratio and result for each property, from your own figures.\n👉 Link in bio\n#landlord #realestate #excel",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V4_Repairs_EN.mp4",
+  "caption": "Is that repair request still open? 🛠️\nLandlord Kit: track every request with priority, status, contractor, cost and days open, plus insurance renewals.\n👉 Link in bio\n#landlord #repairs #rental",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d14B",
   "epoch": 1794529800,
   "local": "2026-11-12 19:30",
@@ -261,15 +290,17 @@
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P4_V6_Bilingual_File_EN.jpg",
   "id": "d15A",
   "epoch": 1794591000,
   "local": "2026-11-13 12:30",
   "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V4_Repairs_EN.mp4",
-  "caption": "Is that repair request still open? 🛠️\nLandlord Kit: track every request with priority, status, contractor, cost and days open, plus insurance renewals.\n👉 Link in bio\n#landlord #repairs #rental",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V6_Bilingual_File_EN.mp4",
+  "caption": "One rental file, two languages. 🇨🇦\nLandlord Kit: switch the language of the whole workbook in one cell: English, French or both.\n👉 Link in bio\n#landlord #bilingual #canada",
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d15B",
   "epoch": 1794616200,
   "local": "2026-11-13 19:30",
@@ -279,168 +310,187 @@
   "needs": ""
  },
  {
+  "cover": "",
   "id": "d16A",
   "epoch": 1794677400,
   "local": "2026-11-14 12:30",
-  "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/P4_V6_Bilingual_File_EN.mp4",
-  "caption": "One rental file, two languages. 🇨🇦\nLandlord Kit: switch the language of the whole workbook in one cell: English, French or both.\n👉 Link in bio\n#landlord #bilingual #canada",
-  "needs": ""
- },
- {
-  "id": "d16B",
-  "epoch": 1794702600,
-  "local": "2026-11-14 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t15_reparations.jpg",
   "caption": "Vous suivez vos réparations comment ? 🔧\n#propriétaire #réparations #locatif",
   "needs": ""
  },
  {
-  "id": "d17A",
-  "epoch": 1794763800,
-  "local": "2026-11-15 12:30",
-  "type": "reel",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/videos/Seat_and_Vow_Facebook_30s_en.mp4",
-  "caption": "Plan your wedding tables in Excel 💍\nThe workbook counts, checks and alerts you; you decide who sits where.\n👉 Link in bio\n#seatingchart #wedding #weddingplanning",
-  "needs": ""
- },
- {
-  "id": "d17B",
-  "epoch": 1794789000,
-  "local": "2026-11-15 19:30",
+  "cover": "",
+  "id": "d16B",
+  "epoch": 1794702600,
+  "local": "2026-11-14 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/m16_appli.jpg",
   "caption": "Qu'est-ce que vous préférez ? 👇\n#excel #organisation #propriétaire",
   "needs": ""
  },
  {
-  "id": "d18A",
-  "epoch": 1794850200,
-  "local": "2026-11-16 12:30",
+  "cover": "",
+  "id": "d17A",
+  "epoch": 1794763800,
+  "local": "2026-11-15 12:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t17_onglet_annee.jpg",
   "caption": "Petit réflexe, grande clarté 📅\n#budget #excel #organisation",
   "needs": ""
  },
  {
-  "id": "d18B",
-  "epoch": 1794875400,
-  "local": "2026-11-16 19:30",
+  "cover": "",
+  "id": "d17B",
+  "epoch": 1794789000,
+  "local": "2026-11-15 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q18_dossier_remis.jpg",
   "caption": "On est tous passés par là 😅 Dites-nous le vôtre 👇\n#organisation #finannée #productivité",
   "needs": ""
  },
  {
-  "id": "d19A",
-  "epoch": 1794936600,
-  "local": "2026-11-17 12:30",
+  "cover": "",
+  "id": "d18A",
+  "epoch": 1794850200,
+  "local": "2026-11-16 12:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t19_bilan_annee.jpg",
   "caption": "Un bilan clair, c'est un départ clair 🎯\n#bilan #association #propriétaire",
   "needs": ""
  },
  {
-  "id": "d19B",
-  "epoch": 1794961800,
-  "local": "2026-11-17 19:30",
+  "cover": "",
+  "id": "d18B",
+  "epoch": 1794875400,
+  "local": "2026-11-16 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q21_en_headache.jpg",
   "caption": "Tell us in the comments. We read everything 👇\n#excel #smallbusiness #canada",
   "needs": ""
  },
  {
-  "id": "d20A",
-  "epoch": 1795023000,
-  "local": "2026-11-18 12:30",
+  "cover": "",
+  "id": "d19A",
+  "epoch": 1794936600,
+  "local": "2026-11-17 12:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t22_en_due_received.jpg",
   "caption": "Simple, and it saves a lot of digging 🔎\n#landlord #rent #excel",
   "needs": ""
  },
  {
-  "id": "d20B",
-  "epoch": 1795048200,
-  "local": "2026-11-18 19:30",
+  "cover": "",
+  "id": "d19B",
+  "epoch": 1794961800,
+  "local": "2026-11-17 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/m23_en_paid_rent.jpg",
   "caption": "What do you forget most often? 👇\n#landlord #rental #maintenance",
   "needs": ""
  },
  {
-  "id": "d21A",
-  "epoch": 1795109400,
-  "local": "2026-11-19 12:30",
+  "cover": "",
+  "id": "d20A",
+  "epoch": 1795023000,
+  "local": "2026-11-18 12:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t24_en_monthly_rec.jpg",
   "caption": "Treasurers: how often do you reconcile? 🏦\n#treasurer #nonprofit #bankreconciliation",
   "needs": ""
  },
  {
-  "id": "d21B",
-  "epoch": 1795134600,
-  "local": "2026-11-19 19:30",
+  "cover": "",
+  "id": "d20B",
+  "epoch": 1795048200,
+  "local": "2026-11-18 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q25_en_language.jpg",
   "caption": "Vote in the comments 👇\n#bilingual #canada #excel",
   "needs": ""
  },
  {
-  "id": "d22A",
-  "epoch": 1795195800,
-  "local": "2026-11-20 12:30",
+  "cover": "",
+  "id": "d21A",
+  "epoch": 1795109400,
+  "local": "2026-11-19 12:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t26_en_receipts.jpg",
   "caption": "A small habit that pays off at year end 🧾\n#treasurer #studentclub #organization",
   "needs": ""
  },
  {
-  "id": "d22B",
-  "epoch": 1795221000,
-  "local": "2026-11-20 19:30",
+  "cover": "",
+  "id": "d21B",
+  "epoch": 1795134600,
+  "local": "2026-11-19 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/s27_en_green_red.jpg",
   "caption": "That is the idea behind the Landlord Kit grid 🟩🟥\n#landlord #rent #excel",
   "needs": ""
  },
  {
-  "id": "d23A",
-  "epoch": 1795282200,
-  "local": "2026-11-21 12:30",
+  "cover": "",
+  "id": "d22A",
+  "epoch": 1795195800,
+  "local": "2026-11-20 12:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t28_en_tab_year.jpg",
   "caption": "Small habit, big clarity 📅\n#budget #excel #organization",
   "needs": ""
  },
  {
-  "id": "d23B",
-  "epoch": 1795307400,
-  "local": "2026-11-21 19:30",
+  "cover": "",
+  "id": "d22B",
+  "epoch": 1795221000,
+  "local": "2026-11-20 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q29_rapport_fin.jpg",
   "caption": "Répondez en commentaire, sans jugement 😄\n#trésorier #association #rapport",
   "needs": ""
  },
  {
-  "id": "d24A",
-  "epoch": 1795368600,
-  "local": "2026-11-22 12:30",
+  "cover": "",
+  "id": "d23A",
+  "epoch": 1795282200,
+  "local": "2026-11-21 12:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t30_concil_mensuelle.jpg",
   "caption": "À quelle fréquence le faites-vous ? 🏦\n#trésorier #conciliationbancaire #association",
   "needs": ""
  },
  {
-  "id": "d24B",
-  "epoch": 1795393800,
-  "local": "2026-11-22 19:30",
+  "cover": "",
+  "id": "d23B",
+  "epoch": 1795307400,
+  "local": "2026-11-21 19:30",
   "type": "image",
   "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/s31_douze_chiffres.jpg",
   "caption": "Le tableau de bord du Kit Propriétaire 📊\n#propriétaire #tableaudebord #excel",
   "needs": ""
  },
  {
+  "cover": "",
+  "id": "d24A",
+  "epoch": 1795368600,
+  "local": "2026-11-22 12:30",
+  "type": "image",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q32_oubli_entretien.jpg",
+  "caption": "On a tous un oubli en tête 😅 Racontez 👇\n#propriétaire #entretien #immobilier",
+  "needs": ""
+ },
+ {
+  "cover": "",
+  "id": "d24B",
+  "epoch": 1795393800,
+  "local": "2026-11-22 19:30",
+  "type": "image",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t33_assurance.jpg",
+  "caption": "Quelle autre échéance suivez-vous ? 📆\n#propriétaire #assurance #organisation",
+  "needs": ""
+ },
+ {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V1_AGM_Report_FR.jpg",
   "id": "d25A",
   "epoch": 1795455000,
   "local": "2026-11-23 12:30",
@@ -450,6 +500,7 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d25B",
   "epoch": 1795480200,
   "local": "2026-11-23 19:30",
@@ -459,6 +510,7 @@
   "needs": "P5"
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V3_Who_Paid_Dues_FR.jpg",
   "id": "d26A",
   "epoch": 1795541400,
   "local": "2026-11-24 12:30",
@@ -468,6 +520,7 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d26B",
   "epoch": 1795566600,
   "local": "2026-11-24 19:30",
@@ -477,6 +530,7 @@
   "needs": "P5"
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V2_Bank_Reconciliation_FR.jpg",
   "id": "d27A",
   "epoch": 1795627800,
   "local": "2026-11-25 12:30",
@@ -486,6 +540,7 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d27B",
   "epoch": 1795653000,
   "local": "2026-11-25 19:30",
@@ -495,6 +550,7 @@
   "needs": "P5"
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V4_Fundraiser_Verdict_FR.jpg",
   "id": "d28A",
   "epoch": 1795714200,
   "local": "2026-11-26 12:30",
@@ -504,6 +560,7 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d28B",
   "epoch": 1795739400,
   "local": "2026-11-26 19:30",
@@ -513,6 +570,7 @@
   "needs": "P5"
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V5_Budget_Check_FR.jpg",
   "id": "d29A",
   "epoch": 1795800600,
   "local": "2026-11-27 12:30",
@@ -522,6 +580,7 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d29B",
   "epoch": 1795825800,
   "local": "2026-11-27 19:30",
@@ -531,6 +590,7 @@
   "needs": "P5"
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V6_Handover_FR.jpg",
   "id": "d30A",
   "epoch": 1795887000,
   "local": "2026-11-28 12:30",
@@ -540,15 +600,17 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d30B",
   "epoch": 1795912200,
   "local": "2026-11-28 19:30",
   "type": "image",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q32_oubli_entretien.jpg",
-  "caption": "On a tous un oubli en tête 😅 Racontez 👇\n#propriétaire #entretien #immobilier",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q34_budget_depense.jpg",
+  "caption": "Le savez-vous sans ouvrir un fichier ? 👇\n#budget #association #trésorier",
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V1_AGM_Report_EN.jpg",
   "id": "d31A",
   "epoch": 1795973400,
   "local": "2026-11-29 12:30",
@@ -558,15 +620,17 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d31B",
   "epoch": 1795998600,
   "local": "2026-11-29 19:30",
   "type": "image",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t33_assurance.jpg",
-  "caption": "Quelle autre échéance suivez-vous ? 📆\n#propriétaire #assurance #organisation",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/s36_deux_langues.jpg",
+  "caption": "Pensé pour le Québec et le Canada 🇨🇦\n#bilingue #québec #excel",
   "needs": ""
  },
  {
+  "cover": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/covers/P5_V3_Who_Paid_Dues_EN.jpg",
   "id": "d32A",
   "epoch": 1796059800,
   "local": "2026-11-30 12:30",
@@ -576,12 +640,13 @@
   "needs": "P5"
  },
  {
+  "cover": "",
   "id": "d32B",
   "epoch": 1796085000,
   "local": "2026-11-30 19:30",
   "type": "image",
-  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/q34_budget_depense.jpg",
-  "caption": "Le savez-vous sans ouvrir un fichier ? 👇\n#budget #association #trésorier",
+  "url": "https://raw.githubusercontent.com/Munirtexh/maker-flowtools-pins/main/ig/cards/t37_archives.jpg",
+  "caption": "Votre futur vous dira merci 🙏\n#excel #organisation #productivité",
   "needs": ""
  }
 ]
