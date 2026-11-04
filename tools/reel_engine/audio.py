@@ -27,7 +27,7 @@ def env(n, a, r):
     return e
 
 
-def music(dur, theme):
+def music(dur, theme, loop=False):
     n = int(dur * SR); t = np.arange(n) / SR
     out = np.zeros(n)
     prog = KEYS.get(theme, KEYS['landlord'])
@@ -59,7 +59,7 @@ def music(dur, theme):
             nz = np.random.default_rng(k * 10 + j).standard_normal(pe - ps)
             nz = np.diff(np.concatenate([[0], nz]))  # highpass-ish
             out[ps:pe] += nz * np.exp(-np.arange(pe - ps) / SR * 90) * 0.012
-    out *= env(n, 0.4, 1.2)
+    out *= env(n, 0.02, 0.06) if loop else env(n, 0.4, 1.2)  # boucle : pas de fondu, la fin rejoint le début
     return out
 
 
@@ -94,7 +94,7 @@ def sfx(kind, rng):
 def main():
     events = json.load(open(sys.argv[1])); out = sys.argv[2]; dur = float(sys.argv[3]); theme = sys.argv[4]
     rng = np.random.default_rng(3)
-    mix = music(dur, theme)
+    mix = music(dur, theme, len(sys.argv) > 5 and sys.argv[5] == 'loop')
     last = {}
     for e in events:
         k = e['type']; t0 = e['t']

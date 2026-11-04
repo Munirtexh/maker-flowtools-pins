@@ -1,0 +1,150 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Moteur « reels tendance » (nov. 2026) : formats viraux courts en boucle parfaite.
+     Recette tirée des formats qui percent en 2026 : texte à l'écran dès la 1re image (POV / situation vécue),
+     changement visuel toutes les 1-2 s, chaos -> ordre « satisfaisant », pas d'écran de pub à la fin,
+     dernière image = première image (boucle => revisionnages). Même API que engine.html : init(cfg) puis render(t). -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0b0f1e;font-family:'Inter Display','Inter','Noto Color Emoji',sans-serif;color:#fff}
+#stage{position:absolute;inset:0;overflow:hidden}
+#cam{position:absolute;inset:0;transform-origin:50% 55%}
+.abs{position:absolute}
+.blob{position:absolute;border-radius:50%}
+.dot{position:absolute;border-radius:50%}
+.line{position:absolute;left:40px;right:40px;text-align:center;font-weight:900;line-height:1.05;letter-spacing:-2px}
+.w{display:inline-block;margin:0 .1em;transform-origin:50% 85%;position:relative}
+.pov{display:inline-block;padding:.06em .28em;border-radius:.22em;color:#0b0f1e;margin-right:.18em}
+.g{position:absolute;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;color:#0b0f1e;box-shadow:0 10px 22px rgba(0,0,0,.45)}
+.tb{position:absolute;border-radius:50%;background:linear-gradient(160deg,#2c2552,#1b1838);border:5px solid rgba(255,255,255,.14);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:30px;line-height:1.05}
+.tb small{font-size:19px;color:#b9b2e0;font-weight:700}
+.chip{position:absolute;padding:16px 28px;border-radius:26px;font-weight:900;font-size:36px;color:#0b0f1e;white-space:nowrap;box-shadow:0 22px 46px rgba(0,0,0,.5)}
+.ray{position:absolute;width:10px;height:34px;border-radius:5px}
+.conf{position:absolute;width:16px;height:28px;border-radius:4px}
+#panel{position:absolute;left:110px;width:860px;height:150px;border-radius:34px;background:linear-gradient(160deg,#1f2347,#141833);border:2px solid rgba(255,255,255,.1);padding:22px 30px;box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.pbar{display:flex;align-items:center;gap:10px;font-size:20px;color:#8f9bc0;font-weight:700}
+.pbar i{width:14px;height:14px;border-radius:50%;display:inline-block}
+.pbar .sd{margin-left:auto;font-size:17px;padding:5px 12px;border-radius:16px;background:rgba(255,255,255,.08)}
+.prow{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:32px;font-weight:900}
+.stamp{position:absolute;padding:10px 22px;border:6px solid;border-radius:16px;font-weight:900;font-size:38px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;background:#140f26}
+#brand{position:absolute;left:0;right:0;top:1640px;text-align:center;font-weight:800;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+#flash{position:absolute;inset:0;pointer-events:none}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const C={g:'#2ee6a6',r:'#ff5d73',y:'#ffc23d',b:'#5cc8ff',p:'#b18cff',o:'#ff9f43',k:'#ff7aa8',m:'#4dffb5'};
+const TH={seat:{bg:['#17071a','#4a1239','#1f0a24'],a1:'#ff7aa8',a2:'#ffd27a',a3:'#b18cff'},
+ landlord:{bg:['#06141f','#0b2f33','#071a26'],a1:'#2ee6a6',a2:'#5cc8ff',a3:'#ffc23d'},
+ treasurer:{bg:['#0d0a24','#251454','#120d33'],a1:'#ffc23d',a2:'#b18cff',a3:'#5cc8ff'},
+ habit:{bg:['#04170f','#0b3d2c','#062319'],a1:'#4dffb5',a2:'#ffd166',a3:'#5cc8ff'},
+ artisan:{bg:['#1a0904','#4a1d0d','#240d06'],a1:'#ffb347',a2:'#ffd700',a3:'#ff7a5c'}};
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lin=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const spr=(t,t0,k=1)=>{const p=(t-t0)*k;if(p<=0)return 0;return 1-Math.exp(-5.2*p)*Math.cos(10.5*p);};
+let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+let stage,cam;
+const el=(tag,cls,par,html)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;(par||cam).appendChild(e);return e;};
+const A=[],EV=[];const on=f=>A.push(f);const ev=(t,type)=>EV.push({t:+t.toFixed(3),type});
+let DUR=9;
+// pop in at t0, pop out at t1 (scale spring / shrink)
+function inout(e,t,t0,t1,o={}){let s=spr(t,t0,o.k||1.2);let op=clamp((t-t0)*7);if(t1!=null){const q=lin(t,t1,t1+(o.out||.22));s*=1-eio(q);op*=1-q;}
+  e.style.opacity=op;e.style.transform=`${o.base||''} scale(${Math.max(0,s)}) rotate(${(1-clamp((t-t0)*2.4))*(o.rot||0)+(o.tilt||0)}deg)`;}
+function burst(x,y,t0,color,n=12){const rs=[];for(let i=0;i<n;i++){const r=el('div','ray');r.style.background=i%2?color:'#fff';rs.push(r);}
+  on(t=>{const p=(t-t0)/.6;rs.forEach((r,i)=>{if(p<0||p>1){r.style.opacity=0;return;}const a=i/n*Math.PI*2;const d=40+170*eo(p);r.style.opacity=1-p;r.style.left=(x+Math.cos(a)*d-5)+'px';r.style.top=(y+Math.sin(a)*d-17)+'px';r.style.transform=`rotate(${a*180/Math.PI+90}deg) scaleY(${1-p*.6})`;});});}
+function background(th){const bg=el('div','abs',stage);bg.style.inset='0';
+  // période = DUR pour que la boucle soit parfaite
+  const w=()=>2*Math.PI/DUR;
+  on(t=>{const k=w()*t;bg.style.background=`linear-gradient(${160+Math.sin(k)*12}deg,${th.bg[0]} 0%,${th.bg[1]} ${50+Math.sin(k*2)*8}%,${th.bg[2]} 100%)`;});
+  const bl=[[th.a1,760,-160,260],[th.a2,640,600,1250],[th.a3,560,780,120]].map(([c,s,x,y],i)=>{const b=el('div','blob',stage);b.style.width=b.style.height=s+'px';b.style.background=`radial-gradient(circle, ${c}55 0%, ${c}22 35%, transparent 70%)`;return {b,x,y,i};});
+  on(t=>bl.forEach(({b,x,y,i})=>{const k=w()*t;b.style.left=(x+Math.sin(k+i*2)*140)+'px';b.style.top=(y+Math.cos(k+i)*160)+'px';}));
+  const ds=[];for(let i=0;i<40;i++){const d=el('div','dot',stage);const s=4+rnd()*8;d.style.width=d.style.height=s+'px';const c=[th.a1,th.a2,'#ffffff'][i%3];d.style.background=c;d.style.boxShadow=`0 0 ${s*2}px ${c}`;ds.push({d,x:rnd()*1080,y:rnd()*1920,n:1+Math.floor(rnd()*2),ph:rnd()*6});}
+  on(t=>ds.forEach(o=>{const k=w()*t;o.d.style.left=(o.x+Math.sin(k*2+o.ph)*20)+'px';o.d.style.top=(((o.y-t/DUR*1920*o.n*.5)%1920+1920)%1920)+'px';o.d.style.opacity=.25+.5*(.5+.5*Math.sin(k*3+o.ph));}));}
+// texte mot à mot ; hl = index des mots surlignés (couleur), pov = 1er mot en étiquette
+function words(par,text,o){const ws=[];text.split(' ').forEach((w,i)=>{const s=el('span','w',par);s.textContent=w;if(o.hl&&o.hl.includes(i))s.style.color=o.color;if(o.pov&&i===0){s.className='w pov';s.style.background=o.color;}ws.push(s);});return ws;}
+function line(cfg,y,fs){const d=el('div','line');d.style.top=y+'px';d.style.fontSize=fs+'px';return d;}
+
+// ---------- format : chaos -> ordre (plan de table) ----------
+const F={};
+F.seatChaos=(cfg,th)=>{const T=cfg.t;// textes
+  // ligne 1 : présente dès la 1re image (règle n°1 des formats viraux)
+  const l1=line(cfg,185,80);const w1=words(l1,T.l1,{pov:true,color:th.a1});
+  on(t=>{const p=1+.012*Math.sin(t*2*Math.PI/DUR*6);l1.style.transform=`scale(${p})`;});
+  // ligne 2a (problème) puis 2b (solution)
+  const l2a=line(cfg,385,90);const w2a=words(l2a,T.l2a,{hl:T.hl2a,color:C.r});
+  const l2b=line(cfg,385,90);const w2b=words(l2b,T.l2b,{hl:T.hl2b,color:C.g});
+  const tSwap=2.75, tBack=DUR-0.55;
+  w2a.forEach((s,i)=>{const ti=.12+i*.13;ev(ti,'word');on(t=>inout(s,t,ti,tSwap+i*.02,{rot:i%2?8:-8}));});
+  w2b.forEach((s,i)=>{const ti=tSwap+.25+i*.11;ev(ti,'word');on(t=>inout(s,t,ti,tBack-.35+i*.02,{rot:i%2?8:-8}));});
+  ev(tSwap+.1,'whoosh');
+  // tables (2 colonnes x 3 rangées)
+  const tabs=[];const R=88,SR=146;const cx=[290,790],cy=[810,1060,1310];
+  for(let r=0;r<3;r++)for(let c=0;c<2;c++){const i=tabs.length;const x=cx[c],y=cy[r];const d=el('div','tb');d.style.width=d.style.height=2*R+'px';d.style.left=(x-R)+'px';d.style.top=(y-R)+'px';d.innerHTML=`${T.table} ${i+1}<small class="cnt">0 / 8</small>`;tabs.push({d,x,y,cnt:d.querySelector('.cnt'),i});}
+  const tIn=3.05,tOut=DUR-1.25;
+  tabs.forEach(o=>{const ti=tIn+o.i*.09;ev(ti,'pop');on(t=>inout(o.d,t,ti,tOut+.35+o.i*.03,{rot:-10}));});
+  // invités : position chaos (aléatoire) -> siège
+  const names=T.guests;const G=[];const pal=[C.p,C.b,C.y,C.o,C.m,'#ffd27a'];
+  tabs.forEach(tb=>{for(let s=0;s<8;s++){const a=s/8*Math.PI*2-Math.PI/2;G.push({tx:tb.x+Math.cos(a)*SR,ty:tb.y+Math.sin(a)*SR,tab:tb});}});
+  const seq=G.map((g,i)=>i).sort((a,b)=>((a*37)%48)-((b*37)%48));
+  const special={};special[0]=T.clash[0];special[45]=T.clash[1]; // table 1 / table 6 = éloignés
+  G.forEach((g,i)=>{g.cxp=90+rnd()*900;g.cyp=640+rnd()*820;g.ph=rnd()*6;g.lab=special[i]||names[i%names.length];g.col=special[i]?C.r:pal[i%pal.length];g.sp=special[i]!=null;
+    const e=el('div','g');e.textContent=g.lab[0];e.style.background=g.col;if(g.sp){e.style.width=e.style.height='92px';e.style.fontSize='38px';e.style.zIndex=5;e.style.border='5px solid #fff';}g.e=e;g.sz=g.sp?92:62;});
+  // les deux « ennemis » partent du centre, l'un sur l'autre
+  G[0].cxp=470;G[0].cyp=1010;G[45].cxp=600;G[45].cyp=1060;
+  const order=[...seq];const tGo=tIn+.35,dt=.036;
+  order.forEach((gi,k)=>{G[gi].t0=tGo+k*dt;G[gi].t1=tOut+((47-k)*.012);if(k%3===0)ev(G[gi].t0+.42,'tick');});
+  G[0].t0=tGo+1.5;G[45].t0=tGo+1.62; // les deux derniers : le moment fort
+  const tStamp=tGo+2.3;
+  G.forEach(g=>{on(t=>{const sh=t<tSwap?(1+2.2*lin(t,.6,2.4)):1; // agitation qui monte
+      const jx=Math.sin(t*2*Math.PI/DUR*7+g.ph)*16*sh,jy=Math.cos(t*2*Math.PI/DUR*5+g.ph)*14*sh;
+      const go=eio(lin(t,g.t0,g.t0+.5)),back=eio(lin(t,g.t1,g.t1+.55));const p=go*(1-back);
+      const arc=-Math.sin(p*Math.PI)*90;
+      const x=g.cxp+jx*(1-p)+(g.tx-g.cxp)*p,y=g.cyp+jy*(1-p)+(g.ty-g.cyp)*p+arc;
+      g.e.style.left=(x-g.sz/2)+'px';g.e.style.top=(y-g.sz/2)+'px';
+      const land=g.t0+.5;const bump=t>land&&t<land+.4?.25*Math.sin((t-land)/.4*Math.PI):0;
+      g.e.style.transform=`scale(${(g.sp?1:.92)+bump-(go>0&&go<1?.1:0)})`;
+      if(g.sp){const ok=t>tStamp&&t<tOut;g.e.style.background=ok?C.g:C.r;g.e.style.boxShadow=ok?`0 0 40px ${C.g}`:`0 0 ${30+20*Math.sin(t*14)}px ${C.r}`;}
+    });});
+  // compteurs par table
+  on(t=>tabs.forEach(tb=>{let n=0;G.forEach(g=>{if(g.tab===tb&&t>g.t0+.5&&t<g.t1+.3)n++;});tb.cnt.textContent=n+' / 8';tb.d.style.borderColor=n===8?C.g:'rgba(255,255,255,.14)';tb.d.style.boxShadow=n===8?`0 0 36px ${C.g}66`:'none';}));
+  // conflit : ligne rouge clignotante + puce
+  const zz=el('div','abs');zz.style.cssText=`height:8px;border-radius:4px;background:repeating-linear-gradient(90deg,${C.r} 0 22px,transparent 22px 36px);transform-origin:0 50%`;
+  on(t=>{const a=G[0],b=G[45];const ax=parseFloat(a.e.style.left)+46,ay=parseFloat(a.e.style.top)+46,bx=parseFloat(b.e.style.left)+46,by=parseFloat(b.e.style.top)+46;
+    const L=Math.hypot(bx-ax,by-ay),ang=Math.atan2(by-ay,bx-ax);zz.style.left=ax+'px';zz.style.top=(ay-4)+'px';zz.style.width=L+'px';zz.style.transform=`rotate(${ang}rad)`;
+    const vis=t>.5&&t<tSwap+.2;zz.style.opacity=vis?(.55+.45*Math.sin(t*16)):0;});
+  const warn=el('div','chip');warn.textContent=T.warn;warn.style.background=C.r;warn.style.color='#fff';warn.style.left='300px';warn.style.top='600px';
+  ev(1.0,'alert');on(t=>inout(warn,t,1.0,tSwap-.15,{rot:-14,tilt:-5}));
+  const emo=el('div','abs');emo.textContent='🤯';emo.style.cssText='font-size:120px;left:800px;top:1380px';ev(1.9,'pop');on(t=>inout(emo,t,1.9,tSwap-.1,{rot:30,tilt:12}));
+  // tampon « séparés » + éclats
+  const st=el('div','stamp');st.textContent=T.stamp;st.style.color=C.g;st.style.borderColor=C.g;st.style.left='540px';st.style.top='1185px';
+  ev(tStamp,'stamp');ev(tStamp+.1,'ding');burst(540,1185,tStamp+.05,C.g,14);
+  on(t=>{const p=lin(t,tStamp,tStamp+.22),q=lin(t,tOut-.2,tOut+.1);st.style.opacity=p*(1-q);st.style.transform=`translate(-50%,-50%) scale(${(2.6-1.6*eo(p))*(1-.6*q)}) rotate(-7deg)`;});
+    // panneau Excel incliné (capture du fichier, données d'exemple)
+  const pn=el('div','');pn.id='panel';pn.style.top='1440px';
+  pn.innerHTML=`<div class="pbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span style="margin-left:10px;color:#c6cff0">${T.file}</span><span class="sd">${T.sample}</span></div><div class="prow"><span>${T.seated}</span><span class="v" style="color:${C.g}"></span><span>${T.alerts}</span><span class="a"></span></div>`;
+  const pv=pn.querySelector('.v'),pa=pn.querySelector('.a');ev(tIn+.2,'swish');
+  on(t=>{const p=spr(t,tIn+.2,1.1),q=eio(lin(t,tOut+.3,tOut+.8));pn.style.opacity=clamp((t-tIn-.2)*6)*(1-q);
+    pn.style.transform=`perspective(1600px) translateY(${(1-p)*260+q*200}px) rotateX(${14+(1-clamp(p))*30}deg) rotateZ(${-3+Math.sin(t*2*Math.PI/DUR)*1.2}deg)`;
+    let n=0;G.forEach(g=>{if(t>g.t0+.5&&t<g.t1+.3)n++;});pv.textContent=n+' / 48';const al=t<tStamp?1:0;pa.textContent=al?'1 ⚠️':'0 ✓';pa.style.color=al?C.r:C.g;});
+  // confettis au moment fort
+  const cf=[];for(let i=0;i<46;i++){const e=el('div','conf');e.style.background=[th.a1,th.a2,C.g,'#fff'][i%4];cf.push({e,x:rnd()*1080,v:650+rnd()*600,r:rnd()*720,d:rnd()*.4,w:rnd()*6});}
+  on(t=>cf.forEach(o=>{const p=t-(tStamp+.2+o.d);if(p<0||p>2.2){o.e.style.opacity=0;return;}o.e.style.opacity=1-lin(p,1.6,2.2);o.e.style.left=(o.x+Math.sin(p*3+o.w)*60)+'px';o.e.style.top=(-60+p*o.v)+'px';o.e.style.transform=`rotate(${o.r+p*400}deg) rotateY(${p*500}deg)`;}));
+  // « caméra » : petits coups de zoom (changement visuel toutes les 1-2 s) + secousse pendant le chaos
+  const punches=[1.0,1.9,tSwap+.1,tStamp];
+  on(t=>{let z=1;punches.forEach(p=>{const q=lin(t,p,p+.35);if(q>0&&q<1)z+=.07*(1-eo(q));});
+    const sh=t>.6&&t<tSwap?lin(t,.6,2.4)*7:0;cam.style.transform=`translate(${Math.sin(t*53)*sh}px,${Math.cos(t*47)*sh}px) scale(${z})`;});
+  // éclair de couleur au basculement
+  const fl=el('div','',stage);fl.id='flash';on(t=>{const q=lin(t,tSwap+.05,tSwap+.4);fl.style.background=th.a1;fl.style.opacity=q>0&&q<1?.35*(1-q):0;});
+  const br=el('div','');br.id='brand';br.textContent=T.brand;
+};
+
+function init(cfg){
+  stage=document.getElementById('stage');cam=document.createElement('div');cam.id='cam';
+  seed=cfg.seed||11;DUR=cfg.dur||9;const th=TH[cfg.theme];
+  background(th);stage.appendChild(cam);
+  F[cfg.format](cfg,th);
+  window.EVENTS=EV.sort((a,b)=>a.t-b.t);return {dur:DUR,events:window.EVENTS};
+}
+function render(t){A.forEach(f=>f(t));}
+</script></body></html>

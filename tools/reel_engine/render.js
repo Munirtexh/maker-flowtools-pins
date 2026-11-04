@@ -16,7 +16,7 @@ fs.mkdirSync(outDir, { recursive: true });
 
 async function one(browser, cfg) {
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
-  await page.goto(engine);
+  await page.goto(cfg.engine ? 'file://' + path.resolve(__dirname, cfg.engine) : engine);
   await page.evaluate(() => document.fonts.ready);
   const info = await page.evaluate(c => init(c), cfg);
   const base = path.join(outDir, cfg.id);
@@ -29,7 +29,7 @@ async function one(browser, cfg) {
   }
   const evf = base + '.events.json', wav = base + '.wav';
   fs.writeFileSync(evf, JSON.stringify(info.events));
-  execFileSync('python3', [path.join(__dirname, 'audio.py'), evf, wav, String(info.dur), cfg.theme]);
+  execFileSync('python3', [path.join(__dirname, 'audio.py'), evf, wav, String(info.dur), cfg.theme].concat(cfg.loop ? ['loop'] : []));
   const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-i', wav,
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
     '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', base + '.mp4']);

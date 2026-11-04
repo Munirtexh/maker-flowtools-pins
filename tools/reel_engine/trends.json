@@ -1,0 +1,11 @@
+{"reels":[
+ {"id":"TR01_seat_EN","engine":"trend.html","format":"seatChaos","theme":"seat","lang":"en","dur":9.6,"loop":true,"seed":41,"coverAt":5.6,
+  "previewTimes":[0,0.6,1.5,2.4,3.2,3.8,4.6,5.3,6.2,7.4,8.6,9.55],
+  "t":{"l1":"POV: you're doing the seating chart",
+       "l2a":"and Carol can't sit near Rick 😬","hl2a":[1,5],
+       "l2b":"so I let the spreadsheet check it ✨","hl2b":[4,5],
+       "table":"Table","guests":["Emma","Liam","Noah","Ava","Mia","Leo","Zoe","Eli","Ivy","Max","Ana","Sam","Lou","Jade","Ben","Nora"],
+       "clash":["Carol","Rick"],"warn":"⚠️ Conflict!","stamp":"Kept apart ✓","done":"Every table checked ✓",
+       "file":"Seat_and_Vow.xlsx","sample":"Sample data","seated":"Seated","alerts":"Alerts",
+       "brand":"Seat & Vow · Maker FlowTools"}}
+]}
