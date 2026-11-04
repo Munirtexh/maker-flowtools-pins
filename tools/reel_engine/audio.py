@@ -88,6 +88,22 @@ def sfx(kind, rng):
         d = .18; tt = np.arange(int(d * SR)) / SR
         nz = rng.standard_normal(len(tt)) * np.exp(-tt * 60) * 0.12
         return nz + np.sin(2 * np.pi * 180 * tt) * np.exp(-tt * 30) * 0.18
+    if kind == 'ping':  # notification (message reçu)
+        d = .35; tt = np.arange(int(d * SR)) / SR
+        f = 1046.5 if rng.random() < .5 else 1174.7
+        return (np.sin(2 * np.pi * f * tt) + .4 * np.sin(4 * np.pi * f * tt)) * np.exp(-tt * 14) * 0.10
+    if kind == 'riser':  # montée de 2,5 s qui finit pile sur la révélation
+        d = 2.5; m = int(d * SR); tt = np.arange(m) / SR; nz = rng.standard_normal(m)
+        nz = np.convolve(nz, np.ones(8) / 8, 'same')
+        f = 220 * 2 ** (tt / d * 2)
+        tone_ = np.sin(2 * np.pi * np.cumsum(f) / SR) * .35
+        return (nz * .5 + tone_) * (tt / d) ** 2 * 0.16
+    if kind == 'impact':  # impact doux (pas de « boum boum »)
+        d = .6; tt = np.arange(int(d * SR)) / SR
+        body = np.sin(2 * np.pi * (70 + 60 * np.exp(-tt * 20)) * tt) * np.exp(-tt * 9) * .22
+        nz = rng.standard_normal(len(tt)); nz = np.convolve(nz, np.ones(6) / 6, 'same') * np.exp(-tt * 25) * .10
+        bell = np.sin(2 * np.pi * 1568 * tt) * np.exp(-tt * 6) * .05
+        return body + nz + bell
     return np.zeros(1)
 
 
@@ -103,11 +119,18 @@ def main():
         if not loop: mix *= env(len(mix), 0.005, 0.35)
     else:
         mix = music(dur, theme, loop)
+    # silences de musique : paires mute / unmute (le moment calme juste avant le plus fort)
+    ms = [e['t'] for e in events if e['type'] == 'mute']; us = [e['t'] for e in events if e['type'] == 'unmute']
+    for a in ms:
+        b = min([u for u in us if u > a] or [dur]); i, j = int(a * SR), int(b * SR); k = int(.04 * SR)
+        g = np.ones(len(mix)); g[i:j] = 0.06; g[i:i + k] = np.linspace(1, .06, len(g[i:i + k])); g[j:j + k] = np.linspace(.06, 1, len(g[j:j + k]))
+        mix = mix * g
     last = {}
     for e in events:
+        if e['type'] in ('mute', 'unmute'): continue
         k = e['type']; t0 = e['t']
         if k == 'word' and t0 - last.get(k, -9) < .12: continue
-        if k == 'tick' and t0 - last.get(k, -9) < .1: continue
+        if k in ('tick', 'ping') and t0 - last.get(k, -9) < .1: continue
         last[k] = t0
         s = sfx(k, rng); i = int(t0 * SR)
         if i >= len(mix): continue

@@ -1,0 +1,550 @@
+{
+ "reels": [
+  {
+   "format": "sortChaos",
+   "theme": "landlord",
+   "lang": "en",
+   "dur": 15,
+   "music": "pop",
+   "seed": 57,
+   "coverAt": 6.8,
+   "end": {
+    "name": "Landlord Kit",
+    "sub": "Excel · EN / FR · no macros",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send to a landlord friend"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "POV: it's the 1st and 6 tenants text you at once",
+    "l2a": "and you can't tell who paid 😬",
+    "hl2a": [
+     3,
+     5
+    ],
+    "l2b": "so the spreadsheet sorts it ✨",
+    "hl2b": [
+     2,
+     4
+    ],
+    "items": [
+     {
+      "l": "Unit 101",
+      "s": "$1,250",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 102",
+      "s": "$600 of $1,100",
+      "st": "Partial",
+      "c": "y"
+     },
+     {
+      "l": "Unit 201",
+      "s": "$1,325",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 202",
+      "s": "$0 of $980",
+      "st": "Unpaid",
+      "c": "r"
+     },
+     {
+      "l": "Unit 301",
+      "s": "$1,150",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 302",
+      "s": "$1,050",
+      "st": "Paid ✓",
+      "c": "g"
+     }
+    ],
+    "decoys": [
+     "💬",
+     "📱",
+     "💬",
+     "🧾",
+     "❓",
+     "📱",
+     "💬",
+     "📌"
+    ],
+    "total": {
+     "l": "Received this month",
+     "v": 5375,
+     "f": "cur0",
+     "c": "g"
+    },
+    "wtitle": "Rent · November",
+    "warn": "📱 6 new messages",
+    "stamp": "All tracked ✓",
+    "emoji": "😵‍💫",
+    "beats": [
+     {
+      "text": "Paid · partial · unpaid at a glance",
+      "c": "y",
+      "x": 40,
+      "y": 640,
+      "rot": -4
+     },
+     {
+      "text": "Repairs tracked too 🔧",
+      "c": "b",
+      "x": 440,
+      "y": 1560,
+      "rot": 5
+     },
+     {
+      "text": "Lease-end reminders 🔔",
+      "c": "g",
+      "x": 120,
+      "y": 1110,
+      "rot": -4
+     }
+    ],
+    "file": "Landlord_Kit.xlsx",
+    "brand": "Landlord Kit · Maker FlowTools"
+   },
+   "id": "K1_pov_landlord_EN",
+   "engine": "trend.html",
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.5,
+    6,
+    7.5,
+    9,
+    10.5,
+    12,
+    13.8
+   ]
+  },
+  {
+   "format": "splitReal",
+   "theme": "treasurer",
+   "lang": "fr",
+   "dur": 15,
+   "music": "funk",
+   "seed": 62,
+   "coverAt": 3.6,
+   "end": {
+    "name": "Kit Trésorier",
+    "sub": "Excel · FR / EN · sans macros",
+    "btn": "💬 Écris KIT en commentaire",
+    "btn2": "👉 ou lien dans la bio"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "Devenir trésorier de l'asso 😅",
+    "hl1": [
+     2
+    ],
+    "left": "Ce que je pensais",
+    "right": "La réalité",
+    "calmTitle": "Petit budget 🙂",
+    "calm": [
+     [
+      "Cotisations",
+      "400 $"
+     ],
+     [
+      "Pizza AG",
+      "120 $"
+     ],
+     [
+      "Reste",
+      "280 $"
+     ]
+    ],
+    "msgs": [
+     "T'as reçu mon virement ?",
+     "Il manque 245 $ 😬",
+     "C'est qui qui a pas payé ?",
+     "Le reçu de la pizza ??",
+     "J'ai payé en cash !",
+     "Le rapport pour l'AG ?",
+     "On a combien ???"
+    ],
+    "gapChip": "⚠️ Écart : 245 $",
+    "v2": "La réalité, version 2.0 :",
+    "hlv2": [
+     3
+    ],
+    "items": [
+     {
+      "l": "Alex M.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Jade L.",
+      "s": "20 $ sur 40 $",
+      "st": "Partiel",
+      "c": "y"
+     },
+     {
+      "l": "Sam K.",
+      "s": "0 $ sur 40 $",
+      "st": "Impayé",
+      "c": "r"
+     },
+     {
+      "l": "Noah P.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Léa R.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Omar B.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     }
+    ],
+    "ecartL": "Écart banque ↔ livres",
+    "ecart": 245,
+    "copyChip": "📋 Rappel prêt à copier",
+    "eq": "Attente = réalité",
+    "hleq": [
+     0,
+     2
+    ],
+    "stamp": "Tout balance ✓",
+    "wtitle": "Cotisations · session d'automne",
+    "file": "Kit_Tresorier.xlsx",
+    "brand": "Kit Trésorier · Maker FlowTools"
+   },
+   "id": "K2_attente_tresorier_FR",
+   "engine": "trend.html",
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.5,
+    6,
+    7.5,
+    9,
+    10.5,
+    12,
+    13.8
+   ]
+  },
+  {
+   "format": "yearGrid",
+   "theme": "habit",
+   "lang": "en",
+   "dur": 15,
+   "loop": true,
+   "music": "future",
+   "seed": 91,
+   "coverAt": 9.6,
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "Watch your 2027 fill up.",
+    "hl1": [
+     3,
+     4
+    ],
+    "months": [
+     "Jan",
+     "Feb",
+     "Mar",
+     "Apr",
+     "May",
+     "Jun",
+     "Jul",
+     "Aug",
+     "Sep",
+     "Oct",
+     "Nov",
+     "Dec"
+    ],
+    "legend": [
+     "Done",
+     "Minimum",
+     "Rest"
+    ],
+    "noGuilt": "Missed days stay blank. No guilt.",
+    "stats": [
+     [
+      "done",
+      287
+     ],
+     [
+      "minimum",
+      41
+     ],
+     [
+      "rest",
+      22
+     ]
+    ],
+    "banner": "Rhythm Habit Tracker 2027 · link in bio",
+    "brand": "Rhythm Habit Tracker 2027 · Maker FlowTools · sample data"
+   },
+   "id": "K3_365_habit_EN",
+   "engine": "trend.html",
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.5,
+    6,
+    7.5,
+    9,
+    10.5,
+    12,
+    13.8
+   ]
+  },
+  {
+   "format": "couple",
+   "theme": "seat",
+   "lang": "fr",
+   "dur": 15,
+   "music": "lofi",
+   "seed": 33,
+   "coverAt": 4.6,
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Les fiancés · épisode 1<br>Plan de table Excel · FR / EN",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Identifie ta moitié"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "Elle : 80 invités. Lui : 40. 😤",
+    "hl1": [
+     1,
+     4
+    ],
+    "herSays": "80 !",
+    "himSays": "40.",
+    "guestsL": "Invités",
+    "from": 40,
+    "to": 80,
+    "names": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     "Tante Lise",
+     "Oncle Marc"
+    ],
+    "l2": "Et ta tante ne doit PAS voir mon oncle",
+    "hl2": [
+     2,
+     7
+    ],
+    "l3": "Bon. On fait ça proprement.",
+    "hl3": [
+     3
+    ],
+    "l4": "Toujours fâchés. Mais le plan est fait. 💍",
+    "hl4": [
+     5,
+     6
+    ],
+    "seatsL": "Places",
+    "alertL": "Lise ↔ Marc",
+    "alertBad": "⚠️ même table",
+    "alertOk": "séparés ✓",
+    "ep": "Les fiancés · ép. 1",
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   },
+   "id": "K4_fiances_seat_FR",
+   "engine": "trend.html",
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.5,
+    6,
+    7.5,
+    9,
+    10.5,
+    12,
+    13.8
+   ]
+  },
+  {
+   "format": "guess",
+   "theme": "artisan",
+   "lang": "en",
+   "dur": 15,
+   "music": "tropical",
+   "seed": 77,
+   "coverAt": 10.6,
+   "end": {
+    "name": "Artisan Empire 360°",
+    "sub": "Excel · EN / FR · no macros",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send to a maker friend"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "This candle: what would you charge?",
+    "hl1": [
+     4,
+     5,
+     6
+    ],
+    "sub": "Guess in the comments 👇",
+    "label": "SOY CANDLE",
+    "label2": "lavender · 8 oz",
+    "costs": [
+     [
+      "Soy wax",
+      6.4
+     ],
+     [
+      "Wick",
+      0.45
+     ],
+     [
+      "Jar",
+      3.9
+     ],
+     [
+      "Fragrance",
+      2.1
+     ],
+     [
+      "Packaging",
+      1.6
+     ],
+     [
+      "Etsy fees",
+      1.3
+     ],
+     [
+      "Your time (20 min)",
+      2.1
+     ]
+    ],
+    "totalL": "Real cost",
+    "margin": "For a 40% margin…",
+    "hlm": [
+     2
+    ],
+    "price": "$29.75",
+    "ask": "What did you guess? 👇",
+    "hla": [
+     3
+    ],
+    "file": "Artisan_Empire_360.xlsx",
+    "brand": "Artisan Empire 360° · Maker FlowTools"
+   },
+   "id": "K5_guess_artisan_EN",
+   "engine": "trend.html",
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.5,
+    6,
+    7.5,
+    9,
+    10.5,
+    12,
+    13.8
+   ]
+  },
+  {
+   "format": "sign",
+   "theme": "seat",
+   "lang": "fr",
+   "dur": 7,
+   "loop": true,
+   "music": "pop",
+   "seed": 29,
+   "coverAt": 4.2,
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.2,
+    5.5,
+    6.9
+   ],
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "Ceci est ton signe de faire ton plan de table AVANT les fêtes",
+    "hl1": [
+     7,
+     8,
+     9
+    ],
+    "guests": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "banner": "Seat & Vow · lien dans la bio",
+    "brand": ""
+   },
+   "id": "K6_signe_seat_FR",
+   "engine": "trend.html"
+  }
+ ]
+}
