@@ -13,3 +13,8 @@
 ## Reels tendance (4 nov. 2026)
 - 2 à 3 par semaine, dans des créneaux reels existants (on remplace, on n'ajoute pas). Moteur `tools/reel_engine/trend.html`, configs `build_trends.py` (voir README du moteur).
 - Changer de format régulièrement (nouvelle recherche de tendances chaque semaine) ; ne jamais montrer une fonction que le produit n'a pas (ex. Seat & Vow ne place pas les invités tout seul : il compte et alerte).
+
+## 2e reel quotidien à 19 h 30 (4 nov. 2026, décision de Yaacoub)
+- Les posts image de 19 h 30 sont remplacés par des reels 15 s (hook / body / fin) : `tools/reel_engine/build_daily.py` (configs + `EVENING` date → reel), rendu dans `videos/daily/`, puis `apply_daily.py` (archive auto dans `ig/archive/*_avant_reels_19h30_*`).
+- Le reel de 19 h 30 est dans la langue opposée à celle du jour (chaque langue chaque jour). Une image n'est remplacée que quand son reel est prêt ; sinon elle reste au calendrier.
+- Musique : `music.py` (5 styles générés, libres de droits), à varier d'un jour à l'autre.

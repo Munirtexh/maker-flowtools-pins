@@ -29,7 +29,7 @@ async function one(browser, cfg) {
   }
   const evf = base + '.events.json', wav = base + '.wav';
   fs.writeFileSync(evf, JSON.stringify(info.events));
-  execFileSync('python3', [path.join(__dirname, 'audio.py'), evf, wav, String(info.dur), cfg.theme].concat(cfg.loop ? ['loop'] : []));
+  execFileSync('python3', [path.join(__dirname, 'audio.py'), evf, wav, String(info.dur), cfg.theme].concat(cfg.loop ? ['loop'] : []).concat(cfg.music ? ['music=' + cfg.music] : []));
   const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-i', wav,
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
     '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', base + '.mp4']);

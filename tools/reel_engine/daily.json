@@ -1,0 +1,771 @@
+{
+ "reels": [
+  {
+   "id": "N05_tresorier_FR",
+   "slot": "d34A",
+   "lang": "fr",
+   "theme": "treasurer",
+   "tag": "Kit Trésorier",
+   "hook": "La banque dit 1 842 $, tes livres 1 597 $",
+   "hl": [
+    3,
+    6
+   ],
+   "emoji": "😳",
+   "file": "Kit_Tresorier.xlsx",
+   "wtitle": "Conciliation bancaire · octobre",
+   "tabs": [
+    "Tableau de bord",
+    "Cotisations",
+    "Budget",
+    "Conciliation",
+    "Rapport"
+   ],
+   "tabOn": 3,
+   "widget": {
+    "type": "counter",
+    "a": {
+     "l": "Relevé bancaire",
+     "v": 1842.5
+    },
+    "b": {
+     "l": "Vos livres",
+     "v": 1597.2
+    },
+    "label": "Écart à expliquer",
+    "from": 245.3,
+    "steps": [
+     {
+      "l": "Chèque pas encore encaissé",
+      "v": 180
+     },
+     {
+      "l": "Dépôt pas encore inscrit",
+      "v": 72.8
+     },
+     {
+      "l": "Frais bancaires",
+      "v": -12.5
+     },
+     {
+      "l": "Intérêts",
+      "v": 5
+     }
+    ],
+    "done": "Écart 0,00 $ ✓"
+   },
+   "floats": [
+    {
+     "t": 4.2,
+     "text": "Ça balance 🎉",
+     "x": 650,
+     "y": 540,
+     "c": "g",
+     "rot": 8
+    },
+    {
+     "t": 5.6,
+     "text": "Prêt pour l'AG 📋",
+     "x": 90,
+     "y": 1480,
+     "c": "y",
+     "rot": -6
+    },
+    {
+     "t": 7.2,
+     "text": "Rapport à imprimer 🖨️",
+     "x": 70,
+     "y": 640,
+     "c": "b",
+     "rot": -5
+    }
+   ],
+   "chips": [
+    "Excel",
+    "FR / EN",
+    "Sans macros"
+   ],
+   "cta": {
+    "name": "Kit<br>Trésorier",
+    "sub": "L'onglet Conciliation ramène<br>l'écart à 0,00, étape par étape",
+    "btns": [
+     "👉 Lien dans la bio",
+     "💬 Écris KIT en commentaire"
+    ]
+   },
+   "coverAt": 7.5,
+   "seed": 62,
+   "trend": true,
+   "dur": 15,
+   "music": "lofi",
+   "callout": "Trésoriers 👀",
+   "previewTimes": [
+    0,
+    1.7,
+    4,
+    6.5,
+    9,
+    11.5,
+    13.5
+   ]
+  },
+  {
+   "id": "N06_landlord_EN",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "landlord",
+   "lang": "en",
+   "dur": 15,
+   "music": "funk",
+   "seed": 57,
+   "coverAt": 6.5,
+   "end": {
+    "name": "Landlord Kit",
+    "sub": "Excel · English / Français · no macros",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send to a landlord friend"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "Landlords, be honest 👀",
+    "l2a": "$980 is missing and you don't know who 😬",
+    "hl2a": [
+     0,
+     2
+    ],
+    "l2b": "so the spreadsheet shows it at a glance ✨",
+    "hl2b": [
+     2,
+     6
+    ],
+    "items": [
+     {
+      "l": "Unit 101",
+      "s": "$1,250",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 102",
+      "s": "$600 of $1,100",
+      "st": "Partial",
+      "c": "y"
+     },
+     {
+      "l": "Unit 201",
+      "s": "$1,325",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 202",
+      "s": "$0 of $980",
+      "st": "Unpaid",
+      "c": "r"
+     },
+     {
+      "l": "Unit 301",
+      "s": "$1,150",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 302",
+      "s": "$1,050",
+      "st": "Paid ✓",
+      "c": "g"
+     }
+    ],
+    "total": {
+     "l": "Received this month",
+     "v": 5375,
+     "f": "cur0",
+     "c": "g"
+    },
+    "wtitle": "Rent · November",
+    "warn": "❓ Who paid?",
+    "stamp": "Found it ✓",
+    "beats": [
+     {
+      "text": "Unit 202 · $980 unpaid 🔴",
+      "c": "r",
+      "x": 60,
+      "y": 640,
+      "rot": -6
+     },
+     {
+      "text": "Paid · partial · unpaid ✓",
+      "c": "g",
+      "x": 400,
+      "y": 1560,
+      "rot": 5
+     },
+     {
+      "text": "Every unit, every month 📅",
+      "c": "b",
+      "x": 110,
+      "y": 1090,
+      "rot": -4
+     }
+    ],
+    "file": "Landlord_Kit.xlsx",
+    "brand": "Landlord Kit · Maker FlowTools"
+   },
+   "previewTimes": [
+    0,
+    1.7,
+    4,
+    6.5,
+    9,
+    11.5,
+    13.5
+   ]
+  },
+  {
+   "id": "N07_seat_FR",
+   "engine": "trend.html",
+   "format": "seatChaos",
+   "theme": "seat",
+   "lang": "fr",
+   "dur": 15,
+   "music": "pop",
+   "seed": 47,
+   "coverAt": 6.5,
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Plan de table de mariage<br>Excel · FR / EN",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie-le à ta témoin"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "POV: ta mère t'envoie SA liste d'invités",
+    "l2a": "et tes deux ex sont invités 😬",
+    "hl2a": [
+     2,
+     3
+    ],
+    "l2b": "alors le classeur me prévient ✨",
+    "hl2b": [
+     2,
+     4
+    ],
+    "guests": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     "Jérémy",
+     "Kevin"
+    ],
+    "warn": "⚠️ Conflit !",
+    "stamp": "Séparés ✓",
+    "beats": [
+     {
+      "text": "🍽️ Repas comptés pour le traiteur",
+      "c": "y",
+      "x": 50,
+      "y": 600,
+      "rot": -5
+     },
+     {
+      "text": "🪧 Cartes de table à imprimer",
+      "c": "b",
+      "x": 330,
+      "y": 1600,
+      "rot": 5
+     },
+     {
+      "text": "🇨🇦 FR / EN en une case",
+      "c": "p",
+      "x": 150,
+      "y": 1110,
+      "rot": -4
+     }
+    ],
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   },
+   "previewTimes": [
+    0,
+    1.7,
+    4,
+    6.5,
+    9,
+    11.5,
+    13.5
+   ]
+  },
+  {
+   "id": "N08_habit_EN",
+   "lang": "en",
+   "theme": "habit",
+   "tag": "Rhythm 2027",
+   "hook": "Missed one day and quit the whole thing?",
+   "hl": [
+    1,
+    2,
+    5,
+    6
+   ],
+   "emoji": "😩",
+   "file": "Rhythm_Habit_Tracker_2027.xlsx",
+   "wtitle": "Reading 20 min · 13 weeks",
+   "tabs": [
+    "Habits",
+    "January",
+    "Year",
+    "Dashboard"
+   ],
+   "tabOn": 1,
+   "widget": {
+    "type": "heat",
+    "gap": [
+     6,
+     3
+    ],
+    "legend": [
+     {
+      "l": "Done",
+      "c": "g"
+     },
+     {
+      "l": "Minimum version",
+      "c": "y"
+     },
+     {
+      "l": "Planned rest",
+      "c": "b"
+     }
+    ],
+    "stats": [
+     {
+      "l": "Days done",
+      "v": 71,
+      "c": "g"
+     },
+     {
+      "l": "Current streak",
+      "v": 12,
+      "c": "y"
+     }
+    ]
+   },
+   "floats": [
+    {
+     "t": 2.8,
+     "text": "No guilt, keep going 💚",
+     "x": 80,
+     "y": 540,
+     "c": "m",
+     "rot": -6
+    },
+    {
+     "t": 5.4,
+     "text": "Done · minimum · rest ✓",
+     "x": 80,
+     "y": 1480,
+     "c": "y",
+     "rot": -6
+    },
+    {
+     "t": 7.0,
+     "text": "Your year at a glance 📅",
+     "x": 560,
+     "y": 1480,
+     "c": "b",
+     "rot": 6
+    }
+   ],
+   "chips": [
+    "Excel",
+    "EN / FR",
+    "No macros"
+   ],
+   "cta": {
+    "name": "Rhythm Habit<br>Tracker 2027",
+    "sub": "Done, minimum version or planned rest.<br>Excel, English + Français",
+    "btns": [
+     "👉 Link in bio",
+     "📤 Send to your gym buddy"
+    ]
+   },
+   "coverAt": 7.5,
+   "seed": 77,
+   "trend": true,
+   "dur": 15,
+   "music": "future",
+   "callout": "2027 goals 👀",
+   "previewTimes": [
+    0,
+    1.7,
+    4,
+    6.5,
+    9,
+    11.5,
+    13.5
+   ]
+  },
+  {
+   "id": "N09_artisan_FR",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "artisan",
+   "lang": "fr",
+   "dur": 15,
+   "music": "tropical",
+   "seed": 74,
+   "coverAt": 6.5,
+   "end": {
+    "name": "Artisan Empire 360°",
+    "sub": "Excel · FR / EN · sans macros",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie-le à une artisane"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "POV: les marchés de Noël commencent",
+    "l2a": "et tes prix sont au pif 😬",
+    "hl2a": [
+     2,
+     4
+    ],
+    "l2b": "alors le classeur fait le calcul ✨",
+    "hl2b": [
+     2,
+     5
+    ],
+    "items": [
+     {
+      "l": "Bougie soja",
+      "s": "coût 17,85 $",
+      "st": "29,75 $",
+      "c": "g"
+     },
+     {
+      "l": "Savon lavande",
+      "s": "coût 6,10 $",
+      "st": "10,17 $",
+      "c": "b"
+     },
+     {
+      "l": "Tuque tricotée",
+      "s": "coût 21,40 $",
+      "st": "35,67 $",
+      "c": "y"
+     },
+     {
+      "l": "Carte florale",
+      "s": "coût 3,20 $",
+      "st": "5,33 $",
+      "c": "p"
+     },
+     {
+      "l": "Tasse en céramique",
+      "s": "coût 12,60 $",
+      "st": "21,00 $",
+      "c": "o"
+     },
+     {
+      "l": "Sac en tissu",
+      "s": "coût 9,30 $",
+      "st": "15,50 $",
+      "c": "k"
+     }
+    ],
+    "total": {
+     "l": "Marge visée",
+     "v": 40,
+     "f": "pct",
+     "c": "y"
+    },
+    "wtitle": "Prix suggéré · marge 40 %",
+    "warn": "❓ Je demande combien ?",
+    "stamp": "Tout est compté ✓",
+    "beats": [
+     {
+      "text": "Matériaux + emballage + frais + ton temps",
+      "c": "y",
+      "x": 40,
+      "y": 640,
+      "rot": -4
+     },
+     {
+      "text": "Verdict par marché 🎪",
+      "c": "g",
+      "x": 420,
+      "y": 1560,
+      "rot": 5
+     },
+     {
+      "text": "Alerte de stock bas 🔔",
+      "c": "r",
+      "x": 120,
+      "y": 1100,
+      "rot": -4
+     }
+    ],
+    "file": "Artisan_Empire_360.xlsx",
+    "brand": "Artisan Empire 360° · Maker FlowTools"
+   },
+   "previewTimes": [
+    0,
+    1.7,
+    4,
+    6.5,
+    9,
+    11.5,
+    13.5
+   ]
+  },
+  {
+   "id": "N10_seat_EN",
+   "engine": "trend.html",
+   "format": "seatChaos",
+   "theme": "seat",
+   "lang": "en",
+   "dur": 15,
+   "music": "pop",
+   "seed": 49,
+   "coverAt": 6.5,
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Wedding seating planner<br>Excel · EN / FR",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send to your maid of honor"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "POV: your mom sends you HER guest list",
+    "l2a": "and both of your exes are invited 😬",
+    "hl2a": [
+     2,
+     4
+    ],
+    "l2b": "so the spreadsheet warns me ✨",
+    "hl2b": [
+     2,
+     3
+    ],
+    "guests": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     "Jake",
+     "Tyler"
+    ],
+    "warn": "⚠️ Conflict!",
+    "stamp": "Kept apart ✓",
+    "beats": [
+     {
+      "text": "🍽️ Meals counted for the caterer",
+      "c": "y",
+      "x": 50,
+      "y": 600,
+      "rot": -5
+     },
+     {
+      "text": "🪧 Table cards ready to print",
+      "c": "b",
+      "x": 360,
+      "y": 1600,
+      "rot": 5
+     },
+     {
+      "text": "🇨🇦 EN / FR in one cell",
+      "c": "p",
+      "x": 160,
+      "y": 1110,
+      "rot": -4
+     }
+    ],
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   },
+   "previewTimes": [
+    0,
+    1.7,
+    4,
+    6.5,
+    9,
+    11.5,
+    13.5
+   ]
+  },
+  {
+   "id": "N11_landlord_FR",
+   "lang": "fr",
+   "theme": "landlord",
+   "tag": "Kit Propriétaire",
+   "hook": "Un bail finit dans 45 jours. Tu l'avais vu ?",
+   "hl": [
+    3,
+    4
+   ],
+   "emoji": "😳",
+   "file": "Kit_Proprietaire.xlsx",
+   "wtitle": "Échéances à venir",
+   "tabs": [
+    "Tableau de bord",
+    "Loyers",
+    "Dépenses",
+    "Réparations",
+    "Baux"
+   ],
+   "tabOn": 4,
+   "widget": {
+    "type": "status",
+    "rh": 118,
+    "rows": [
+     {
+      "n": "Logement 202",
+      "s": "Renouvellement",
+      "v": 0,
+      "cnt": [
+       120,
+       45
+      ],
+      "st": "À faire",
+      "c": "r",
+      "i": "🔔",
+      "ac": "r"
+     },
+     {
+      "n": "Logement 101",
+      "s": "Fin du bail",
+      "v": 0,
+      "cnt": [
+       180,
+       112
+      ],
+      "st": "Bientôt",
+      "c": "y",
+      "i": "📄",
+      "ac": "y"
+     },
+     {
+      "n": "Immeuble Rosemont",
+      "s": "Assurance",
+      "v": 0,
+      "cnt": [
+       240,
+       198
+      ],
+      "st": "OK",
+      "c": "g",
+      "i": "🛡️",
+      "ac": "g"
+     },
+     {
+      "n": "Logement 102",
+      "s": "Fin du bail",
+      "v": 0,
+      "cnt": [
+       300,
+       265
+      ],
+      "st": "OK",
+      "c": "g",
+      "i": "📄",
+      "ac": "g"
+     }
+    ]
+   },
+   "floats": [
+    {
+     "t": 2.4,
+     "text": "Rien ne glisse 🔔",
+     "x": 630,
+     "y": 540,
+     "c": "y",
+     "rot": 8
+    },
+    {
+     "t": 5.6,
+     "text": "Échéances en couleur 🟢🟡🔴",
+     "x": 80,
+     "y": 1480,
+     "c": "y",
+     "rot": -6
+    },
+    {
+     "t": 7.2,
+     "text": "Rappel avant la fin ✓",
+     "x": 560,
+     "y": 640,
+     "c": "g",
+     "rot": 6
+    }
+   ],
+   "chips": [
+    "Excel",
+    "FR / EN",
+    "Sans macros"
+   ],
+   "cta": {
+    "name": "Kit<br>Propriétaire",
+    "sub": "Fins de bail, renouvellements<br>et assurances suivis",
+    "btns": [
+     "👉 Lien dans la bio",
+     "📤 Envoie-le à un proprio"
+    ]
+   },
+   "coverAt": 7.5,
+   "seed": 76,
+   "trend": true,
+   "dur": 15,
+   "music": "funk",
+   "callout": "Proprios 👀",
+   "previewTimes": [
+    0,
+    1.7,
+    4,
+    6.5,
+    9,
+    11.5,
+    13.5
+   ]
+  }
+ ]
+}

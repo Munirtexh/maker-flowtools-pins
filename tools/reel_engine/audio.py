@@ -94,7 +94,15 @@ def sfx(kind, rng):
 def main():
     events = json.load(open(sys.argv[1])); out = sys.argv[2]; dur = float(sys.argv[3]); theme = sys.argv[4]
     rng = np.random.default_rng(3)
-    mix = music(dur, theme, len(sys.argv) > 5 and sys.argv[5] == 'loop')
+    extra = sys.argv[5:]; loop = 'loop' in extra
+    style = next((x.split('=', 1)[1] for x in extra if x.startswith('music=')), None)
+    if style:  # musique accrocheuse (reels tendance) : music.py
+        import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from music import track
+        mix = track(style, dur, seed=int(dur * 10)) * 0.62
+        if not loop: mix *= env(len(mix), 0.005, 0.35)
+    else:
+        mix = music(dur, theme, loop)
     last = {}
     for e in events:
         k = e['type']; t0 = e['t']

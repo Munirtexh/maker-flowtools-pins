@@ -225,16 +225,24 @@ function init(cfg){
   const hk=el('div','',stage);hk.id='hook';const words=cfg.hook.split(' ');const fs=cfg.hookSize||(cfg.hook.length<=22?150:cfg.hook.length<=36?124:cfg.hook.length<=52?108:94);hk.style.fontSize=fs+'px';
   const hl=new Set(cfg.hl||[]);const ws=[];words.forEach((w,i)=>{if(/^[?!:;»]+$/.test(w)&&ws.length){const pv=ws[ws.length-1];pv.insertBefore(document.createTextNode('\u00a0'+w),pv._mk||null);return;}const s=el('span','w'+(hl.has(i)?' hl':''),hk);s.textContent=w;if(hl.has(i)){const m=el('span','mk',s);s._mk=m;}ws.push(s);});
   let emo=null;if(cfg.emoji){emo=el('span','emo w',ws[ws.length-1]);emo.textContent=cfg.emoji;}
-  const hk0=.25,dw=cfg.wordDt||.22;ws.forEach((s,i)=>{const ti=hk0+i*dw;ev(ti,'word');on(t=>{popStyle(s,t,ti,{rot:(i%2?8:-8)});if(s._mk)s._mk.style.transform=`scaleX(${eo(lin(t,ti+.3,ti+.7))})`;});});
-  const te=hk0+ws.length*dw+.1;if(emo){ev(te,'pop');on(t=>{popStyle(emo,t,te,{rot:-25});if(t>te+.6)emo.style.transform+=` rotate(${Math.sin(t*5)*10}deg)`;});}
-  const hookEnd=Math.max(2.5,te+.75);DUR=cfg.dur||15;
+  const TR=!!cfg.trend; // mode tendance : accroche lisible dès la 1re image, rythme rapide, fin courte
+  const hk0=TR?-2:.25,dw=cfg.wordDt||.22;ws.forEach((s,i)=>{const ti=hk0+i*dw;if(!TR)ev(ti,'word');on(t=>{popStyle(s,t,ti,{rot:(i%2?8:-8)});if(s._mk)s._mk.style.transform=`scaleX(${eo(lin(t,ti+.3,ti+.7))})`;});});
+  const te=TR?.35:hk0+ws.length*dw+.1;if(emo){ev(te,'pop');on(t=>{popStyle(emo,t,te,{rot:-25});if(t>te+.6)emo.style.transform+=` rotate(${Math.sin(t*5)*10}deg)`;});}
+  const hookEnd=TR?1.6:Math.max(2.5,te+.75);DUR=cfg.dur||15;
+  if(TR&&cfg.callout){const co=el('div','float',stage);co.textContent=cfg.callout;co.style.background=th.a1;co.style.left='50%';co.style.top='560px';co.style.fontSize='44px';co.style.zIndex=4;
+    on(t=>{const q=lin(t,hookEnd-.1,hookEnd+.25);co.style.opacity=1-q;co.style.transform=`translateX(-50%) rotate(-4deg) scale(${(1+.05*Math.sin(t*9))*(1-q*.5)})`;});}
   const H=hk.getBoundingClientRect().height;const y0=960-H/2-40;const sc=cfg.titleScale||Math.min(.58,330/H);const y1=250+ (H*sc)/2 - H/2; // keep center
   on(t=>{const p=eio(lin(t,hookEnd,hookEnd+.6));hk.style.top=(y0+(y1-y0)*p)+'px';const pulse=t<hookEnd?1+.015*Math.sin(t*6):1;hk.style.transform=`scale(${(1+(sc-1)*p)*pulse})`;});
   // card
   const cw=el('div','',stage);cw.id='cardwrap';const card=el('div','',cw);card.id='card';
   card.innerHTML=`<div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="fn">${cfg.file}</span><span class="sd">${L==='fr'?'Données d\'exemple':'Sample data'}</span></div><div class="ttl">${cfg.wtitle||''}</div><div id="wbody"></div><div class="tabs">${(cfg.tabs||[]).map((x,i)=>`<span class="${i===(cfg.tabOn||0)?'on':''}">${x}</span>`).join('')}</div>`;
   card.style.boxShadow=`0 70px 140px rgba(0,0,0,.6), 0 0 90px ${th.a1}33`;
-  const tc=hookEnd+.25;ev(tc,'whoosh');const ctaT=DUR-4.1;
+  const tc=hookEnd+.25;ev(tc,'whoosh');const ctaT=DUR-(TR?3.0:4.1);
+  if(TR){// coups de zoom (changement visuel toutes les 1-2 s) + secousse d'ouverture + éclair au passage hook -> body
+    const P=[0,hookEnd,tc+.9,tc+2.6,tc+4.3,tc+6,ctaT+.2].concat((cfg.floats||[]).map(f=>tc+.9+f.t));
+    const fl=el('div','abs',stage);fl.style.cssText='inset:0;z-index:50;pointer-events:none';fl.style.background=th.a1;
+    on(t=>{let z=1;P.forEach(p=>{const q=lin(t,p,p+.35);if(q>0&&q<1)z+=.06*(1-eo(q));});const sh=t<.45?(1-t/.45)*9:0;
+      stage.style.transform=`translate(${Math.sin(t*61)*sh}px,${Math.cos(t*53)*sh}px) scale(${z})`;const q=lin(t,hookEnd,hookEnd+.35);fl.style.opacity=q>0&&q<1?.3*(1-q):0;});}
   on(t=>{const p=lin(t,tc,tc+1.0);const s=back(p);const out=eio(lin(t,ctaT-.2,ctaT+.5));
     const rx=10+3*Math.sin(t*.9),ry=-14+5*Math.sin(t*.7),rz=2+Math.sin(t*.5);
     card.style.opacity=p>0?1-out:0;card.style.transform=`translateY(${(1-s)*1100 - out*300}px) rotateX(${rx+(1-p)*35}deg) rotateY(${ry+(1-p)*-25}deg) rotateZ(${rz}deg) scale(${(.82+.18*s)*(1-out*.4)*(1+.06*eio(lin(t,tc+1,ctaT)))})`;hk.style.opacity=1-out;});

@@ -36,6 +36,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#0b0f1e;font-fam
 .srow .nm{font-size:30px;font-weight:800;flex:1}
 .srow .sb{font-size:24px;color:#aab3d8;font-weight:700}
 .pill{padding:10px 20px;border-radius:30px;font-weight:900;font-size:26px;color:#0b0f1e;white-space:nowrap}
+.endc{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px}
+.endn{font-weight:900;font-size:104px;line-height:1;letter-spacing:-3px;text-align:center}
+.ends{font-weight:700;font-size:40px;color:#d9def5;text-align:center;line-height:1.25;padding:0 80px}
+.endb{padding:28px 54px;border-radius:60px;font-weight:900;font-size:46px;color:#0b0f1e;white-space:nowrap}
 </style></head>
 <body><div id="stage"></div>
 <script>
@@ -81,14 +85,14 @@ F.seatChaos=(cfg,th)=>{const T=cfg.t;// textes
   // ligne 2a (problème) puis 2b (solution)
   const l2a=line(cfg,385,90);const w2a=words(l2a,T.l2a,{hl:T.hl2a,color:C.r});
   const l2b=line(cfg,385,90);const w2b=words(l2b,T.l2b,{hl:T.hl2b,color:C.g});
-  const tSwap=2.75, tBack=DUR-0.55;
+  const tSwap=2.75, tBack=cfg.end?DUR+9:DUR-0.55;
   w2a.forEach((s,i)=>{const ti=.12+i*.13;ev(ti,'word');on(t=>inout(s,t,ti,tSwap+i*.02,{rot:i%2?8:-8}));});
   w2b.forEach((s,i)=>{const ti=tSwap+.25+i*.11;ev(ti,'word');on(t=>inout(s,t,ti,tBack-.35+i*.02,{rot:i%2?8:-8}));});
   ev(tSwap+.1,'whoosh');
   // tables (2 colonnes x 3 rangées)
   const tabs=[];const R=88,SR=146;const cx=[290,790],cy=[810,1060,1310];
   for(let r=0;r<3;r++)for(let c=0;c<2;c++){const i=tabs.length;const x=cx[c],y=cy[r];const d=el('div','tb');d.style.width=d.style.height=2*R+'px';d.style.left=(x-R)+'px';d.style.top=(y-R)+'px';d.innerHTML=`${T.table} ${i+1}<small class="cnt">0 / 8</small>`;tabs.push({d,x,y,cnt:d.querySelector('.cnt'),i});}
-  const tIn=3.05,tOut=DUR-1.25;
+  const tIn=3.05,tOut=cfg.end?DUR+9:DUR-1.25;
   tabs.forEach(o=>{const ti=tIn+o.i*.09;ev(ti,'pop');on(t=>inout(o.d,t,ti,tOut+.35+o.i*.03,{rot:-10}));});
   // invités : position chaos (aléatoire) -> siège
   const names=T.guests;const G=[];const pal=[C.p,C.b,C.y,C.o,C.m,'#ffd27a'];
@@ -143,6 +147,7 @@ F.seatChaos=(cfg,th)=>{const T=cfg.t;// textes
     const sh=t>.6&&t<tSwap?lin(t,.6,2.4)*7:0;cam.style.transform=`translate(${Math.sin(t*53)*sh}px,${Math.cos(t*47)*sh}px) scale(${z})`;});
   // éclair de couleur au basculement
   const fl=el('div','',stage);fl.id='flash';on(t=>{const q=lin(t,tSwap+.05,tSwap+.4);fl.style.background=th.a1;fl.style.opacity=q>0&&q<1?.35*(1-q):0;});
+  extras(cfg,th,tStamp);
   const br=el('div','');br.id='brand';br.textContent=T.brand;
 };
 
@@ -153,11 +158,11 @@ F.sortChaos=(cfg,th)=>{const T=cfg.t;const L=cfg.lang;
   on(t=>{l1.style.transform=`scale(${1+.012*Math.sin(t*2*Math.PI/DUR*6)})`;});
   const l2a=line(cfg,385,90);const w2a=words(l2a,T.l2a,{hl:T.hl2a,color:C.r});
   const l2b=line(cfg,385,90);const w2b=words(l2b,T.l2b,{hl:T.hl2b,color:C.g});
-  const tSwap=2.75,tBack=DUR-.55;
+  const tSwap=2.75,tBack=cfg.end?DUR+9:DUR-.55;
   w2a.forEach((x,i)=>{const ti=.12+i*.13;ev(ti,'word');on(t=>inout(x,t,ti,tSwap+i*.02,{rot:i%2?8:-8}));});
   w2b.forEach((x,i)=>{const ti=tSwap+.25+i*.11;ev(ti,'word');on(t=>inout(x,t,ti,tBack-.35+i*.02,{rot:i%2?8:-8}));});
   ev(tSwap+.1,'whoosh');
-  const N=T.items.length,rh=96,top0=770,tIn=3.0,tOut=DUR-1.3;
+  const N=T.items.length,rh=96,top0=770,tIn=3.0,tOut=cfg.end?DUR+9:DUR-1.3;
   // fouillis : reçus, punaises, points d'interrogation qui partent au basculement
   (T.decoys||['🧾','❓','📌','💸','🗒️','❗','🧾','📎']).forEach((d,i)=>{const e=el('div','abs');e.textContent=d;e.style.fontSize=(70+rnd()*40)+'px';const x0=rnd()*960,y0=620+rnd()*900,ph=rnd()*6,ang=rnd()*6.28;
     on(t=>{const out=eio(lin(t,tSwap+.05+i*.03,tSwap+.6+i*.03))*(1-eio(lin(t,DUR-1.0,DUR-.3)));const k=t<tSwap?1+2*lin(t,.6,2.4):1;
@@ -202,9 +207,28 @@ F.sortChaos=(cfg,th)=>{const T=cfg.t;const L=cfg.lang;
   const punches=[1.0,1.9,tSwap+.1,tStamp];
   on(t=>{let z=1;punches.forEach(p=>{const q=lin(t,p,p+.35);if(q>0&&q<1)z+=.07*(1-eo(q));});const s2=t>.6&&t<tSwap?lin(t,.6,2.4)*7:0;cam.style.transform=`translate(${Math.sin(t*53)*s2}px,${Math.cos(t*47)*s2}px) scale(${z})`;});
   const fl=el('div','',stage);fl.id='flash';on(t=>{const q=lin(t,tSwap+.05,tSwap+.4);fl.style.background=th.a1;fl.style.opacity=q>0&&q<1?.35*(1-q):0;});
+  extras(cfg,th,tStamp);
   const br=el('div','');br.id='brand';br.textContent=T.brand;
 };
 const col2=c=>C[c]||c;
+
+// ---------- version 15 s : « payoff » (puces qui expliquent, avec coups de zoom) + fin courte ----------
+function extras(cfg,th,tStamp){if(!cfg.end)return;const T=cfg.t;
+  (T.beats||[]).forEach((b,i)=>{const e=el('div','chip');e.textContent=b.text;e.style.background=col2(b.c||'y');if(b.c==='r'||b.c==='p')e.style.color='#fff';e.style.left=b.x+'px';e.style.top=b.y+'px';e.style.zIndex=20;
+    const gap=(DUR-3.3-(tStamp+.9))/Math.max(1,T.beats.length-1);const ti=tStamp+.9+i*gap;ev(ti,'pop');burst(b.x+140,b.y+40,ti,col2(b.c||'y'),10);
+    on(t=>inout(e,t,ti,DUR-2.9,{rot:b.rot||-10,tilt:b.rot?b.rot/2:-4,base:`translateY(${Math.sin(t*4+i)*6}px)`}));
+    const z=ti;on(t=>{});});
+  // fin : 2,6 s, pas une pub : nom + bouton + incitation au partage
+  const tE=DUR-2.7;const E=el('div','endc',stage);
+  E.innerHTML=`<div class="endn">${cfg.end.name}</div><div class="ends">${cfg.end.sub}</div><div class="endb" style="background:linear-gradient(135deg,${th.a1},${th.a2})">${cfg.end.btn}</div>${cfg.end.btn2?`<div class="endb" style="background:rgba(255,255,255,.14);color:#fff;border:3px solid rgba(255,255,255,.3)">${cfg.end.btn2}</div>`:''}`;
+  const kids=[...E.children];ev(tE,'whoosh');ev(tE+.35,'ding');
+  on(t=>{const p=lin(t,tE,tE+.3);E.style.opacity=p;E.style.background=`radial-gradient(circle at 50% 45%, ${th.bg[1]}f2, ${th.bg[0]}fa)`;kids.forEach((k,i)=>inout(k,t,tE+.15+i*.18,null,{rot:i%2?6:-6}));
+    if(t>tE+1)kids[2].style.transform+=` scale(${1+.05*Math.sin(t*8)})`;});
+  burst(540,800,tE+.3,th.a1,14);
+  // coups de zoom sur chaque puce
+  const nb=(T.beats||[]).length,gp=(DUR-3.3-(tStamp+.9))/Math.max(1,nb-1);const P=(T.beats||[]).map((b,i)=>tStamp+.9+i*gp).concat([tE]);
+  on(t=>{let z=1;P.forEach(p=>{const q=lin(t,p,p+.35);if(q>0&&q<1)z+=.05*(1-eo(q));});if(t>tStamp+.8)cam.style.transform=`scale(${z*(1+.03*lin(t,tStamp,tE))})`;});
+}
 
 function init(cfg){
   stage=document.getElementById('stage');cam=document.createElement('div');cam.id='cam';

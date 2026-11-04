@@ -1,0 +1,331 @@
+{
+ "reels": [
+  {
+   "id": "EXA_tresorier_FR",
+   "slot": "d34A",
+   "lang": "fr",
+   "theme": "treasurer",
+   "tag": "Kit Trésorier",
+   "hook": "La banque dit 1 842 $, tes livres 1 597 $",
+   "hl": [
+    3,
+    6
+   ],
+   "emoji": "😳",
+   "file": "Kit_Tresorier.xlsx",
+   "wtitle": "Conciliation bancaire · octobre",
+   "tabs": [
+    "Tableau de bord",
+    "Cotisations",
+    "Budget",
+    "Conciliation",
+    "Rapport"
+   ],
+   "tabOn": 3,
+   "widget": {
+    "type": "counter",
+    "a": {
+     "l": "Relevé bancaire",
+     "v": 1842.5
+    },
+    "b": {
+     "l": "Vos livres",
+     "v": 1597.2
+    },
+    "label": "Écart à expliquer",
+    "from": 245.3,
+    "steps": [
+     {
+      "l": "Chèque pas encore encaissé",
+      "v": 180
+     },
+     {
+      "l": "Dépôt pas encore inscrit",
+      "v": 72.8
+     },
+     {
+      "l": "Frais bancaires",
+      "v": -12.5
+     },
+     {
+      "l": "Intérêts",
+      "v": 5
+     }
+    ],
+    "done": "Écart 0,00 $ ✓"
+   },
+   "floats": [
+    {
+     "t": 4.2,
+     "text": "Ça balance 🎉",
+     "x": 650,
+     "y": 540,
+     "c": "g",
+     "rot": 8
+    },
+    {
+     "t": 5.6,
+     "text": "Prêt pour l'AG 📋",
+     "x": 90,
+     "y": 1480,
+     "c": "y",
+     "rot": -6
+    },
+    {
+     "t": 7.2,
+     "text": "Rapport à imprimer 🖨️",
+     "x": 70,
+     "y": 640,
+     "c": "b",
+     "rot": -5
+    }
+   ],
+   "chips": [
+    "Excel",
+    "FR / EN",
+    "Sans macros"
+   ],
+   "cta": {
+    "name": "Kit<br>Trésorier",
+    "sub": "L'onglet Conciliation ramène<br>l'écart à 0,00, étape par étape",
+    "btns": [
+     "👉 Lien dans la bio",
+     "💬 Écris KIT en commentaire"
+    ]
+   },
+   "coverAt": 7.5,
+   "seed": 62,
+   "trend": true,
+   "dur": 15,
+   "music": "lofi",
+   "callout": "Trésoriers 👀",
+   "previewTimes": [
+    0,
+    0.8,
+    1.7,
+    2.6,
+    4,
+    6,
+    8.5,
+    11,
+    12.6,
+    14.2
+   ]
+  },
+  {
+   "id": "EXB_landlord_EN",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "landlord",
+   "lang": "en",
+   "dur": 15,
+   "music": "funk",
+   "seed": 57,
+   "coverAt": 6.5,
+   "previewTimes": [
+    0,
+    0.8,
+    1.7,
+    2.6,
+    4,
+    6,
+    8,
+    9.6,
+    11,
+    12.6,
+    14.2
+   ],
+   "end": {
+    "name": "Landlord Kit",
+    "sub": "Excel · English / Français · no macros",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send to a landlord friend"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "Landlords, be honest 👀",
+    "l2a": "$980 is missing and you don't know who 😬",
+    "hl2a": [
+     0,
+     2
+    ],
+    "l2b": "so the spreadsheet shows it at a glance ✨",
+    "hl2b": [
+     2,
+     6
+    ],
+    "items": [
+     {
+      "l": "Unit 101",
+      "s": "$1,250",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 102",
+      "s": "$600 of $1,100",
+      "st": "Partial",
+      "c": "y"
+     },
+     {
+      "l": "Unit 201",
+      "s": "$1,325",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 202",
+      "s": "$0 of $980",
+      "st": "Unpaid",
+      "c": "r"
+     },
+     {
+      "l": "Unit 301",
+      "s": "$1,150",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 302",
+      "s": "$1,050",
+      "st": "Paid ✓",
+      "c": "g"
+     }
+    ],
+    "total": {
+     "l": "Received this month",
+     "v": 5375,
+     "f": "cur0",
+     "c": "g"
+    },
+    "wtitle": "Rent · November",
+    "warn": "❓ Who paid?",
+    "stamp": "Found it ✓",
+    "beats": [
+     {
+      "text": "Unit 202 · $980 unpaid 🔴",
+      "c": "r",
+      "x": 60,
+      "y": 640,
+      "rot": -6
+     },
+     {
+      "text": "Paid · partial · unpaid ✓",
+      "c": "g",
+      "x": 400,
+      "y": 1560,
+      "rot": 5
+     },
+     {
+      "text": "Every unit, every month 📅",
+      "c": "b",
+      "x": 110,
+      "y": 1090,
+      "rot": -4
+     }
+    ],
+    "file": "Landlord_Kit.xlsx",
+    "brand": "Landlord Kit · Maker FlowTools"
+   }
+  },
+  {
+   "id": "EXC_seat_FR",
+   "engine": "trend.html",
+   "format": "seatChaos",
+   "theme": "seat",
+   "lang": "fr",
+   "dur": 15,
+   "music": "pop",
+   "seed": 47,
+   "coverAt": 6.5,
+   "previewTimes": [
+    0,
+    0.8,
+    1.7,
+    2.6,
+    4,
+    6,
+    8,
+    9.6,
+    11,
+    12.6,
+    14.2
+   ],
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Plan de table de mariage<br>Excel · FR / EN",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie-le à ta témoin"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "POV: ta mère t'envoie SA liste d'invités",
+    "l2a": "et tes deux ex sont invités 😬",
+    "hl2a": [
+     2,
+     3
+    ],
+    "l2b": "alors le classeur me prévient ✨",
+    "hl2b": [
+     2,
+     4
+    ],
+    "guests": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     "Jérémy",
+     "Kevin"
+    ],
+    "warn": "⚠️ Conflit !",
+    "stamp": "Séparés ✓",
+    "beats": [
+     {
+      "text": "🍽️ Repas comptés pour le traiteur",
+      "c": "y",
+      "x": 50,
+      "y": 600,
+      "rot": -5
+     },
+     {
+      "text": "🪧 Cartes de table à imprimer",
+      "c": "b",
+      "x": 330,
+      "y": 1600,
+      "rot": 5
+     },
+     {
+      "text": "🇨🇦 FR / EN en une case",
+      "c": "p",
+      "x": 150,
+      "y": 1110,
+      "rot": -4
+     }
+    ],
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   }
+  }
+ ]
+}
