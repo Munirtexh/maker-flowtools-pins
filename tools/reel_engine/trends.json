@@ -1,11 +1,657 @@
-{"reels":[
- {"id":"TR01_seat_EN","engine":"trend.html","format":"seatChaos","theme":"seat","lang":"en","dur":9.6,"loop":true,"seed":41,"coverAt":5.6,
-  "previewTimes":[0,0.6,1.5,2.4,3.2,3.8,4.6,5.3,6.2,7.4,8.6,9.55],
-  "t":{"l1":"POV: you're doing the seating chart",
-       "l2a":"and Carol can't sit near Rick 😬","hl2a":[1,5],
-       "l2b":"so I let the spreadsheet check it ✨","hl2b":[4,5],
-       "table":"Table","guests":["Emma","Liam","Noah","Ava","Mia","Leo","Zoe","Eli","Ivy","Max","Ana","Sam","Lou","Jade","Ben","Nora"],
-       "clash":["Carol","Rick"],"warn":"⚠️ Conflict!","stamp":"Kept apart ✓","done":"Every table checked ✓",
-       "file":"Seat_and_Vow.xlsx","sample":"Sample data","seated":"Seated","alerts":"Alerts",
-       "brand":"Seat & Vow · Maker FlowTools"}}
-]}
+{
+ "reels": [
+  {
+   "id": "TR01_seat_EN",
+   "engine": "trend.html",
+   "format": "seatChaos",
+   "theme": "seat",
+   "lang": "en",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 41,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "POV: you're doing the seating chart",
+    "l2a": "and Carol can't sit near Rick 😬",
+    "hl2a": [
+     1,
+     5
+    ],
+    "l2b": "so I let the spreadsheet check it ✨",
+    "hl2b": [
+     4,
+     5
+    ],
+    "guests": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     "Carol",
+     "Rick"
+    ],
+    "warn": "⚠️ Conflict!",
+    "stamp": "Kept apart ✓",
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   }
+  },
+  {
+   "id": "TR03_seat_FR",
+   "engine": "trend.html",
+   "format": "seatChaos",
+   "theme": "seat",
+   "lang": "fr",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 43,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "POV: tu fais le plan de table",
+    "l2a": "et Carole ne doit pas voir Richard 😬",
+    "hl2a": [
+     1,
+     6
+    ],
+    "l2b": "alors le classeur vérifie tout ✨",
+    "hl2b": [
+     2,
+     4
+    ],
+    "guests": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     "Carole",
+     "Richard"
+    ],
+    "warn": "⚠️ Conflit !",
+    "stamp": "Séparés ✓",
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   }
+  },
+  {
+   "id": "TR02_landlord_FR",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "landlord",
+   "lang": "fr",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 52,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "POV: tu gères tes loyers sur des Post-it",
+    "l2a": "et tu ne sais plus qui a payé 😬",
+    "hl2a": [
+     5,
+     6,
+     7
+    ],
+    "l2b": "alors le classeur fait le suivi ✨",
+    "hl2b": [
+     2,
+     5
+    ],
+    "items": [
+     {
+      "l": "Logement 101",
+      "s": "1 250 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Logement 102",
+      "s": "600 $ / 1 100 $",
+      "st": "Partiel",
+      "c": "y"
+     },
+     {
+      "l": "Logement 201",
+      "s": "1 325 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Logement 202",
+      "s": "0 $ / 980 $",
+      "st": "Impayé",
+      "c": "r"
+     },
+     {
+      "l": "Logement 301",
+      "s": "1 150 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Logement 302",
+      "s": "1 050 $",
+      "st": "Payé ✓",
+      "c": "g"
+     }
+    ],
+    "total": {
+     "l": "Reçu ce mois-ci",
+     "v": 5375,
+     "f": "cur0",
+     "c": "g"
+    },
+    "wtitle": "Loyers · novembre",
+    "warn": "❓ Qui a payé ?",
+    "stamp": "Suivi à jour ✓",
+    "file": "Kit_Proprietaire.xlsx",
+    "brand": "Kit Propriétaire · Maker FlowTools"
+   }
+  },
+  {
+   "id": "TR04_treasurer_EN",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "treasurer",
+   "lang": "en",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 61,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "POV: you just became club treasurer",
+    "l2a": "and nobody knows who paid 😬",
+    "hl2a": [
+     3,
+     4
+    ],
+    "l2b": "so the spreadsheet tracks it all ✨",
+    "hl2b": [
+     2,
+     3
+    ],
+    "items": [
+     {
+      "l": "Alex M.",
+      "s": "$40",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Jade L.",
+      "s": "$20 of $40",
+      "st": "Partial",
+      "c": "y"
+     },
+     {
+      "l": "Sam K.",
+      "s": "$0 of $40",
+      "st": "Unpaid",
+      "c": "r"
+     },
+     {
+      "l": "Noah P.",
+      "s": "$40",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Lea R.",
+      "s": "$40",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Omar B.",
+      "s": "$40",
+      "st": "Paid ✓",
+      "c": "g"
+     }
+    ],
+    "total": {
+     "l": "Dues collected",
+     "v": 180,
+     "f": "cur0",
+     "c": "y"
+    },
+    "wtitle": "Dues · fall term",
+    "warn": "❓ Who paid?",
+    "stamp": "Up to date ✓",
+    "file": "Treasurer_Kit.xlsx",
+    "brand": "Treasurer Kit · Maker FlowTools"
+   }
+  },
+  {
+   "id": "TR05_artisan_EN",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "artisan",
+   "lang": "en",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 73,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "POV: it's craft fair season",
+    "l2a": "and your prices are a total guess 😬",
+    "hl2a": [
+     2,
+     6
+    ],
+    "l2b": "so the spreadsheet does the math ✨",
+    "hl2b": [
+     2,
+     5
+    ],
+    "items": [
+     {
+      "l": "Soy candle",
+      "s": "cost $17.85",
+      "st": "$29.75",
+      "c": "g"
+     },
+     {
+      "l": "Lavender soap",
+      "s": "cost $6.10",
+      "st": "$10.17",
+      "c": "b"
+     },
+     {
+      "l": "Knit beanie",
+      "s": "cost $21.40",
+      "st": "$35.67",
+      "c": "y"
+     },
+     {
+      "l": "Floral card",
+      "s": "cost $3.20",
+      "st": "$5.33",
+      "c": "p"
+     },
+     {
+      "l": "Ceramic mug",
+      "s": "cost $12.60",
+      "st": "$21.00",
+      "c": "o"
+     },
+     {
+      "l": "Tote bag",
+      "s": "cost $9.30",
+      "st": "$15.50",
+      "c": "k"
+     }
+    ],
+    "total": {
+     "l": "Target margin",
+     "v": 40,
+     "f": "pct",
+     "c": "y"
+    },
+    "wtitle": "Suggested price · 40% margin",
+    "warn": "❓ What do I charge?",
+    "stamp": "Every cost counted ✓",
+    "file": "Artisan_Empire_360.xlsx",
+    "brand": "Artisan Empire 360° · Maker FlowTools"
+   }
+  },
+  {
+   "id": "TR06_habit_EN",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "habit",
+   "lang": "en",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 88,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "POV: your 2027 resolutions, week 2",
+    "l2a": "and you already missed a day 😬",
+    "hl2a": [
+     3,
+     5
+    ],
+    "l2b": "a gap is not a failure ✨",
+    "hl2b": [
+     1,
+     4
+    ],
+    "items": [
+     {
+      "l": "Read 20 min",
+      "s": "4 / 5 this week",
+      "st": "Done ✓",
+      "c": "g"
+     },
+     {
+      "l": "Walk 30 min",
+      "s": "3 / 5 this week",
+      "st": "Minimum",
+      "c": "y"
+     },
+     {
+      "l": "Stretch",
+      "s": "planned day off",
+      "st": "Rest",
+      "c": "b"
+     },
+     {
+      "l": "Drink 2 L of water",
+      "s": "6 / 7 this week",
+      "st": "Done ✓",
+      "c": "g"
+     },
+     {
+      "l": "Journal",
+      "s": "2 / 3 this week",
+      "st": "Done ✓",
+      "c": "g"
+     },
+     {
+      "l": "No phone in bed",
+      "s": "4 / 7 this week",
+      "st": "Minimum",
+      "c": "y"
+     }
+    ],
+    "total": {
+     "l": "Consistency",
+     "v": 82,
+     "f": "pct",
+     "c": "g"
+    },
+    "wtitle": "Rhythm 2027 · this week",
+    "warn": "❌ Streak broken?",
+    "stamp": "No guilt ✓",
+    "emoji": "😩",
+    "file": "Rhythm_Habit_Tracker_2027.xlsx",
+    "brand": "Rhythm Habit Tracker 2027 · Maker FlowTools"
+   }
+  },
+  {
+   "id": "TR07_treasurer_FR",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "treasurer",
+   "lang": "fr",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 64,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "POV: tu deviens trésorier de ton asso",
+    "l2a": "et personne ne sait qui a payé 😬",
+    "hl2a": [
+     5,
+     6,
+     7
+    ],
+    "l2b": "alors le classeur suit tout ✨",
+    "hl2b": [
+     2,
+     4
+    ],
+    "items": [
+     {
+      "l": "Alex M.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Jade L.",
+      "s": "20 $ sur 40 $",
+      "st": "Partiel",
+      "c": "y"
+     },
+     {
+      "l": "Sam K.",
+      "s": "0 $ sur 40 $",
+      "st": "Impayé",
+      "c": "r"
+     },
+     {
+      "l": "Noah P.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Léa R.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     },
+     {
+      "l": "Omar B.",
+      "s": "40 $",
+      "st": "Payé ✓",
+      "c": "g"
+     }
+    ],
+    "total": {
+     "l": "Cotisations reçues",
+     "v": 180,
+     "f": "cur0",
+     "c": "y"
+    },
+    "wtitle": "Cotisations · session d'automne",
+    "warn": "❓ Qui a payé ?",
+    "stamp": "À jour ✓",
+    "file": "Kit_Tresorier.xlsx",
+    "brand": "Kit Trésorier · Maker FlowTools"
+   }
+  },
+  {
+   "id": "TR09_landlord_EN",
+   "engine": "trend.html",
+   "format": "sortChaos",
+   "theme": "landlord",
+   "lang": "en",
+   "dur": 9.6,
+   "loop": true,
+   "seed": 55,
+   "coverAt": 6.2,
+   "previewTimes": [
+    0,
+    1.5,
+    2.4,
+    3.8,
+    5.3,
+    6.4,
+    8.2,
+    9.55
+   ],
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "POV: you track rent on sticky notes",
+    "l2a": "and you can't remember who paid 😬",
+    "hl2a": [
+     5,
+     6
+    ],
+    "l2b": "so the spreadsheet keeps track ✨",
+    "hl2b": [
+     2,
+     4
+    ],
+    "items": [
+     {
+      "l": "Unit 101",
+      "s": "$1,250",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 102",
+      "s": "$600 of $1,100",
+      "st": "Partial",
+      "c": "y"
+     },
+     {
+      "l": "Unit 201",
+      "s": "$1,325",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 202",
+      "s": "$0 of $980",
+      "st": "Unpaid",
+      "c": "r"
+     },
+     {
+      "l": "Unit 301",
+      "s": "$1,150",
+      "st": "Paid ✓",
+      "c": "g"
+     },
+     {
+      "l": "Unit 302",
+      "s": "$1,050",
+      "st": "Paid ✓",
+      "c": "g"
+     }
+    ],
+    "total": {
+     "l": "Received this month",
+     "v": 5375,
+     "f": "cur0",
+     "c": "g"
+    },
+    "wtitle": "Rent · November",
+    "warn": "❓ Who paid?",
+    "stamp": "All tracked ✓",
+    "file": "Landlord_Kit.xlsx",
+    "brand": "Landlord Kit · Maker FlowTools"
+   }
+  }
+ ]
+}

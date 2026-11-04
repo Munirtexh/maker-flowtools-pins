@@ -26,3 +26,19 @@ Thèmes : `landlord`, `treasurer`, `seat`, `habit`, `artisan`.
 - Données d'exemple seulement (étiquette « Données d'exemple » sur la carte) ; jamais assez du produit pour le copier ; on ne montre que des fonctions qui existent vraiment.
 - Musique douce, aucun « boum boum ». Yaacoub n'apparaît jamais.
 - Aucun rabais ni résultat inventé.
+
+## Reels « tendance » (depuis le 4 nov. 2026) — `trend.html` + `build_trends.py`
+Demande de Yaacoub : 2 à 3 reels par semaine copiés sur les formats qui percent en ce moment, but = maximum de vues (viser > 1 000).
+Recette (recherche du 4 nov. 2026 : Later, Hootsuite, Metricool, guides « faceless reels ») :
+- texte lisible **dès la 1re image** (« POV: … » vécu, problème concret), jamais d'intro vide ;
+- changement visuel toutes les 1-2 s (coups de zoom, secousse, éclair de couleur) ;
+- chaos → ordre « satisfaisant » (les invités / notes volent à leur place, pastilles, tampon, confettis) ;
+- **pas d'écran de pub à la fin** ; 9,6 s ; **boucle parfaite** (dernière image = première) => revisionnages ;
+- légende qui pousse aux commentaires (question) et aux partages (« envoie ça à… »).
+Formats : `seatChaos` (plan de table), `sortChaos` (notes en vrac → tableau propre, tous les produits).
+```bash
+cd tools/reel_engine && python3 build_trends.py
+node render.js trends.json ../../videos/trend TR02_landlord_FR --preview   # vérifier
+node render.js trends.json ../../videos/trend TR02_landlord_FR             # MP4 + _cover.jpg
+```
+`SLOTS` dans `build_trends.py` = créneau `ig/manifest.json` remplacé (l'ancien reel reste dans le dépôt ; calendrier d'origine dans `ig/archive/*_avant_reels_tendance_2026-11-04.*`).

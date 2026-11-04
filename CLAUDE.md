@@ -9,3 +9,7 @@
 ## Calendrier
 - Avant de modifier `ig/manifest.json`, copier l'original dans `ig/archive/` (aucune publication prévue jusqu'au 31 déc. ne doit disparaître).
 - Alternance un jour FR / un jour EN (31 oct = FR, 1er nov = EN), légende dans la langue du post.
+
+## Reels tendance (4 nov. 2026)
+- 2 à 3 par semaine, dans des créneaux reels existants (on remplace, on n'ajoute pas). Moteur `tools/reel_engine/trend.html`, configs `build_trends.py` (voir README du moteur).
+- Changer de format régulièrement (nouvelle recherche de tendances chaque semaine) ; ne jamais montrer une fonction que le produit n'a pas (ex. Seat & Vow ne place pas les invités tout seul : il compte et alerte).
