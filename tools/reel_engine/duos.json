@@ -1,0 +1,632 @@
+{
+ "reels": [
+  {
+   "format": "couple",
+   "dur": 15,
+   "coverAt": 4.6,
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.2,
+    5.5,
+    7.2,
+    8.6,
+    10.4,
+    12,
+    13.8
+   ],
+   "theme": "seat",
+   "lang": "fr",
+   "music": "lofi",
+   "seed": 41,
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Les fiancés · épisode 2<br>Plan de table Excel · FR / EN",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie ça à ta belle-mère 😅"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "Sa mère : table 1. Ta mère : table 1. 😤",
+    "hl1": [
+     3,
+     7
+    ],
+    "herSays": "Ma mère à la table 1 !",
+    "himSays": "La mienne aussi !",
+    "stagger": true,
+    "bubFs": 44,
+    "both": true,
+    "guestsL": "Table 1",
+    "from": 4,
+    "to": 14,
+    "over": 10,
+    "cnt": {
+     "suf": " / 10"
+    },
+    "names": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     [
+      "1",
+      "Table 1"
+     ],
+     [
+      "!",
+      "14 pour 10"
+     ]
+    ],
+    "l2": "14 personnes. 10 places. 😳",
+    "hl2": [
+     0,
+     2
+    ],
+    "l3": "OK. On regarde les chiffres.",
+    "hl3": [
+     3
+    ],
+    "l4": "Les deux mères à la 1. Les tantes à la 2. 💍",
+    "hl4": [
+     1,
+     2
+    ],
+    "seatsL": "Table 1",
+    "r1": {
+     "from": 14,
+     "to": 10,
+     "of": " / 10"
+    },
+    "alertL": "Alerte",
+    "alertBad": "⚠️ table pleine",
+    "alertOk": "tout rentre ✓",
+    "ep": "Les fiancés · ép. 2",
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   },
+   "id": "D1_meres_seat_FR",
+   "engine": "trend.html"
+  },
+  {
+   "format": "couple",
+   "dur": 15,
+   "coverAt": 4.6,
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.2,
+    5.5,
+    7.2,
+    8.6,
+    10.4,
+    12,
+    13.8
+   ],
+   "theme": "landlord",
+   "lang": "en",
+   "music": "funk",
+   "seed": 52,
+   "end": {
+    "name": "Landlord Kit",
+    "sub": "Excel · EN / FR · no macros",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send to a landlord friend"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "Tenant: \"I paid!\" Landlord: \"Did you?\" 🤨",
+    "hl1": [
+     0,
+     3
+    ],
+    "herSays": "I paid! 💸",
+    "himSays": "Did you? 🤨",
+    "stagger": true,
+    "c1": "#7ee0a1",
+    "h1": "🧢",
+    "c2": "#ffb86b",
+    "h2": "🎩",
+    "guestsL": "Received",
+    "from": 0,
+    "to": 600,
+    "cnt": {
+     "pre": "$"
+    },
+    "tokens": [
+     "💵",
+     "💬",
+     "🧾",
+     "💵",
+     "📱"
+    ],
+    "clash": [
+     [
+      "$",
+      "$600"
+     ],
+     [
+      "?",
+      "of $1,100"
+     ]
+    ],
+    "l2": "$600… of $1,100 😳",
+    "hl2": [
+     0,
+     2
+    ],
+    "l3": "No arguing. Just check the sheet.",
+    "hl3": [
+     3,
+     4,
+     5
+    ],
+    "l4": "Partial. $500 due. No drama. 🤝",
+    "hl4": [
+     0,
+     1,
+     2
+    ],
+    "seatsL": "Unit 202",
+    "r1": {
+     "from": 0,
+     "to": 600,
+     "pre": "$",
+     "of": " / $1,100"
+    },
+    "alertL": "Status",
+    "alertBad": "❓ unclear",
+    "alertOk": "Partial ✓",
+    "fin": [
+     "🤝",
+     "💵"
+    ],
+    "ep": "Rent day · ep. 1",
+    "file": "Landlord_Kit.xlsx",
+    "brand": "Landlord Kit · Maker FlowTools"
+   },
+   "id": "D2_tenant_landlord_EN",
+   "engine": "trend.html"
+  },
+  {
+   "format": "couple",
+   "dur": 15,
+   "coverAt": 4.6,
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.2,
+    5.5,
+    7.2,
+    8.6,
+    10.4,
+    12,
+    13.8
+   ],
+   "theme": "treasurer",
+   "lang": "fr",
+   "music": "pop",
+   "seed": 63,
+   "end": {
+    "name": "Kit Trésorier",
+    "sub": "Excel · FR / EN · sans macros",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "💬 Écris KIT en commentaire"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "« On a combien ? » Le trésorier : 😅",
+    "hl1": [
+     4
+    ],
+    "herSays": "On a combien ? 👀",
+    "himSays": "Euh… 2 310 $ ?",
+    "stagger": true,
+    "c1": "#ffd166",
+    "h1": "👑",
+    "c2": "#b39dff",
+    "h2": "🎓",
+    "guestsL": "Banque",
+    "from": 0,
+    "to": 2310,
+    "cnt": {
+     "suf": " $"
+    },
+    "tokens": [
+     "🧾",
+     "💳",
+     "🧁",
+     "🧾",
+     "💵"
+    ],
+    "clash": [
+     [
+      "🏦",
+      "2 310 $"
+     ],
+     [
+      "📒",
+      "2 185 $"
+     ]
+    ],
+    "l2": "Banque : 2 310 $. Livres : 2 185 $ 😳",
+    "hl2": [
+     2,
+     5
+    ],
+    "l3": "Ligne par ligne, on retrouve l'écart.",
+    "hl3": [
+     4,
+     5
+    ],
+    "l4": "Écart : 0,00 $. L'AG peut commencer. 🎉",
+    "hl4": [
+     2
+    ],
+    "seatsL": "Écart",
+    "r1": {
+     "from": 125,
+     "to": 0,
+     "dec": 2,
+     "suf": " $"
+    },
+    "alertL": "Conciliation",
+    "alertBad": "⚠️ à vérifier",
+    "alertOk": "équilibrée ✓",
+    "fin": [
+     "🎉",
+     "✅"
+    ],
+    "ep": "Le comité · ép. 1",
+    "file": "Kit_Tresorier.xlsx",
+    "brand": "Kit Trésorier · Maker FlowTools"
+   },
+   "id": "D3_presidente_tresorier_FR",
+   "engine": "trend.html"
+  },
+  {
+   "format": "couple",
+   "dur": 15,
+   "coverAt": 4.6,
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.2,
+    5.5,
+    7.2,
+    8.6,
+    10.4,
+    12,
+    13.8
+   ],
+   "theme": "habit",
+   "lang": "en",
+   "music": "future",
+   "seed": 74,
+   "end": {
+    "name": "Rhythm Habit Tracker 2027",
+    "sub": "Excel · EN / FR · no macros",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send to your accountability buddy"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "Me on Jan 1 vs me on Jan 15 🫠",
+    "hl1": [
+     2,
+     3,
+     6,
+     7
+    ],
+    "herSays": "365 days! 💪",
+    "himSays": "Missed one day… 😩",
+    "stagger": true,
+    "c1": "#ffe066",
+    "h1": "🎉",
+    "c2": "#8fb3ff",
+    "h2": "💤",
+    "guestsL": "Streak",
+    "from": 14,
+    "to": 0,
+    "cnt": {
+     "suf": " days"
+    },
+    "tokens": [
+     "✓",
+     "✓",
+     "🔥",
+     "✓",
+     "⭐"
+    ],
+    "clash": [
+     [
+      "✗",
+      "Jan 15"
+     ],
+     [
+      "🗑️",
+      "quit?"
+     ]
+    ],
+    "l2": "One missed day and you quit EVERYTHING? 😩",
+    "hl2": [
+     4,
+     5
+    ],
+    "l3": "A missed day stays blank. That's it.",
+    "hl3": [
+     1,
+     2,
+     4
+    ],
+    "l4": "Jan 16: back on track. 💪",
+    "hl4": [
+     2,
+     3,
+     4
+    ],
+    "seatsL": "January",
+    "r1": {
+     "from": 0,
+     "to": 15,
+     "of": " / 16 ✓"
+    },
+    "alertL": "Jan 15",
+    "alertBad": "❌ failed",
+    "alertOk": "blank · no guilt ✓",
+    "fin": [
+     "💪",
+     "⭐"
+    ],
+    "ep": "New year, same me · ep. 1",
+    "file": "Rhythm_Habit_Tracker_2027.xlsx",
+    "brand": "Rhythm Habit Tracker 2027 · Maker FlowTools"
+   },
+   "id": "D4_jan1_habit_EN",
+   "engine": "trend.html"
+  },
+  {
+   "format": "couple",
+   "dur": 15,
+   "coverAt": 4.6,
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.2,
+    5.5,
+    7.2,
+    8.6,
+    10.4,
+    12,
+    13.8
+   ],
+   "theme": "artisan",
+   "lang": "fr",
+   "music": "tropical",
+   "seed": 85,
+   "end": {
+    "name": "Artisan Empire 360°",
+    "sub": "Excel · FR / EN · sans macros",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie ça à une artisane"
+   },
+   "t": {
+    "sample": "Données d'exemple",
+    "seated": "Placés",
+    "alerts": "Alertes",
+    "table": "Table",
+    "l1": "« 12 $ pour un savon ?! » 😤",
+    "hl1": [
+     1,
+     2,
+     4
+    ],
+    "herSays": "12 $ ?! 😳",
+    "himSays": "Ben oui.",
+    "stagger": true,
+    "c1": "#7fe3e0",
+    "h1": "👒",
+    "c2": "#ff9ecb",
+    "h2": "🧶",
+    "guestsL": "Coût réel",
+    "from": 0,
+    "to": 7.2,
+    "cnt": {
+     "dec": 2,
+     "suf": " $"
+    },
+    "tokens": [
+     "🧼",
+     "🌿",
+     "📦",
+     "⏱️",
+     "🏷️"
+    ],
+    "clash": [
+     [
+      "🧼",
+      "matériaux"
+     ],
+     [
+      "⏱️",
+      "ton temps"
+     ]
+    ],
+    "l2": "Huiles, emballage, frais ET ton temps : 7,20 $ 😳",
+    "hl2": [
+     3,
+     4,
+     6
+    ],
+    "l3": "Le classeur fait le calcul.",
+    "hl3": [
+     1,
+     4
+    ],
+    "l4": "12 $, c'est juste le bon prix. 🧼",
+    "hl4": [
+     2,
+     3,
+     4
+    ],
+    "seatsL": "Coût réel",
+    "r1": {
+     "from": 0,
+     "to": 7.2,
+     "dec": 2,
+     "suf": " $"
+    },
+    "alertL": "Prix suggéré",
+    "alertBad": "? ",
+    "alertOk": "12,00 $ ✓",
+    "fin": [
+     "🧼",
+     "✨"
+    ],
+    "ep": "Au marché · ép. 1",
+    "file": "Artisan_Empire_360.xlsx",
+    "brand": "Artisan Empire 360° · Maker FlowTools"
+   },
+   "id": "D5_cliente_artisan_FR",
+   "engine": "trend.html"
+  },
+  {
+   "format": "couple",
+   "dur": 15,
+   "coverAt": 4.6,
+   "previewTimes": [
+    0,
+    1.5,
+    3,
+    4.2,
+    5.5,
+    7.2,
+    8.6,
+    10.4,
+    12,
+    13.8
+   ],
+   "theme": "seat",
+   "lang": "en",
+   "music": "lofi",
+   "seed": 96,
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "The fiancés · episode 1<br>Excel seating planner · EN / FR",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Tag your other half"
+   },
+   "t": {
+    "sample": "Sample data",
+    "seated": "Seated",
+    "alerts": "Alerts",
+    "table": "Table",
+    "l1": "Her mom: \"Invite the whole church.\" Him: 😳",
+    "hl1": [
+     0,
+     1,
+     4,
+     5
+    ],
+    "herSays": "The whole church! ⛪",
+    "himSays": "The venue fits 150.",
+    "stagger": true,
+    "bubFs": 44,
+    "both": true,
+    "guestsL": "Guests",
+    "from": 90,
+    "to": 182,
+    "over": 150,
+    "names": [
+     "Emma",
+     "Liam",
+     "Noah",
+     "Ava",
+     "Mia",
+     "Leo",
+     "Zoe",
+     "Eli",
+     "Ivy",
+     "Max",
+     "Ana",
+     "Sam",
+     "Lou",
+     "Jade",
+     "Ben",
+     "Nora"
+    ],
+    "clash": [
+     [
+      "⛪",
+      "182 guests"
+     ],
+     [
+      "🪑",
+      "150 seats"
+     ]
+    ],
+    "l2": "182 guests. 150 seats. 😳",
+    "hl2": [
+     0,
+     2
+    ],
+    "l3": "Okay. Let's count properly.",
+    "hl3": [
+     1,
+     3
+    ],
+    "l4": "150 seats. Everyone fits. Even the choir. 💍",
+    "hl4": [
+     0,
+     1,
+     5
+    ],
+    "seatsL": "Seats",
+    "r1": {
+     "from": 182,
+     "to": 150,
+     "of": " / 150"
+    },
+    "alertL": "Alert",
+    "alertBad": "⚠️ 3 tables full",
+    "alertOk": "all good ✓",
+    "ep": "The fiancés · ep. 1",
+    "file": "Seat_and_Vow.xlsx",
+    "brand": "Seat & Vow · Maker FlowTools"
+   },
+   "id": "D6_church_seat_EN",
+   "engine": "trend.html"
+  }
+ ]
+}
