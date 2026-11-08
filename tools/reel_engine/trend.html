@@ -413,7 +413,7 @@ F.couple=(cfg,th)=>{const T=cfg.t;const L=cfg.lang;
    <div style="font-size:18px;color:#8f9bc0;margin-top:16px">${T.sample}</div></div><div style="height:26px;margin:0 -40px;border-radius:0 0 30px 30px;background:#3a4078"></div>`;
   const sv=lap.querySelector('.sv'),av=lap.querySelector('.av');ev(tLap,'swish');ev(tOk,'impact');ev(tOk+.1,'ding');burst(540,1460,tOk,C.g,14);
   on(t=>{const p=spr(t,tLap,1.1),q=eio(lin(t,tE-.4,tE));lap.style.opacity=clamp((t-tLap)*6)*(1-q);lap.style.transform=`perspective(1400px) translateY(${(1-p)*320}px) rotateX(${12+(1-clamp(p))*30}deg)`;
-    if(T.r1){const r=T.r1;sv.textContent=fmt(r.from+(r.to-r.from)*eo(lin(t,tLap+.3,tOk)),r)+(r.of||'');}else sv.textContent=`${Math.round(T.to*eo(lin(t,tLap+.3,tOk)))} / ${T.to}`;av.textContent=t<tOk?T.alertBad:T.alertOk;av.style.color=t<tOk?C.r:C.g;});
+    if(T.r1&&T.r1.txt){sv.textContent=t<tOk?T.r1.txt[0]:T.r1.txt[1];sv.style.color=t<tOk?'#c6cff0':C.g;}else if(T.r1){const r=T.r1;sv.textContent=fmt(r.from+(r.to-r.from)*eo(lin(t,tLap+.3,tOk)),r)+(r.of||'');}else sv.textContent=`${Math.round(T.to*eo(lin(t,tLap+.3,tOk)))} / ${T.to}`;av.textContent=t<tOk?T.alertBad:T.alertOk;av.style.color=t<tOk?C.r:C.g;});
   const l3=el('div','line');l3.style.cssText+=`top:380px;font-size:72px;z-index:16`;const w3=words(l3,T.l3,{hl:T.hl3,color:C.g});wordsIn(l3,w3,tLap+.1,tLove-.25,.1);
   const l4=el('div','line');l4.style.cssText+=`top:380px;font-size:72px;z-index:16`;const w4=words(l4,T.l4,{hl:T.hl4,color:th.a1});wordsIn(l4,w4,tLove+.1,tE-.2,.1);
   on(t=>{h.d.style.opacity=t<tClash?1:0;});
