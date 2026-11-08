@@ -18,3 +18,7 @@
 - Les posts image de 19 h 30 sont remplacés par des reels 15 s (hook / body / fin) : `tools/reel_engine/build_daily.py` (configs + `EVENING` date → reel), rendu dans `videos/daily/`, puis `apply_daily.py` (archive auto dans `ig/archive/*_avant_reels_19h30_*`).
 - Le reel de 19 h 30 est dans la langue opposée à celle du jour (chaque langue chaque jour). Une image n'est remplacée que quand son reel est prêt ; sinon elle reste au calendrier.
 - Musique : `music.py` (5 styles générés, libres de droits), à varier d'un jour à l'autre.
+
+## Série « duo » (8 nov. 2026, après le 1er reel à 1,3K vues)
+- Recette gagnante : 2 personnages (blobs), conflit qui monte avec un compteur, gel + silence, l'ordi règle ça, fin heureuse, puce « épisode ». Format `couple` de `trend.html` (paramétrable), configs `build_duos.py`, placement `apply_duos.py`.
+- Priorité Instagram (objectif 5K vues par reel). Garder le style, mais un sujet neuf à chaque reel : jamais une copie ni une simple traduction d'un reel déjà publié.

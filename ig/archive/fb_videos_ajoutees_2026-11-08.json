@@ -1,0 +1,41 @@
+{
+ "note": "Série duo programmée sur Facebook le 8 nov. 2026 (ajouts seulement, rien supprimé). Les reels N05-N11 déjà programmés sur FB restent à leurs anciennes dates FB.",
+ "posts": [
+  {
+   "slot": "d11B",
+   "local_montreal": "2026-11-09 19:30",
+   "video": "videos/duos/D1_meres_seat_FR.mp4",
+   "fb_video_id": "2243146549877669"
+  },
+  {
+   "slot": "d12B",
+   "local_montreal": "2026-11-10 19:30",
+   "video": "videos/duos/D2_tenant_landlord_EN.mp4",
+   "fb_video_id": "1343811408825826"
+  },
+  {
+   "slot": "d13B",
+   "local_montreal": "2026-11-11 19:30",
+   "video": "videos/duos/D3_presidente_tresorier_FR.mp4",
+   "fb_video_id": "2179283782949783"
+  },
+  {
+   "slot": "d14B",
+   "local_montreal": "2026-11-12 19:30",
+   "video": "videos/duos/D4_jan1_habit_EN.mp4",
+   "fb_video_id": "29270759665893920"
+  },
+  {
+   "slot": "d15B",
+   "local_montreal": "2026-11-13 19:30",
+   "video": "videos/duos/D5_cliente_artisan_FR.mp4",
+   "fb_video_id": "1558607966300308"
+  },
+  {
+   "slot": "d16B",
+   "local_montreal": "2026-11-14 19:30",
+   "video": "videos/duos/D6_church_seat_EN.mp4",
+   "fb_video_id": "2564866190661248"
+  }
+ ]
+}
