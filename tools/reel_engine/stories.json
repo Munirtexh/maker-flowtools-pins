@@ -325,6 +325,1314 @@
     }
    ],
    "id": "S1_factory_landlord_EN"
+  },
+  {
+   "engine": "story.html",
+   "theme": "seat",
+   "lang": "en",
+   "dur": 15,
+   "music": "pop",
+   "seed": 202,
+   "coverAt": 1.2,
+   "endAt": 13.0,
+   "accent": "#5a1240",
+   "a1": "#ff7aa8",
+   "a2": "#ffd27a",
+   "previewTimes": [
+    0.3,
+    1.5,
+    3.2,
+    5.5,
+    8.4,
+    10.2,
+    11.5,
+    12.6,
+    14
+   ],
+   "brand": "Seat & Vow · Maker FlowTools",
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Excel seating planner · EN / FR<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Tag the friend who saves every party"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 2.5,
+     "set": "hall",
+     "top": "They gave the seating chart to the \"chaotic\" friend 😂",
+     "thl": [
+      4,
+      5,
+      7,
+      8
+     ],
+     "topFs": 76,
+     "chars": [
+      {
+       "skin": "#a8714f",
+       "hair": "bun",
+       "hairC": "#2a1710",
+       "shirt": "#ff7aa8",
+       "outfit": "dress",
+       "pants": "#7a2d55",
+       "x": 540,
+       "y": 1330,
+       "s": 0.95,
+       "pose": "shock"
+      },
+      {
+       "skin": "#f6d7bf",
+       "hair": "short",
+       "hairC": "#9a9a9a",
+       "shirt": "#5cc8ff",
+       "outfit": "suit",
+       "tie": "#ff7aa8",
+       "x": 170,
+       "y": 1340,
+       "s": 1,
+       "pose": "point",
+       "haha": [
+        [
+         0.3,
+         2.5
+        ]
+       ]
+      },
+      {
+       "skin": "#d9a47e",
+       "hair": "long",
+       "hairC": "#3a2414",
+       "shirt": "#b18cff",
+       "outfit": "dress",
+       "pants": "#4a2f7a",
+       "x": 910,
+       "y": 1340,
+       "s": 1,
+       "pose": "pointL",
+       "haha": [
+        [
+         0.5,
+         2.5
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "t0": 2.5,
+     "t1": 4.9,
+     "set": "night",
+     "laptop": [
+      540
+     ],
+     "cap": "180 guests. 3 weeks. Zero plan.",
+     "hl": [
+      0,
+      1,
+      4,
+      5
+     ],
+     "shake": [
+      0.5,
+      1.6
+     ],
+     "notifs": [
+      [
+       0.15,
+       "Aunt Carol",
+       "Do NOT seat me near Karen"
+      ],
+      [
+       0.45,
+       "Uncle Bob",
+       "Bringing +3, ok? 😅"
+      ],
+      [
+       0.75,
+       "Bride 💍",
+       "Is table 1 done??"
+      ],
+      [
+       1.05,
+       "Caterer",
+       "Final count by Friday"
+      ]
+     ],
+     "chars": [
+      {
+       "skin": "#a8714f",
+       "hair": "bun",
+       "hairC": "#2a1710",
+       "shirt": "#ff7aa8",
+       "outfit": "dress",
+       "pants": "#7a2d55",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "pose": "stress"
+      }
+     ]
+    },
+    {
+     "t0": 4.9,
+     "t1": 7.6,
+     "set": "glow",
+     "cap": "So she let the workbook count and check.",
+     "hl": [
+      4,
+      6,
+      7
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 72
+     },
+     "screen": {
+      "file": "Seat_and_Vow.xlsx",
+      "sample": "Sample data",
+      "title": "Seating · check",
+      "top": 300,
+      "step": 0.34,
+      "rows": [
+       [
+        "Table 1",
+        "10 / 10",
+        "g",
+        "Full ✓"
+       ],
+       [
+        "Table 4",
+        "Carol ↔ Karen",
+        "r",
+        "Keep apart"
+       ],
+       [
+        "Table 7",
+        "+3 guests",
+        "y",
+        "12 / 10"
+       ],
+       [
+        "Meals",
+        "180",
+        "g",
+        "Counted ✓"
+       ]
+      ],
+      "total": [
+       "Seated",
+       0,
+       180,
+       "",
+       " / 180"
+      ],
+      "stamp": "Every alert fixed"
+     }
+    },
+    {
+     "t0": 7.6,
+     "t1": 8.4,
+     "set": "black",
+     "card": "Wedding day…",
+     "cardC": "#ffd27a",
+     "mute": [
+      0,
+      0.75
+     ]
+    },
+    {
+     "t0": 8.4,
+     "t1": 10.6,
+     "set": "hall",
+     "cap": "Everyone found their seat. No drama. 💍",
+     "hl": [
+      0,
+      4,
+      5,
+      6
+     ],
+     "chars": [
+      {
+       "skin": "#f1c7a5",
+       "hair": "long",
+       "hairC": "#8a5a2b",
+       "shirt": "#f7f3ff",
+       "outfit": "dress",
+       "pants": "#e9e2ff",
+       "hat": "veil",
+       "x": 330,
+       "y": 1330,
+       "s": 1,
+       "pose": "cheer"
+      },
+      {
+       "skin": "#a8714f",
+       "hair": "bun",
+       "hairC": "#2a1710",
+       "shirt": "#ff7aa8",
+       "outfit": "dress",
+       "pants": "#7a2d55",
+       "x": 720,
+       "y": 1330,
+       "s": 1,
+       "pose": "proud"
+      }
+     ],
+     "burst": 0.3
+    },
+    {
+     "t0": 10.6,
+     "t1": 13.0,
+     "set": "hall",
+     "cap": "Now EVERY bride wants her 👀",
+     "hl": [
+      1,
+      2
+     ],
+     "chars": [
+      {
+       "skin": "#a8714f",
+       "hair": "bun",
+       "hairC": "#2a1710",
+       "shirt": "#ff7aa8",
+       "outfit": "dress",
+       "pants": "#7a2d55",
+       "x": 540,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "wave"
+      },
+      {
+       "skin": "#f6d7bf",
+       "hair": "short",
+       "hairC": "#9a9a9a",
+       "shirt": "#5cc8ff",
+       "outfit": "suit",
+       "tie": "#ff7aa8",
+       "x": 170,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.0,
+         "clap"
+        ]
+       ],
+       "says": [
+        [
+         0.3,
+         2.2,
+         "Do OUR wedding?? 😳"
+        ]
+       ],
+       "bubFs": 40
+      },
+      {
+       "skin": "#d9a47e",
+       "hair": "long",
+       "hairC": "#3a2414",
+       "shirt": "#b18cff",
+       "outfit": "dress",
+       "pants": "#4a2f7a",
+       "x": 910,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.2,
+         "clap"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "id": "S2_maid_seat_EN"
+  },
+  {
+   "engine": "story.html",
+   "theme": "treasurer",
+   "lang": "fr",
+   "dur": 15,
+   "music": "funk",
+   "seed": 203,
+   "coverAt": 1.2,
+   "endAt": 13.0,
+   "accent": "#3a2380",
+   "a1": "#ffc23d",
+   "a2": "#b18cff",
+   "previewTimes": [
+    0.3,
+    1.5,
+    3.2,
+    5.5,
+    8.4,
+    10.2,
+    11.5,
+    12.6,
+    14
+   ],
+   "brand": "Kit Trésorier · Maker FlowTools",
+   "end": {
+    "name": "Kit Trésorier",
+    "sub": "Excel · FR / EN · sans macros<br>Données d'exemple dans cette vidéo",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "💬 Écris KIT en commentaire"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 2.5,
+     "set": "meeting",
+     "top": "Le plus jeune devient trésorier. Tout le monde rit 😂",
+     "thl": [
+      3,
+      6,
+      7
+     ],
+     "topFs": 76,
+     "chars": [
+      {
+       "skin": "#7a4b31",
+       "hair": "short",
+       "hairC": "#120c08",
+       "shirt": "#2ee6a6",
+       "outfit": "hoodie",
+       "pants": "#28304f",
+       "hat": "cap",
+       "capC": "#5cc8ff",
+       "x": 540,
+       "y": 1330,
+       "s": 0.9,
+       "pose": "shock"
+      },
+      {
+       "skin": "#f1c7a5",
+       "hair": "none",
+       "shirt": "#20263f",
+       "outfit": "suit",
+       "tie": "#ffc23d",
+       "glasses": true,
+       "x": 170,
+       "y": 1340,
+       "s": 1,
+       "pose": "point",
+       "haha": [
+        [
+         0.3,
+         2.5
+        ]
+       ],
+       "hahaTxt": "MDR"
+      },
+      {
+       "skin": "#a8714f",
+       "hair": "bun",
+       "hairC": "#3a2414",
+       "shirt": "#ff7aa8",
+       "x": 910,
+       "y": 1340,
+       "s": 1,
+       "pose": "pointL",
+       "haha": [
+        [
+         0.5,
+         2.5
+        ]
+       ],
+       "hahaTxt": "HAHA"
+      }
+     ]
+    },
+    {
+     "t0": 2.5,
+     "t1": 4.9,
+     "set": "night",
+     "laptop": [
+      540
+     ],
+     "cap": "L'AG est dans 3 jours. La banque ne balance pas.",
+     "hl": [
+      1,
+      5,
+      6,
+      9
+     ],
+     "shake": [
+      0.6,
+      1.7
+     ],
+     "notifs": [
+      [
+       0.15,
+       "Présidente",
+       "On a combien exactement ?"
+      ],
+      [
+       0.45,
+       "Banque",
+       "Solde : 2 310,00 $"
+      ],
+      [
+       0.75,
+       "Toi (livres)",
+       "Total : 2 185,00 $ 😳"
+      ],
+      [
+       1.05,
+       "Comité",
+       "Le rapport est prêt ?"
+      ]
+     ],
+     "chars": [
+      {
+       "skin": "#7a4b31",
+       "hair": "short",
+       "hairC": "#120c08",
+       "shirt": "#2ee6a6",
+       "outfit": "hoodie",
+       "pants": "#28304f",
+       "hat": "cap",
+       "capC": "#5cc8ff",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "pose": "stress"
+      }
+     ]
+    },
+    {
+     "t0": 4.9,
+     "t1": 7.6,
+     "set": "glow",
+     "cap": "Alors il a fait la conciliation, ligne par ligne.",
+     "hl": [
+      4,
+      6,
+      7,
+      8
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 70
+     },
+     "screen": {
+      "file": "Kit_Tresorier.xlsx",
+      "sample": "Données d'exemple",
+      "title": "Conciliation · octobre",
+      "top": 300,
+      "step": 0.34,
+      "rows": [
+       [
+        "Solde banque",
+        "2 310,00 $",
+        "b",
+        "Relevé"
+       ],
+       [
+        "Livres",
+        "2 185,00 $",
+        "y",
+        "À vérifier"
+       ],
+       [
+        "Chèque non encaissé",
+        "125,00 $",
+        "g",
+        "Trouvé ✓"
+       ],
+       [
+        "Cotisations",
+        "18 / 22",
+        "y",
+        "4 en retard"
+       ]
+      ],
+      "total": [
+       "Écart",
+       125,
+       0,
+       "",
+       " $",
+       2
+      ],
+      "stamp": "Écart : 0,00 $"
+     }
+    },
+    {
+     "t0": 7.6,
+     "t1": 8.4,
+     "set": "black",
+     "card": "Le jour de l'AG…",
+     "cardC": "#ffc23d",
+     "mute": [
+      0,
+      0.75
+     ]
+    },
+    {
+     "t0": 8.4,
+     "t1": 10.6,
+     "set": "meeting",
+     "cap": "Rapport imprimé. Chaque dollar expliqué.",
+     "hl": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "chars": [
+      {
+       "skin": "#7a4b31",
+       "hair": "short",
+       "hairC": "#120c08",
+       "shirt": "#2b2f55",
+       "outfit": "suit",
+       "pants": "#28304f",
+       "hat": null,
+       "capC": "#5cc8ff",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "tie": "#ffc23d",
+       "pose": "talk",
+       "rprop": "📄"
+      }
+     ]
+    },
+    {
+     "t0": 10.6,
+     "t1": 13.0,
+     "set": "meeting",
+     "cap": "Personne ne rit maintenant 👀",
+     "hl": [
+      0,
+      2
+     ],
+     "burst": 0.2,
+     "chars": [
+      {
+       "skin": "#7a4b31",
+       "hair": "short",
+       "hairC": "#120c08",
+       "shirt": "#2b2f55",
+       "outfit": "suit",
+       "pants": "#28304f",
+       "hat": "cap",
+       "capC": "#5cc8ff",
+       "x": 540,
+       "y": 1330,
+       "s": 1.05,
+       "tie": "#ffc23d",
+       "pose": "proud"
+      },
+      {
+       "skin": "#f1c7a5",
+       "hair": "none",
+       "shirt": "#20263f",
+       "outfit": "suit",
+       "tie": "#ffc23d",
+       "glasses": true,
+       "x": 170,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.0,
+         "clap"
+        ]
+       ],
+       "says": [
+        [
+         0.3,
+         2.2,
+         "Tu restes l'an prochain ?? 😳"
+        ]
+       ],
+       "bubFs": 38
+      },
+      {
+       "skin": "#a8714f",
+       "hair": "bun",
+       "hairC": "#3a2414",
+       "shirt": "#ff7aa8",
+       "x": 910,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.2,
+         "clap"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "id": "S3_jeune_tresorier_FR"
+  },
+  {
+   "engine": "story.html",
+   "theme": "artisan",
+   "lang": "en",
+   "dur": 15,
+   "music": "tropical",
+   "seed": 204,
+   "coverAt": 1.2,
+   "endAt": 13.0,
+   "accent": "#6a2a10",
+   "a1": "#ffb347",
+   "a2": "#ffd700",
+   "previewTimes": [
+    0.3,
+    1.5,
+    3.2,
+    5.5,
+    8.4,
+    10.2,
+    11.5,
+    12.6,
+    14
+   ],
+   "brand": "Artisan Empire 360° · Maker FlowTools",
+   "end": {
+    "name": "Artisan Empire 360°",
+    "sub": "Excel · EN / FR · no macros<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send this to a maker friend"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 2.5,
+     "set": "market",
+     "top": "Her family called it \"just a hobby\" 🙄",
+     "thl": [
+      4,
+      5,
+      6
+     ],
+     "topFs": 84,
+     "chars": [
+      {
+       "skin": "#f6d7bf",
+       "hair": "long",
+       "hairC": "#c7541f",
+       "shirt": "#5cc8ff",
+       "outfit": "apron",
+       "pants": "#2d3250",
+       "glasses": true,
+       "x": 540,
+       "y": 1330,
+       "s": 0.95,
+       "pose": "sad"
+      },
+      {
+       "skin": "#d9a47e",
+       "hair": "short",
+       "hairC": "#222",
+       "shirt": "#2ee6a6",
+       "x": 170,
+       "y": 1340,
+       "s": 1,
+       "pose": "laugh",
+       "haha": [
+        [
+         0.3,
+         2.5
+        ]
+       ],
+       "says": [
+        [
+         0.4,
+         2.3,
+         "$8? Cute hobby 😂"
+        ]
+       ],
+       "bubFs": 40
+      },
+      {
+       "skin": "#f1c7a5",
+       "hair": "curly",
+       "hairC": "#a8a8a8",
+       "shirt": "#ff9f43",
+       "outfit": "dress",
+       "pants": "#7a3d1d",
+       "x": 910,
+       "y": 1340,
+       "s": 1,
+       "pose": "pointL",
+       "haha": [
+        [
+         0.6,
+         2.5
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "t0": 2.5,
+     "t1": 4.9,
+     "set": "night",
+     "laptop": [
+      540
+     ],
+     "cap": "She sold 40 pairs… and lost money on every one 😳",
+     "hl": [
+      1,
+      2,
+      5,
+      6,
+      7,
+      8
+     ],
+     "shake": [
+      0.6,
+      1.6
+     ],
+     "notifs": [
+      [
+       0.15,
+       "Supplier",
+       "Silver hooks: price up 20%"
+      ],
+      [
+       0.45,
+       "Etsy",
+       "Fees this month: $66"
+      ],
+      [
+       0.75,
+       "Post office",
+       "Shipping: $4.80"
+      ],
+      [
+       1.05,
+       "You",
+       "Wait… did I make anything?"
+      ]
+     ],
+     "chars": [
+      {
+       "skin": "#f6d7bf",
+       "hair": "long",
+       "hairC": "#c7541f",
+       "shirt": "#5cc8ff",
+       "outfit": "apron",
+       "pants": "#2d3250",
+       "glasses": true,
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "pose": "stress"
+      }
+     ]
+    },
+    {
+     "t0": 4.9,
+     "t1": 7.6,
+     "set": "glow",
+     "cap": "So she counted EVERYTHING. Even her time.",
+     "hl": [
+      3,
+      5,
+      6
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 72
+     },
+     "screen": {
+      "file": "Artisan_Empire_360.xlsx",
+      "sample": "Sample data",
+      "title": "Earrings · real cost",
+      "top": 300,
+      "step": 0.34,
+      "rows": [
+       [
+        "Materials",
+        "$4.10",
+        "b",
+        "Beads + hooks"
+       ],
+       [
+        "Packaging",
+        "$1.20",
+        "b",
+        "Box + card"
+       ],
+       [
+        "Fees",
+        "$1.65",
+        "y",
+        "Etsy"
+       ],
+       [
+        "Your time",
+        "$7.50",
+        "k",
+        "30 min"
+       ]
+      ],
+      "total": [
+       "Suggested price",
+       8,
+       24,
+       "$",
+       "",
+       2
+      ],
+      "stamp": "Real cost: $14.45"
+     }
+    },
+    {
+     "t0": 7.6,
+     "t1": 8.4,
+     "set": "black",
+     "card": "Next market…",
+     "cardC": "#ffb347",
+     "mute": [
+      0,
+      0.75
+     ]
+    },
+    {
+     "t0": 8.4,
+     "t1": 10.6,
+     "set": "market",
+     "cap": "New price. Same earrings. Real profit. ✨",
+     "hl": [
+      0,
+      1,
+      4,
+      5
+     ],
+     "chars": [
+      {
+       "skin": "#f6d7bf",
+       "hair": "long",
+       "hairC": "#c7541f",
+       "shirt": "#5cc8ff",
+       "outfit": "apron",
+       "pants": "#2d3250",
+       "glasses": true,
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "pose": "proud",
+       "rprop": "💸"
+      },
+      {
+       "skin": "#7a4b31",
+       "hair": "bun",
+       "hairC": "#111",
+       "shirt": "#b18cff",
+       "x": 220,
+       "y": 1340,
+       "s": 0.9,
+       "pose": "wave"
+      },
+      {
+       "skin": "#a8714f",
+       "hair": "short",
+       "hairC": "#2a1a10",
+       "shirt": "#ff7aa8",
+       "x": 860,
+       "y": 1340,
+       "s": 0.9,
+       "pose": "talk"
+      }
+     ]
+    },
+    {
+     "t0": 10.6,
+     "t1": 13.0,
+     "set": "market",
+     "cap": "\"Just a hobby,\" they said 👀",
+     "hl": [
+      1,
+      2,
+      3
+     ],
+     "burst": 0.2,
+     "chars": [
+      {
+       "skin": "#f6d7bf",
+       "hair": "long",
+       "hairC": "#c7541f",
+       "shirt": "#5cc8ff",
+       "outfit": "apron",
+       "pants": "#2d3250",
+       "glasses": true,
+       "x": 540,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "cheer"
+      },
+      {
+       "skin": "#d9a47e",
+       "hair": "short",
+       "hairC": "#222",
+       "shirt": "#2ee6a6",
+       "x": 170,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.0,
+         "clap"
+        ]
+       ],
+       "says": [
+        [
+         0.3,
+         2.2,
+         "Can you teach me?? 😳"
+        ]
+       ],
+       "bubFs": 38
+      },
+      {
+       "skin": "#f1c7a5",
+       "hair": "curly",
+       "hairC": "#a8a8a8",
+       "shirt": "#ff9f43",
+       "outfit": "dress",
+       "pants": "#7a3d1d",
+       "x": 910,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.2,
+         "clap"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "id": "S4_hobby_artisan_EN"
+  },
+  {
+   "engine": "story.html",
+   "theme": "habit",
+   "lang": "fr",
+   "dur": 15,
+   "music": "future",
+   "seed": 205,
+   "coverAt": 1.2,
+   "endAt": 13.0,
+   "accent": "#0b4a33",
+   "a1": "#4dffb5",
+   "a2": "#ffd166",
+   "previewTimes": [
+    0.3,
+    1.5,
+    3.2,
+    5.5,
+    8.4,
+    10.2,
+    11.5,
+    12.6,
+    14
+   ],
+   "brand": "Rhythm Habit Tracker 2027 · Maker FlowTools",
+   "end": {
+    "name": "Rhythm Habit Tracker 2027",
+    "sub": "Excel · FR / EN · sans macros<br>Données d'exemple dans cette vidéo",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie ça à ton partenaire de motivation"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 2.5,
+     "set": "city",
+     "top": "« Tes résolutions ? Tu lâches le 15 janvier 😂 »",
+     "thl": [
+      1,
+      5,
+      6
+     ],
+     "topFs": 78,
+     "chars": [
+      {
+       "skin": "#d9a47e",
+       "hair": "bun",
+       "hairC": "#1b120c",
+       "shirt": "#4dffb5",
+       "outfit": "hoodie",
+       "pants": "#22304a",
+       "x": 540,
+       "y": 1330,
+       "s": 0.95,
+       "pose": "sad"
+      },
+      {
+       "skin": "#f1c7a5",
+       "hair": "curly",
+       "hairC": "#6b3a1b",
+       "shirt": "#ff7aa8",
+       "x": 170,
+       "y": 1340,
+       "s": 1,
+       "pose": "point",
+       "haha": [
+        [
+         0.3,
+         2.5
+        ]
+       ],
+       "hahaTxt": "MDR"
+      },
+      {
+       "skin": "#7a4b31",
+       "hair": "short",
+       "hairC": "#111",
+       "shirt": "#5cc8ff",
+       "hat": "cap",
+       "capC": "#ffc23d",
+       "x": 910,
+       "y": 1340,
+       "s": 1,
+       "pose": "pointL",
+       "haha": [
+        [
+         0.5,
+         2.5
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "t0": 2.5,
+     "t1": 4.9,
+     "set": "night",
+     "laptop": [
+      540
+     ],
+     "cap": "15 janvier. Elle manque un jour. 😩",
+     "hl": [
+      0,
+      1,
+      3,
+      4,
+      5
+     ],
+     "mute": [
+      0.7,
+      1.3
+     ],
+     "notifs": [
+      [
+       0.15,
+       "Rappel",
+       "Course : 0 / 1 aujourd'hui"
+      ],
+      [
+       0.5,
+       "Ami",
+       "Alors, déjà fini ? 😏"
+      ],
+      [
+       0.85,
+       "Toi",
+       "J'ai tout raté…"
+      ]
+     ],
+     "chars": [
+      {
+       "skin": "#d9a47e",
+       "hair": "bun",
+       "hairC": "#1b120c",
+       "shirt": "#4dffb5",
+       "outfit": "hoodie",
+       "pants": "#22304a",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "pose": "sad"
+      }
+     ]
+    },
+    {
+     "t0": 4.9,
+     "t1": 7.6,
+     "set": "glow",
+     "cap": "Mais un jour manqué reste juste… vide. Pas un échec.",
+     "hl": [
+      3,
+      6,
+      8,
+      9
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 68
+     },
+     "screen": {
+      "file": "Rhythm_Habit_Tracker_2027.xlsx",
+      "sample": "Données d'exemple",
+      "title": "Janvier · course",
+      "top": 300,
+      "step": 0.34,
+      "rows": [
+       [
+        "14 janv.",
+        "Fait",
+        "g",
+        "✓"
+       ],
+       [
+        "15 janv.",
+        "—",
+        "#8f9bc0",
+        "vide"
+       ],
+       [
+        "16 janv.",
+        "Version minimale",
+        "y",
+        "10 min"
+       ],
+       [
+        "17 janv.",
+        "Repos prévu",
+        "b",
+        "OK"
+       ]
+      ],
+      "total": [
+       "Janvier",
+       0,
+       27,
+       "",
+       " / 31 jours"
+      ],
+      "stamp": "On continue"
+     }
+    },
+    {
+     "t0": 7.6,
+     "t1": 8.4,
+     "set": "black",
+     "card": "31 décembre…",
+     "cardC": "#4dffb5",
+     "mute": [
+      0,
+      0.75
+     ]
+    },
+    {
+     "t0": 8.4,
+     "t1": 10.6,
+     "set": "city",
+     "cap": "Elle n'a jamais tout abandonné. 💪",
+     "hl": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "chars": [
+      {
+       "skin": "#d9a47e",
+       "hair": "bun",
+       "hairC": "#1b120c",
+       "shirt": "#4dffb5",
+       "outfit": "hoodie",
+       "pants": "#22304a",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "pose": "cheer",
+       "rprop": "🏅"
+      }
+     ],
+     "burst": 0.3
+    },
+    {
+     "t0": 10.6,
+     "t1": 13.0,
+     "set": "city",
+     "cap": "Et maintenant, ils lui demandent comment 👀",
+     "hl": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "chars": [
+      {
+       "skin": "#d9a47e",
+       "hair": "bun",
+       "hairC": "#1b120c",
+       "shirt": "#4dffb5",
+       "outfit": "hoodie",
+       "pants": "#22304a",
+       "x": 540,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "proud",
+       "rprop": "🏅"
+      },
+      {
+       "skin": "#f1c7a5",
+       "hair": "curly",
+       "hairC": "#6b3a1b",
+       "shirt": "#ff7aa8",
+       "x": 170,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.0,
+         "clap"
+        ]
+       ],
+       "says": [
+        [
+         0.3,
+         2.2,
+         "Tu fais comment ?? 😳"
+        ]
+       ],
+       "bubFs": 40
+      },
+      {
+       "skin": "#7a4b31",
+       "hair": "short",
+       "hairC": "#111",
+       "shirt": "#5cc8ff",
+       "hat": "cap",
+       "capC": "#ffc23d",
+       "x": 910,
+       "y": 1350,
+       "s": 0.95,
+       "pose": "shock",
+       "poses": [
+        [
+         1.2,
+         "clap"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "id": "S5_resolution_habit_FR"
   }
  ]
 }

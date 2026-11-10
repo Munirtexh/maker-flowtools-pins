@@ -22,3 +22,8 @@
 ## Série « duo » (8 nov. 2026, après le 1er reel à 1,3K vues)
 - Recette gagnante : 2 personnages (blobs), conflit qui monte avec un compteur, gel + silence, l'ordi règle ça, fin heureuse, puce « épisode ». Format `couple` de `trend.html` (paramétrable), configs `build_duos.py`, placement `apply_duos.py`.
 - Priorité Instagram (objectif 5K vues par reel). Garder le style, mais un sujet neuf à chaque reel : jamais une copie ni une simple traduction d'un reel déjà publié.
+
+## Reels « histoire » (10 nov. 2026, consigne de Yaacoub)
+- Ne plus copier le duo gagnant : vrais personnages humains (moteur `tools/reel_engine/story.html`), une vraie mini-histoire façon « clipping » (on se moque du héros → galère → il s'organise avec l'outil → « X plus tard » → réussite, les autres sont bouche bée). Configs `build_stories.py`, placement `apply_stories.py`.
+- Chaque histoire : héros, décor, quête et produit différents. Jamais le même format plus de 2 jours de suite.
+- Les meilleurs reels vont du jeudi au dimanche (ce sont eux qui percent) ; la semaine, les formats à tester.
