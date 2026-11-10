@@ -1,0 +1,35 @@
+{
+ "note": "Histoires programmées sur Facebook le 10 nov. 2026 (ajouts seulement). Les duos D2/D4/D5/D6 déjà programmés sur FB restent à leurs dates FB d origine.",
+ "posts": [
+  {
+   "slot": "d12B",
+   "local_montreal": "2026-11-10 19:30",
+   "video": "videos/stories/S1_factory_landlord_EN.mp4",
+   "fb_video_id": "1688556746214228"
+  },
+  {
+   "slot": "d14B",
+   "local_montreal": "2026-11-12 19:30",
+   "video": "videos/stories/S2_maid_seat_EN.mp4",
+   "fb_video_id": "1104174432240614"
+  },
+  {
+   "slot": "d15B",
+   "local_montreal": "2026-11-13 19:30",
+   "video": "videos/stories/S3_jeune_tresorier_FR.mp4",
+   "fb_video_id": "1069715886089177"
+  },
+  {
+   "slot": "d16B",
+   "local_montreal": "2026-11-14 19:30",
+   "video": "videos/stories/S4_hobby_artisan_EN.mp4",
+   "fb_video_id": "1666480588591050"
+  },
+  {
+   "slot": "d17B",
+   "local_montreal": "2026-11-15 19:30",
+   "video": "videos/stories/S5_resolution_habit_FR.mp4",
+   "fb_video_id": "1154615063693493"
+  }
+ ]
+}
