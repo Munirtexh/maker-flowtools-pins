@@ -1,0 +1,47 @@
+{
+ "note": "Reels « animaux au travail » programmés sur Facebook le 15 nov. 2026 (ajouts seulement, 19 h 30 Montréal). Les vidéos déjà programmées sur FB pour ces dates n'ont pas été touchées.",
+ "posts": [
+  {
+   "slot": "d18B",
+   "local_montreal": "2026-11-16 19:30",
+   "video": "videos/pets/P1_cat_landlord_EN.mp4",
+   "fb_video_id": "1888924282551735"
+  },
+  {
+   "slot": "d19B",
+   "local_montreal": "2026-11-17 19:30",
+   "video": "videos/pets/P2_raton_tresorier_FR.mp4",
+   "fb_video_id": "1526144019568191"
+  },
+  {
+   "slot": "d20B",
+   "local_montreal": "2026-11-18 19:30",
+   "video": "videos/pets/P3_2027_habit_EN.mp4",
+   "fb_video_id": "1145344691416982"
+  },
+  {
+   "slot": "d21B",
+   "local_montreal": "2026-11-19 19:30",
+   "video": "videos/pets/P4_chiens_chats_seat_FR.mp4",
+   "fb_video_id": "4773615036194577"
+  },
+  {
+   "slot": "d22B",
+   "local_montreal": "2026-11-20 19:30",
+   "video": "videos/pets/P5_dogs_candles_artisan_EN.mp4",
+   "fb_video_id": "29043583331979434"
+  },
+  {
+   "slot": "d23B",
+   "local_montreal": "2026-11-21 19:30",
+   "video": "videos/pets/P6_hamster_landlord_FR.mp4",
+   "fb_video_id": "1666898495080611"
+  },
+  {
+   "slot": "d24B",
+   "local_montreal": "2026-11-22 19:30",
+   "video": "videos/pets/P7_dog_wedding_seat_EN.mp4",
+   "fb_video_id": "1110497685129126"
+  }
+ ]
+}
