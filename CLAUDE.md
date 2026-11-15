@@ -27,3 +27,8 @@
 - Ne plus copier le duo gagnant : vrais personnages humains (moteur `tools/reel_engine/story.html`), une vraie mini-histoire façon « clipping » (on se moque du héros → galère → il s'organise avec l'outil → « X plus tard » → réussite, les autres sont bouche bée). Configs `build_stories.py`, placement `apply_stories.py`.
 - Chaque histoire : héros, décor, quête et produit différents. Jamais le même format plus de 2 jours de suite.
 - Les meilleurs reels vont du jeudi au dimanche (ce sont eux qui percent) ; la semaine, les formats à tester.
+
+## Nouveau style chaque semaine (15 nov. 2026, consigne de Yaacoub)
+- L'algorithme n'aime plus les anciens styles (50-200 vues) : chaque semaine, un style animé COMPLÈTEMENT différent, inspiré des vidéos IA virales du moment, aux 7 créneaux de 19 h 30.
+- Garder au plus une vidéo par ancien style (duo, quotidien, tendance, animé, histoire) ; les autres reels anciens sortent du calendrier (archive avant).
+- Semaine du 16-22 nov. : « animaux au travail » (chats, chiens, raton, hamster ; look ciné, légende mème fixe en haut) : `build_pets.py`, `apply_pets.py`, `story.html` (options `sp`, `cinema`, `meme`), vidéos `videos/pets/`.

@@ -1,0 +1,1603 @@
+{
+ "reels": [
+  {
+   "engine": "story.html",
+   "theme": "landlord",
+   "lang": "en",
+   "dur": 15,
+   "music": "funk",
+   "seed": 301,
+   "coverAt": 1.0,
+   "endAt": 13.0,
+   "cinema": true,
+   "meme": "POV: your landlord is a cat 🐱",
+   "mhl": [
+    2,
+    3,
+    5
+   ],
+   "memeFs": 72,
+   "accent": "#0f5a52",
+   "a1": "#2ee6a6",
+   "a2": "#5cc8ff",
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.5,
+    5.0,
+    7.0,
+    9.0,
+    10.5,
+    12.2,
+    14
+   ],
+   "brand": "Landlord Kit · Maker FlowTools",
+   "end": {
+    "name": "Landlord Kit",
+    "sub": "Excel · EN / FR · no macros<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send this to a landlord friend"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.2,
+     "set": "cozy",
+     "laptop": [
+      330
+     ],
+     "chars": [
+      {
+       "sp": "cat",
+       "skin": "#f0a35e",
+       "muzzle": "#fff1df",
+       "x": 330,
+       "y": 1320,
+       "s": 1,
+       "outfit": "suit",
+       "shirt": "#2b2f55",
+       "tie": "#2ee6a6",
+       "glasses": true,
+       "pose": "think"
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "x": 800,
+       "y": 1330,
+       "s": 1,
+       "shirt": "#5cc8ff",
+       "outfit": "hoodie",
+       "pose": "talk",
+       "enter": 500,
+       "says": [
+        [
+         0.5,
+         2.9,
+         "Rent is paid! 🐶"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "t0": 3.2,
+     "t1": 6.0,
+     "set": "glow",
+     "screen": {
+      "file": "Landlord_Kit.xlsx",
+      "sample": "Sample data",
+      "title": "Rent · November",
+      "top": 330,
+      "step": 0.3,
+      "rows": [
+       [
+        "Unit 1 · Biscuit",
+        "$1,100",
+        "g",
+        "Paid ✓"
+       ],
+       [
+        "Unit 2 · Max",
+        "$600 of $1,100",
+        "y",
+        "Partial"
+       ],
+       [
+        "Unit 3 · Luna",
+        "$0 of $980",
+        "r",
+        "Unpaid"
+       ]
+      ],
+      "total": [
+       "Received",
+       0,
+       1700,
+       "$"
+      ],
+      "stamp": "Partial 🐾"
+     }
+    },
+    {
+     "t0": 6.0,
+     "t1": 8.6,
+     "set": "cozy",
+     "laptop": [
+      330
+     ],
+     "shake": [
+      0.2,
+      0.7
+     ],
+     "chars": [
+      {
+       "sp": "cat",
+       "skin": "#f0a35e",
+       "muzzle": "#fff1df",
+       "x": 330,
+       "y": 1320,
+       "s": 1,
+       "outfit": "suit",
+       "shirt": "#2b2f55",
+       "tie": "#2ee6a6",
+       "glasses": true,
+       "pose": "angry",
+       "says": [
+        [
+         0.2,
+         2.4,
+         "$600 of $1,100. 😼"
+        ]
+       ]
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "x": 800,
+       "y": 1330,
+       "s": 1,
+       "shirt": "#5cc8ff",
+       "outfit": "hoodie",
+       "pose": "shock"
+      }
+     ]
+    },
+    {
+     "t0": 8.6,
+     "t1": 10.8,
+     "set": "cozy",
+     "laptop": [
+      330
+     ],
+     "chars": [
+      {
+       "sp": "cat",
+       "skin": "#f0a35e",
+       "muzzle": "#fff1df",
+       "x": 330,
+       "y": 1320,
+       "s": 1,
+       "outfit": "suit",
+       "shirt": "#2b2f55",
+       "tie": "#2ee6a6",
+       "glasses": true,
+       "pose": "proud"
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "x": 800,
+       "y": 1330,
+       "s": 1,
+       "shirt": "#5cc8ff",
+       "outfit": "hoodie",
+       "pose": "sad",
+       "says": [
+        [
+         0.2,
+         2.1,
+         "I'll send the rest 🥲"
+        ]
+       ]
+      }
+     ],
+     "emojis": [
+      [
+       "🐾",
+       480,
+       820,
+       0.9
+      ]
+     ]
+    },
+    {
+     "t0": 10.8,
+     "t1": 13.0,
+     "set": "cozy",
+     "cap": "Every landlord needs this cat 😼",
+     "hl": [
+      1,
+      4
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 74
+     },
+     "burst": 0.2,
+     "chars": [
+      {
+       "sp": "cat",
+       "skin": "#f0a35e",
+       "muzzle": "#fff1df",
+       "x": 540,
+       "y": 1330,
+       "s": 1.1,
+       "outfit": "suit",
+       "shirt": "#2b2f55",
+       "tie": "#2ee6a6",
+       "glasses": true,
+       "pose": "cheer"
+      }
+     ]
+    }
+   ],
+   "id": "P1_cat_landlord_EN"
+  },
+  {
+   "engine": "story.html",
+   "theme": "treasurer",
+   "lang": "fr",
+   "dur": 15,
+   "music": "pop",
+   "seed": 302,
+   "coverAt": 1.0,
+   "endAt": 13.0,
+   "cinema": true,
+   "meme": "Quand le raton laveur devient trésorier de l'asso 🦝",
+   "mhl": [
+    3,
+    4,
+    7
+   ],
+   "memeFs": 66,
+   "accent": "#3a2380",
+   "a1": "#ffc23d",
+   "a2": "#b18cff",
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.5,
+    5.0,
+    7.0,
+    9.0,
+    10.5,
+    12.2,
+    14
+   ],
+   "brand": "Kit Trésorier · Maker FlowTools",
+   "end": {
+    "name": "Kit Trésorier",
+    "sub": "Excel · FR / EN · sans macros<br>Données d'exemple dans cette vidéo",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "💬 Écris KIT en commentaire"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.0,
+     "set": "meeting",
+     "chars": [
+      {
+       "sp": "owl",
+       "skin": "#8a6a4a",
+       "dark": "#5a4330",
+       "muzzle": "#f3e3c8",
+       "x": 260,
+       "y": 1330,
+       "s": 1,
+       "outfit": "suit",
+       "shirt": "#3b2c4f",
+       "tie": "#ffc23d",
+       "pose": "talk",
+       "says": [
+        [
+         0.4,
+         2.8,
+         "On a combien ? 🦉"
+        ]
+       ]
+      },
+      {
+       "sp": "raccoon",
+       "skin": "#9a9aa6",
+       "dark": "#3a3a46",
+       "muzzle": "#e9e6e2",
+       "x": 790,
+       "y": 1330,
+       "s": 1,
+       "shirt": "#ffc23d",
+       "pose": "stress"
+      }
+     ],
+     "emojis": [
+      [
+       "🧾",
+       640,
+       700,
+       0.5
+      ],
+      [
+       "🧾",
+       900,
+       760,
+       0.8
+      ],
+      [
+       "🧾",
+       760,
+       600,
+       1.1
+      ]
+     ]
+    },
+    {
+     "t0": 3.0,
+     "t1": 5.6,
+     "set": "night",
+     "laptop": [
+      540
+     ],
+     "shake": [
+      0.5,
+      1.4
+     ],
+     "notifs": [
+      [
+       0.15,
+       "Banque",
+       "Solde : 2 480,00 $"
+      ],
+      [
+       0.5,
+       "Livres",
+       "Total : 2 355,00 $ 😳"
+      ],
+      [
+       0.85,
+       "Comité",
+       "L'AG est demain !"
+      ]
+     ],
+     "chars": [
+      {
+       "sp": "raccoon",
+       "skin": "#9a9aa6",
+       "dark": "#3a3a46",
+       "muzzle": "#e9e6e2",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "shirt": "#ffc23d",
+       "pose": "type"
+      }
+     ]
+    },
+    {
+     "t0": 5.6,
+     "t1": 8.6,
+     "set": "glow",
+     "screen": {
+      "file": "Kit_Tresorier.xlsx",
+      "sample": "Données d'exemple",
+      "title": "Conciliation · octobre",
+      "top": 330,
+      "step": 0.3,
+      "rows": [
+       [
+        "Solde banque",
+        "2 480,00 $",
+        "b",
+        "Relevé"
+       ],
+       [
+        "Livres",
+        "2 355,00 $",
+        "y",
+        "À vérifier"
+       ],
+       [
+        "Dépôt non inscrit",
+        "125,00 $",
+        "g",
+        "Trouvé ✓"
+       ]
+      ],
+      "total": [
+       "Écart",
+       125,
+       0,
+       "",
+       " $",
+       2
+      ],
+      "stamp": "Écart : 0,00 $"
+     }
+    },
+    {
+     "t0": 8.6,
+     "t1": 13.0,
+     "set": "meeting",
+     "cap": "Meilleur trésorier. Vraiment. 🦝",
+     "hl": [
+      0,
+      1
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 74
+     },
+     "burst": 1.8,
+     "chars": [
+      {
+       "sp": "raccoon",
+       "skin": "#9a9aa6",
+       "dark": "#3a3a46",
+       "muzzle": "#e9e6e2",
+       "x": 330,
+       "y": 1330,
+       "s": 1.05,
+       "shirt": "#ffc23d",
+       "pose": "proud",
+       "poses": [
+        [
+         1.8,
+         "cheer"
+        ]
+       ],
+       "says": [
+        [
+         0.2,
+         1.8,
+         "Écart : 0,00 $ 😎"
+        ]
+       ]
+      },
+      {
+       "sp": "owl",
+       "skin": "#8a6a4a",
+       "dark": "#5a4330",
+       "muzzle": "#f3e3c8",
+       "x": 810,
+       "y": 1330,
+       "s": 1,
+       "outfit": "suit",
+       "shirt": "#3b2c4f",
+       "tie": "#ffc23d",
+       "pose": "shock",
+       "poses": [
+        [
+         1.8,
+         "clap"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "id": "P2_raton_tresorier_FR"
+  },
+  {
+   "engine": "story.html",
+   "theme": "habit",
+   "lang": "en",
+   "dur": 15,
+   "music": "future",
+   "seed": 303,
+   "coverAt": 1.0,
+   "endAt": 13.0,
+   "cinema": true,
+   "meme": "2026 me saying goodbye to 2027 me 🥹",
+   "mhl": [
+    0,
+    1,
+    6,
+    7
+   ],
+   "memeFs": 72,
+   "accent": "#0b4a33",
+   "a1": "#4dffb5",
+   "a2": "#ffd166",
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.5,
+    5.0,
+    7.0,
+    9.0,
+    10.5,
+    12.2,
+    14
+   ],
+   "brand": "Rhythm Habit Tracker 2027 · Maker FlowTools",
+   "end": {
+    "name": "Rhythm Habit Tracker 2027",
+    "sub": "Excel · EN / FR · no macros<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send this to your 2027 buddy"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.2,
+     "set": "city",
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "shirt": "#7a7f99",
+       "outfit": "hoodie",
+       "x": 300,
+       "y": 1330,
+       "s": 1,
+       "pose": "sad",
+       "says": [
+        [
+         0.3,
+         3.0,
+         "Don't quit in January 🥺"
+        ]
+       ],
+       "bubFs": 40
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "shirt": "#4dffb5",
+       "x": 780,
+       "y": 1330,
+       "s": 1,
+       "pose": "proud"
+      }
+     ]
+    },
+    {
+     "t0": 3.2,
+     "t1": 5.4,
+     "set": "city",
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "shirt": "#7a7f99",
+       "outfit": "hoodie",
+       "x": 300,
+       "y": 1330,
+       "s": 1,
+       "pose": "sad"
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "shirt": "#4dffb5",
+       "x": 780,
+       "y": 1330,
+       "s": 1,
+       "pose": "talk",
+       "says": [
+        [
+         0.2,
+         2.1,
+         "I've got a plan. 📅"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "t0": 5.4,
+     "t1": 8.4,
+     "set": "glow",
+     "screen": {
+      "file": "Rhythm_Habit_Tracker_2027.xlsx",
+      "sample": "Sample data",
+      "title": "January 2027 · run",
+      "top": 330,
+      "step": 0.3,
+      "rows": [
+       [
+        "Jan 14",
+        "Done",
+        "g",
+        "✓"
+       ],
+       [
+        "Jan 15",
+        "missed",
+        "#8f9bc0",
+        "blank · no guilt"
+       ],
+       [
+        "Jan 16",
+        "Minimum version",
+        "y",
+        "10 min"
+       ]
+      ],
+      "total": [
+       "January",
+       0,
+       27,
+       "",
+       " / 31 days"
+      ],
+      "stamp": "Keep going"
+     }
+    },
+    {
+     "t0": 8.4,
+     "t1": 9.2,
+     "set": "black",
+     "card": "December 31, 2027…",
+     "cardC": "#4dffb5",
+     "mute": [
+      0,
+      0.75
+     ]
+    },
+    {
+     "t0": 9.2,
+     "t1": 13.0,
+     "set": "city",
+     "cap": "We made it 🐶🏅",
+     "hl": [
+      1,
+      2
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 80
+     },
+     "burst": 0.3,
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "shirt": "#7a7f99",
+       "outfit": "hoodie",
+       "x": 300,
+       "y": 1330,
+       "s": 1,
+       "pose": "clap"
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "shirt": "#4dffb5",
+       "x": 780,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "cheer",
+       "rprop": "🏅"
+      }
+     ]
+    }
+   ],
+   "id": "P3_2027_habit_EN"
+  },
+  {
+   "engine": "story.html",
+   "theme": "seat",
+   "lang": "fr",
+   "dur": 15,
+   "music": "lofi",
+   "seed": 304,
+   "coverAt": 1.0,
+   "endAt": 13.0,
+   "cinema": true,
+   "meme": "Les chiens ET les chats au même mariage ? 🐱🐶",
+   "mhl": [
+    1,
+    4,
+    5
+   ],
+   "memeFs": 70,
+   "accent": "#5a1240",
+   "a1": "#ff7aa8",
+   "a2": "#ffd27a",
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.5,
+    5.0,
+    7.0,
+    9.0,
+    10.5,
+    12.2,
+    14
+   ],
+   "brand": "Seat & Vow · Maker FlowTools",
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Plan de table Excel · FR / EN<br>Données d'exemple dans cette vidéo",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Identifie ta moitié"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.0,
+     "set": "hall",
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "x": 220,
+       "y": 1340,
+       "s": 0.95,
+       "shirt": "#5cc8ff",
+       "pose": "laugh",
+       "haha": [
+        [
+         0.2,
+         3
+        ]
+       ],
+       "hahaTxt": "WOUF"
+      },
+      {
+       "sp": "cat",
+       "skin": "#f0a35e",
+       "muzzle": "#fff1df",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "outfit": "dress",
+       "shirt": "#b18cff",
+       "pants": "#5b3c8a",
+       "glasses": true,
+       "pose": "stress"
+      },
+      {
+       "sp": "cat",
+       "skin": "#3a3a46",
+       "muzzle": "#9a9aa6",
+       "x": 870,
+       "y": 1340,
+       "s": 0.95,
+       "shirt": "#ff7aa8",
+       "pose": "angry",
+       "haha": [
+        [
+         0.4,
+         3
+        ]
+       ],
+       "hahaTxt": "CHHH"
+      }
+     ]
+    },
+    {
+     "t0": 3.0,
+     "t1": 5.4,
+     "set": "night",
+     "laptop": [
+      540
+     ],
+     "notifs": [
+      [
+       0.15,
+       "Mamie Chat",
+       "PAS près des chiens 😾"
+      ],
+      [
+       0.5,
+       "Oncle Rex",
+       "On arrive à 4 de plus 🐶"
+      ],
+      [
+       0.85,
+       "Traiteur",
+       "Combien de croquettes ?"
+      ]
+     ],
+     "chars": [
+      {
+       "sp": "cat",
+       "skin": "#f0a35e",
+       "muzzle": "#fff1df",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "outfit": "dress",
+       "shirt": "#b18cff",
+       "pants": "#5b3c8a",
+       "glasses": true,
+       "pose": "type"
+      }
+     ]
+    },
+    {
+     "t0": 5.4,
+     "t1": 8.6,
+     "set": "glow",
+     "screen": {
+      "file": "Seat_and_Vow.xlsx",
+      "sample": "Données d'exemple",
+      "title": "Plan de table · vérif",
+      "top": 330,
+      "step": 0.3,
+      "rows": [
+       [
+        "Table 1 · chats",
+        "8 / 8",
+        "g",
+        "Pleine ✓"
+       ],
+       [
+        "Table 2 · chiens",
+        "12 / 10",
+        "r",
+        "Trop pleine"
+       ],
+       [
+        "Mamie ↔ Rex",
+        "même table",
+        "y",
+        "À séparer"
+       ]
+      ],
+      "total": [
+       "Placés",
+       0,
+       64,
+       "",
+       " / 64"
+      ],
+      "stamp": "On corrige ✓"
+     }
+    },
+    {
+     "t0": 8.6,
+     "t1": 13.0,
+     "set": "hall",
+     "cap": "Mariage parfait. Zéro bagarre. 💍",
+     "hl": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "capO": {
+      "top": 1480,
+      "fs": 68
+     },
+     "burst": 0.4,
+     "chars": [
+      {
+       "sp": "cat",
+       "skin": "#f4f1ea",
+       "muzzle": "#ffffff",
+       "outfit": "dress",
+       "shirt": "#ffffff",
+       "pants": "#f3eefe",
+       "hat": "veil",
+       "x": 360,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "cheer"
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "outfit": "suit",
+       "shirt": "#20263f",
+       "tie": "#ff7aa8",
+       "x": 730,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "cheer"
+      }
+     ]
+    }
+   ],
+   "id": "P4_chiens_chats_seat_FR"
+  },
+  {
+   "engine": "story.html",
+   "theme": "artisan",
+   "lang": "en",
+   "dur": 15,
+   "music": "tropical",
+   "seed": 305,
+   "coverAt": 1.0,
+   "endAt": 13.0,
+   "cinema": true,
+   "meme": "Two dogs running a candle shop 🐶🕯️",
+   "mhl": [
+    0,
+    1,
+    4,
+    5
+   ],
+   "memeFs": 72,
+   "accent": "#6a2a10",
+   "a1": "#ffb347",
+   "a2": "#ffd700",
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.5,
+    5.0,
+    7.0,
+    9.0,
+    10.5,
+    12.2,
+    14
+   ],
+   "brand": "Artisan Empire 360° · Maker FlowTools",
+   "end": {
+    "name": "Artisan Empire 360°",
+    "sub": "Excel · EN / FR · no macros<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send this to a maker friend"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 2.8,
+     "set": "shop",
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "x": 300,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#ff9f43",
+       "pose": "work",
+       "rprop": "🕯️"
+      },
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "x": 780,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#5cc8ff",
+       "pose": "talk",
+       "says": [
+        [
+         0.4,
+         2.6,
+         "Let's sell them for $5! 🐶"
+        ]
+       ],
+       "bubFs": 40
+      }
+     ]
+    },
+    {
+     "t0": 2.8,
+     "t1": 5.0,
+     "set": "shop",
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "x": 300,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#ff9f43",
+       "pose": "think",
+       "says": [
+        [
+         0.2,
+         2.1,
+         "Wait… what do they cost us?"
+        ]
+       ],
+       "bubFs": 38
+      },
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "x": 780,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#5cc8ff",
+       "pose": "idle"
+      }
+     ]
+    },
+    {
+     "t0": 5.0,
+     "t1": 8.4,
+     "set": "glow",
+     "screen": {
+      "file": "Artisan_Empire_360.xlsx",
+      "sample": "Sample data",
+      "title": "Soy candle 9 oz · real cost",
+      "top": 300,
+      "step": 0.28,
+      "rows": [
+       [
+        "Wax + wick",
+        "$5.80",
+        "b",
+        "Materials"
+       ],
+       [
+        "Jar + lid",
+        "$3.60",
+        "b",
+        "Materials"
+       ],
+       [
+        "Scent",
+        "$2.40",
+        "b",
+        "Materials"
+       ],
+       [
+        "Box + fees",
+        "$2.90",
+        "y",
+        "Selling"
+       ],
+       [
+        "Your time",
+        "$2.50",
+        "k",
+        "15 min"
+       ]
+      ],
+      "total": [
+       "Real cost",
+       0,
+       17.2,
+       "$",
+       "",
+       2
+      ],
+      "stamp": "Not $5 😳"
+     }
+    },
+    {
+     "t0": 8.4,
+     "t1": 10.6,
+     "set": "shop",
+     "shake": [
+      0.1,
+      0.6
+     ],
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "x": 300,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#ff9f43",
+       "pose": "proud"
+      },
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "x": 780,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#5cc8ff",
+       "pose": "shock",
+       "says": [
+        [
+         0.1,
+         2.1,
+         "We were LOSING money?! 😱"
+        ]
+       ],
+       "bubFs": 38
+      }
+     ]
+    },
+    {
+     "t0": 10.6,
+     "t1": 13.0,
+     "set": "shop",
+     "cap": "New price: $28.70 🕯️",
+     "hl": [
+      2
+     ],
+     "capO": {
+      "top": 1480,
+      "fs": 84
+     },
+     "burst": 0.2,
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "x": 300,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#ff9f43",
+       "pose": "cheer"
+      },
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "x": 780,
+       "y": 1320,
+       "s": 1,
+       "outfit": "apron",
+       "shirt": "#5cc8ff",
+       "pose": "cheer"
+      }
+     ]
+    }
+   ],
+   "id": "P5_dogs_candles_artisan_EN"
+  },
+  {
+   "engine": "story.html",
+   "theme": "landlord",
+   "lang": "fr",
+   "dur": 15,
+   "music": "funk",
+   "seed": 306,
+   "coverAt": 1.0,
+   "endAt": 13.0,
+   "cinema": true,
+   "meme": "Le hamster proprio de 6 logements 🐹",
+   "mhl": [
+    1,
+    2,
+    4,
+    5
+   ],
+   "memeFs": 72,
+   "accent": "#0f5a52",
+   "a1": "#2ee6a6",
+   "a2": "#5cc8ff",
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.5,
+    5.0,
+    7.0,
+    9.0,
+    10.5,
+    12.2,
+    14
+   ],
+   "brand": "Kit Propriétaire · Maker FlowTools",
+   "end": {
+    "name": "Kit Propriétaire",
+    "sub": "Excel · FR / EN · sans macros<br>Données d'exemple dans cette vidéo",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie ça à un proprio"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.4,
+     "set": "night",
+     "laptop": [
+      540
+     ],
+     "shake": [
+      0.8,
+      2.4
+     ],
+     "notifs": [
+      [
+       0.2,
+       "Logement 1",
+       "Le loyer est parti !"
+      ],
+      [
+       0.55,
+       "Logement 4",
+       "L'évier coule 💧"
+      ],
+      [
+       0.9,
+       "Logement 6",
+       "Je peux payer la moitié ?"
+      ],
+      [
+       1.25,
+       "Logement 2",
+       "C'est quand le bail finit ?"
+      ]
+     ],
+     "chars": [
+      {
+       "sp": "hamster",
+       "skin": "#e8a35c",
+       "muzzle": "#fff3e2",
+       "x": 540,
+       "y": 1330,
+       "s": 1,
+       "shirt": "#5cc8ff",
+       "pose": "stress"
+      }
+     ]
+    },
+    {
+     "t0": 3.4,
+     "t1": 7.0,
+     "set": "glow",
+     "screen": {
+      "file": "Kit_Proprietaire.xlsx",
+      "sample": "Données d'exemple",
+      "title": "Loyers · novembre",
+      "top": 280,
+      "step": 0.26,
+      "rows": [
+       [
+        "Logement 1",
+        "1 150 $",
+        "g",
+        "Payé ✓"
+       ],
+       [
+        "Logement 2",
+        "1 250 $",
+        "g",
+        "Payé ✓"
+       ],
+       [
+        "Logement 4",
+        "600 $ / 1 100 $",
+        "y",
+        "Partiel"
+       ],
+       [
+        "Logement 6",
+        "0 $ / 980 $",
+        "r",
+        "Impayé"
+       ],
+       [
+        "Évier · log. 4",
+        "priorité haute",
+        "b",
+        "Planifié"
+       ]
+      ],
+      "total": [
+       "Reçu",
+       0,
+       3000,
+       "",
+       " $"
+      ],
+      "stamp": "Tout est suivi"
+     }
+    },
+    {
+     "t0": 7.0,
+     "t1": 7.8,
+     "set": "black",
+     "card": "La nuit suivante…",
+     "cardC": "#2ee6a6",
+     "mute": [
+      0,
+      0.75
+     ]
+    },
+    {
+     "t0": 7.8,
+     "t1": 13.0,
+     "set": "cozy",
+     "cap": "Fini, les nuits blanches 😴🐹",
+     "hl": [
+      2,
+      3
+     ],
+     "capO": {
+      "top": 1480,
+      "fs": 80
+     },
+     "chars": [
+      {
+       "sp": "hamster",
+       "skin": "#e8a35c",
+       "muzzle": "#fff3e2",
+       "x": 540,
+       "y": 1330,
+       "s": 1.05,
+       "shirt": "#5cc8ff",
+       "pose": "proud",
+       "rprop": "☕",
+       "poses": [
+        [
+         2.4,
+         "cheer"
+        ]
+       ]
+      }
+     ],
+     "emojis": [
+      [
+       "💤",
+       700,
+       640,
+       0.6
+      ],
+      [
+       "💤",
+       780,
+       560,
+       1.0
+      ]
+     ]
+    }
+   ],
+   "id": "P6_hamster_landlord_FR"
+  },
+  {
+   "engine": "story.html",
+   "theme": "seat",
+   "lang": "en",
+   "dur": 15,
+   "music": "pop",
+   "seed": 307,
+   "coverAt": 1.0,
+   "endAt": 13.0,
+   "cinema": true,
+   "meme": "Two dogs planning their wedding seating chart 🐶💍",
+   "mhl": [
+    0,
+    1,
+    4,
+    5
+   ],
+   "memeFs": 68,
+   "accent": "#5a1240",
+   "a1": "#ff7aa8",
+   "a2": "#ffd27a",
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.5,
+    5.0,
+    7.0,
+    9.0,
+    10.5,
+    12.2,
+    14
+   ],
+   "brand": "Seat & Vow · Maker FlowTools",
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Excel seating planner · EN / FR<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Tag your other half"
+   },
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.0,
+     "set": "cozy",
+     "laptop": [
+      540
+     ],
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "outfit": "dress",
+       "shirt": "#ffffff",
+       "pants": "#f3eefe",
+       "hat": "veil",
+       "x": 300,
+       "y": 1320,
+       "s": 1,
+       "pose": "angry",
+       "says": [
+        [
+         0.3,
+         2.8,
+         "The cat can't sit near the squirrel 😤"
+        ]
+       ],
+       "bubFs": 36
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "outfit": "suit",
+       "shirt": "#20263f",
+       "tie": "#ff7aa8",
+       "x": 790,
+       "y": 1320,
+       "s": 1,
+       "pose": "shock"
+      }
+     ]
+    },
+    {
+     "t0": 3.0,
+     "t1": 5.4,
+     "set": "cozy",
+     "laptop": [
+      540
+     ],
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "outfit": "dress",
+       "shirt": "#ffffff",
+       "pants": "#f3eefe",
+       "hat": "veil",
+       "x": 300,
+       "y": 1320,
+       "s": 1,
+       "pose": "laugh"
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "outfit": "suit",
+       "shirt": "#20263f",
+       "tie": "#ff7aa8",
+       "x": 790,
+       "y": 1320,
+       "s": 1,
+       "pose": "stress",
+       "says": [
+        [
+         0.2,
+         2.2,
+         "Your mom invited 40 MORE?! 😳"
+        ]
+       ],
+       "bubFs": 36
+      }
+     ]
+    },
+    {
+     "t0": 5.4,
+     "t1": 8.6,
+     "set": "glow",
+     "screen": {
+      "file": "Seat_and_Vow.xlsx",
+      "sample": "Sample data",
+      "title": "Seating · check",
+      "top": 330,
+      "step": 0.3,
+      "rows": [
+       [
+        "Cat ↔ Squirrel",
+        "same table",
+        "r",
+        "Keep apart"
+       ],
+       [
+        "Table 5",
+        "12 / 10",
+        "y",
+        "Too full"
+       ],
+       [
+        "Meals",
+        "120",
+        "g",
+        "Counted ✓"
+       ]
+      ],
+      "total": [
+       "Seated",
+       0,
+       120,
+       "",
+       " / 120"
+      ],
+      "stamp": "All fixed 🐾"
+     }
+    },
+    {
+     "t0": 8.6,
+     "t1": 13.0,
+     "set": "hall",
+     "cap": "Best wedding ever 🐾💍",
+     "hl": [
+      0,
+      1
+     ],
+     "capO": {
+      "top": 1480,
+      "fs": 84
+     },
+     "burst": 0.3,
+     "chars": [
+      {
+       "sp": "dog",
+       "skin": "#f4f1ea",
+       "dark": "#c49a6c",
+       "muzzle": "#ffffff",
+       "outfit": "dress",
+       "shirt": "#ffffff",
+       "pants": "#f3eefe",
+       "hat": "veil",
+       "x": 360,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "cheer"
+      },
+      {
+       "sp": "dog",
+       "skin": "#d9a56b",
+       "dark": "#8a5a33",
+       "muzzle": "#fbe9d2",
+       "outfit": "suit",
+       "shirt": "#20263f",
+       "tie": "#ff7aa8",
+       "x": 730,
+       "y": 1330,
+       "s": 1.05,
+       "pose": "cheer"
+      }
+     ]
+    }
+   ],
+   "id": "P7_dog_wedding_seat_EN"
+  }
+ ]
+}
