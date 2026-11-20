@@ -19,5 +19,28 @@
    "video": "videos/styles/X3_pixel_tresorier_FR.mp4",
    "fb_video_id": "1066471296413223"
   }
- ]
+ ],
+ "ajouts_suite": {
+  "X1_film3d_mariage_FR": {
+   "fb_id": "1684651243326885",
+   "publie": "2026-11-21 20:30"
+  },
+  "X4_stickman_habit_EN": {
+   "fb_id": "1169693726010145",
+   "publie": "2026-11-24 20:30"
+  },
+  "X5_papier_savons_FR": {
+   "fb_id": "1805658590687226",
+   "publie": "2026-11-25 20:30"
+  },
+  "X6_blueprint_seating_EN": {
+   "fb_id": "978402731629639",
+   "publie": "2026-11-26 20:30"
+  },
+  "X7_silhouette_proprio_FR": {
+   "fb_id": "1811872386761928",
+   "publie": "2026-11-27 20:30"
+  }
+ },
+ "note_clay": "X1 clay (2137389913811649, 21 nov 20:30) refusé par Yaacoub : décision demandée avant suppression."
 }
