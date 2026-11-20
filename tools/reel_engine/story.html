@@ -35,6 +35,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#07080f;font-fam
 #brand{position:absolute;left:0;right:0;bottom:70px;text-align:center;font-weight:800;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.55);z-index:70}
 </style></head>
 <body><div id="stage"></div>
+<script src="vendor/three.min.js"></script><script src="world3d.js"></script>
 <script>
 const C={g:'#2ee6a6',r:'#ff5d73',y:'#ffc23d',b:'#5cc8ff',p:'#b18cff',o:'#ff9f43',k:'#ff7aa8'};
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
@@ -183,6 +184,7 @@ function setBg(sc,kind,th){const d=el('div','abs',sc);d.style.cssText='inset:0';
     for(let i=0;i<8;i++){const b=R();b.style.cssText=`left:${(i*139)%1000}px;top:${200+(i*61)%500}px;width:90px;height:90px;border-radius:50%;background:#ffb347;filter:blur(20px);opacity:.3`;}
     const tb=R();tb.style.cssText='left:60px;right:60px;top:1280px;height:70px;border-radius:12px;background:#6b4226;z-index:14';R().style.cssText='left:0;right:0;top:1350px;bottom:0;background:#120a07';break;}
   case 'black':d.style.background='#000';break;
+  case 'none':break;
   default:d.style.background=`radial-gradient(circle at 50% 40%,${th||'#2a2f66'},#07080f 70%)`;}
   return d;}
 
@@ -242,7 +244,10 @@ function cinema(cfg){// grain + vignette + étalonnage chaud (look « vidéo IA 
   const g=el('div','abs',stage);g.style.cssText=`inset:0;z-index:81;pointer-events:none;background-image:url(${cv.toDataURL()});mix-blend-mode:overlay`;on(t=>{const k=Math.floor(t*24);g.style.backgroundPosition=`${(k*73)%256}px ${(k*151)%256}px`;});
   const w=el('div','abs',stage);w.style.cssText='inset:0;z-index:79;pointer-events:none;background:linear-gradient(180deg,rgba(255,170,90,.06),rgba(80,60,255,.05))';}
 function init(cfg){stage=document.getElementById('stage');seed=cfg.seed||11;DUR=cfg.dur||15;LANG=cfg.lang||'en';
+  if(cfg.world)initWorld(cfg);
   cfg.scenes.forEach((S,i)=>buildScene(S,i,cfg));if(cfg.end)endCard(cfg);
+  (cfg.bubbles||[]).forEach(([a,b,txt,x,y,fs])=>{const bb=el('div','bub',stage);bb.textContent=txt;bb.style.fontSize=(fs||44)+'px';bb.style.left=x+'px';bb.style.top=y+'px';bb.style.zIndex=74;ev(a,'pop');on(t=>inout(bb,t,a,b,{rot:-5}));});
+  (cfg.chips||[]).forEach(([a,b,html,x,y,col])=>{const c=el('div','stamp',stage,html);c.style.cssText+=`left:${x}px;top:${y}px;color:${col||'#ffc23d'};border-color:${col||'#ffc23d'};z-index:74;font-size:46px;transform-origin:50% 50%`;ev(a,'stamp');on(t=>inout(c,t,a,b,{rot:-4}));});
   if(cfg.meme){const mm=el('div','',stage);mm.style.cssText='position:absolute;inset:0;z-index:75;pointer-events:none';const band=el('div','',mm);band.style.cssText='position:absolute;left:0;right:0;top:0;height:'+((cfg.memeY||170)+260)+'px;background:linear-gradient(180deg,rgba(5,6,14,.92) 0%,rgba(5,6,14,.75) 70%,rgba(5,6,14,0) 100%)';caption(mm,cfg.meme,cfg.mhl,0,cfg.endAt||DUR,{top:cfg.memeY||170,fs:cfg.memeFs||70,instant:true,hc:cfg.mhc});}
   if(cfg.cinema)cinema(cfg);
   if(cfg.ep){const e=el('div','ep',stage);e.textContent=cfg.ep;on(t=>e.style.opacity=t<(cfg.endAt||DUR)?1:0);}

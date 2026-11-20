@@ -112,7 +112,13 @@ def main():
     rng = np.random.default_rng(3)
     extra = sys.argv[5:]; loop = 'loop' in extra
     style = next((x.split('=', 1)[1] for x in extra if x.startswith('music=')), None)
-    if style:  # musique accrocheuse (reels tendance) : music.py
+    gm = bool(style and style.startswith('gm:'))
+    if gm:  # vrais instruments (music2.py, banque FluidR3_GM) ; bruitages plus discrets
+        import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from music2 import track as track2
+        mix = track2(style[3:], dur, seed=int(dur * 10)) * 0.8
+        if not loop: mix *= env(len(mix), 0.005, 0.5)
+    elif style:  # musique accrocheuse (reels tendance) : music.py
         import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         from music import track
         mix = track(style, dur, seed=int(dur * 10)) * 0.62
@@ -129,10 +135,11 @@ def main():
     for e in events:
         if e['type'] in ('mute', 'unmute'): continue
         k = e['type']; t0 = e['t']
+        if gm and k in ('word', 'tick'): continue
         if k == 'word' and t0 - last.get(k, -9) < .12: continue
         if k in ('tick', 'ping') and t0 - last.get(k, -9) < .1: continue
         last[k] = t0
-        s = sfx(k, rng); i = int(t0 * SR)
+        s = sfx(k, rng) * (.45 if gm else 1); i = int(t0 * SR)
         if i >= len(mix): continue
         j = min(len(mix), i + len(s)); mix[i:j] += s[:j - i]
     mix = mix / max(1e-6, np.max(np.abs(mix))) * 0.85

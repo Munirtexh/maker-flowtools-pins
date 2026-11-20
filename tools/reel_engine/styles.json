@@ -1,0 +1,615 @@
+{
+ "reels": [
+  {
+   "engine": "story.html",
+   "world": "wedding",
+   "look": "clay",
+   "theme": "seat",
+   "lang": "fr",
+   "dur": 15,
+   "music": "gm:pizz",
+   "seed": 401,
+   "coverAt": 4.4,
+   "endAt": 13.0,
+   "cinema": true,
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.0,
+    4.8,
+    6.0,
+    7.6,
+    9.6,
+    11.0,
+    12.4,
+    14
+   ],
+   "accent": "#5a1240",
+   "a1": "#ff7aa8",
+   "a2": "#ffd27a",
+   "brand": "Seat & Vow · Maker FlowTools",
+   "meme": "Quand ta belle-mère « ajoute juste quelques invités » 🙃",
+   "mhl": [
+    3,
+    4
+   ],
+   "memeFs": 64,
+   "chips": [
+    [
+     1.6,
+     3.15,
+     "Invités : 143 😳",
+     620,
+     470,
+     "#ffc23d"
+    ],
+    [
+     3.7,
+     6.55,
+     "Table 4 : 15 / 10",
+     290,
+     1560,
+     "#ff5d73"
+    ]
+   ],
+   "bubbles": [
+    [
+     9.25,
+     11.2,
+     "On déplace ces 6-là 👉",
+     180,
+     760,
+     46
+    ]
+   ],
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.2,
+     "set": "none"
+    },
+    {
+     "t0": 3.2,
+     "t1": 6.6,
+     "set": "none",
+     "shake": [
+      1.3,
+      2.3
+     ],
+     "mute": [
+      2.35,
+      3.4
+     ]
+    },
+    {
+     "t0": 6.6,
+     "t1": 9.0,
+     "set": "glow",
+     "screen": {
+      "file": "Seat_and_Vow.xlsx",
+      "sample": "Données d'exemple",
+      "title": "Plan de table · vérif",
+      "top": 330,
+      "step": 0.3,
+      "rows": [
+       [
+        "Table 4",
+        "15 / 10",
+        "r",
+        "Trop pleine"
+       ],
+       [
+        "Tonton ↔ Tata",
+        "même table",
+        "y",
+        "À séparer"
+       ],
+       [
+        "Repas",
+        "143",
+        "g",
+        "Comptés ✓"
+       ]
+      ],
+      "total": [
+       "Places libres",
+       0,
+       7,
+       "",
+       " ailleurs"
+      ],
+      "stamp": "On corrige ✓"
+     }
+    },
+    {
+     "t0": 9.0,
+     "t1": 11.0,
+     "set": "none"
+    },
+    {
+     "t0": 11.0,
+     "t1": 13.0,
+     "set": "none",
+     "cap": "Plan de table : réglé ✅",
+     "hl": [
+      0,
+      1,
+      2
+     ],
+     "capO": {
+      "top": 1480,
+      "fs": 84
+     },
+     "burst": 0.6
+    }
+   ],
+   "end": {
+    "name": "Seat &amp; Vow",
+    "sub": "Plan de table Excel · FR / EN<br>Données d'exemple dans cette vidéo",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "📤 Envoie ça aux futurs mariés"
+   },
+   "id": "X1_clay_mariage_FR"
+  },
+  {
+   "engine": "story.html",
+   "world": "rentday",
+   "look": "lowpoly",
+   "theme": "landlord",
+   "lang": "en",
+   "dur": 15,
+   "music": "gm:synthwave",
+   "seed": 402,
+   "coverAt": 2.6,
+   "endAt": 13.0,
+   "cinema": true,
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.0,
+    4.8,
+    6.0,
+    7.6,
+    9.6,
+    11.0,
+    12.4,
+    14
+   ],
+   "accent": "#0f5a52",
+   "a1": "#2ee6a6",
+   "a2": "#5cc8ff",
+   "brand": "Landlord Kit · Maker FlowTools",
+   "meme": "POV: you own 6 units and it's the 1st of the month 😵‍💫",
+   "mhl": [
+    3,
+    4,
+    9
+   ],
+   "memeFs": 62,
+   "chips": [
+    [
+     3.4,
+     6.5,
+     "Who paid?! 🤯",
+     330,
+     1540,
+     "#ffc23d"
+    ]
+   ],
+   "bubbles": [
+    [
+     2.3,
+     4.2,
+     "Half now, half Friday? 🙏",
+     420,
+     640,
+     40
+    ]
+   ],
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.2,
+     "set": "none"
+    },
+    {
+     "t0": 3.2,
+     "t1": 6.6,
+     "set": "none",
+     "shake": [
+      1.6,
+      2.6
+     ],
+     "mute": [
+      2.6,
+      3.4
+     ]
+    },
+    {
+     "t0": 6.6,
+     "t1": 8.6,
+     "set": "glow",
+     "screen": {
+      "file": "Landlord_Kit.xlsx",
+      "sample": "Sample data",
+      "title": "Rent · December",
+      "top": 330,
+      "step": 0.26,
+      "rows": [
+       [
+        "Units 1, 2, 4",
+        "$3,350",
+        "g",
+        "Paid ✓"
+       ],
+       [
+        "Unit 3 · Biscuit",
+        "$550 of $1,100",
+        "y",
+        "Partial"
+       ],
+       [
+        "Unit 6",
+        "$700 of $1,050",
+        "y",
+        "Partial"
+       ],
+       [
+        "Unit 5",
+        "$0 of $980",
+        "r",
+        "Unpaid"
+       ]
+      ],
+      "total": [
+       "Received",
+       0,
+       4600,
+       "$"
+      ],
+      "stamp": "Tracked ✓"
+     }
+    },
+    {
+     "t0": 8.6,
+     "t1": 10.4,
+     "set": "none"
+    },
+    {
+     "t0": 10.4,
+     "t1": 13.0,
+     "set": "none",
+     "cap": "Every unit. One sheet. 😌",
+     "hl": [
+      0,
+      1,
+      3
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 80
+     }
+    }
+   ],
+   "end": {
+    "name": "Landlord Kit",
+    "sub": "Excel · EN / FR · no macros<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send this to a landlord friend"
+   },
+   "id": "X2_lowpoly_rentday_EN"
+  },
+  {
+   "engine": "story.html",
+   "world": "meeting",
+   "look": "pixel",
+   "theme": "treasurer",
+   "lang": "fr",
+   "dur": 15,
+   "music": "gm:chip",
+   "seed": 403,
+   "coverAt": 2.2,
+   "endAt": 13.0,
+   "cinema": false,
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.0,
+    4.8,
+    6.0,
+    7.6,
+    9.6,
+    11.0,
+    12.4,
+    14
+   ],
+   "accent": "#3a2380",
+   "a1": "#ffc23d",
+   "a2": "#b18cff",
+   "brand": "Kit Trésorier · Maker FlowTools",
+   "meme": "« Qui veut être trésorier ? » Toute la classe : 👀",
+   "mhl": [
+    4,
+    5
+   ],
+   "memeFs": 66,
+   "chips": [
+    [
+     2.0,
+     3.25,
+     "TRÉSORIER 👑",
+     330,
+     1540,
+     "#ffc23d"
+    ],
+    [
+     3.5,
+     6.55,
+     "47 reçus 🧾",
+     360,
+     1540,
+     "#ff5d73"
+    ]
+   ],
+   "bubbles": [
+    [
+     1.5,
+     3.2,
+     "Moi ?! 😳",
+     430,
+     760,
+     54
+    ]
+   ],
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.3,
+     "set": "none"
+    },
+    {
+     "t0": 3.3,
+     "t1": 6.6,
+     "set": "none",
+     "shake": [
+      1.4,
+      2.3
+     ],
+     "mute": [
+      2.3,
+      3.3
+     ]
+    },
+    {
+     "t0": 6.6,
+     "t1": 9.0,
+     "set": "glow",
+     "screen": {
+      "file": "Kit_Tresorier.xlsx",
+      "sample": "Données d'exemple",
+      "title": "Cotisations · automne",
+      "top": 330,
+      "step": 0.28,
+      "rows": [
+       [
+        "22 membres",
+        "40 $",
+        "g",
+        "Payé ✓"
+       ],
+       [
+        "3 membres",
+        "20 $ sur 40 $",
+        "y",
+        "Partiel"
+       ],
+       [
+        "2 membres",
+        "0 $ sur 40 $",
+        "r",
+        "Impayé"
+       ]
+      ],
+      "total": [
+       "Reçu",
+       0,
+       940,
+       "",
+       " $"
+      ],
+      "stamp": "À jour ✓"
+     }
+    },
+    {
+     "t0": 9.0,
+     "t1": 10.8,
+     "set": "none"
+    },
+    {
+     "t0": 10.8,
+     "t1": 13.0,
+     "set": "none",
+     "cap": "Meilleur trésorier de l'histoire 🏅",
+     "hl": [
+      0,
+      1
+     ],
+     "capO": {
+      "top": 1480,
+      "fs": 76
+     }
+    }
+   ],
+   "end": {
+    "name": "Kit Trésorier",
+    "sub": "Excel · FR / EN · sans macros<br>Données d'exemple dans cette vidéo",
+    "btn": "👉 Lien dans la bio",
+    "btn2": "💬 Écris KIT en commentaire"
+   },
+   "id": "X3_pixel_tresorier_FR"
+  },
+  {
+   "engine": "story.html",
+   "world": "versus",
+   "look": "stick",
+   "theme": "habit",
+   "lang": "en",
+   "dur": 15,
+   "music": "gm:keys",
+   "seed": 404,
+   "coverAt": 4.4,
+   "endAt": 13.0,
+   "cinema": false,
+   "previewTimes": [
+    0.2,
+    1.8,
+    3.0,
+    4.8,
+    6.0,
+    7.6,
+    9.6,
+    11.0,
+    12.4,
+    14
+   ],
+   "accent": "#0b4a33",
+   "a1": "#4dffb5",
+   "a2": "#ffd166",
+   "brand": "Rhythm Habit Tracker 2027 · Maker FlowTools",
+   "meme": "10 new habits on Jan 1 vs. 1 tiny habit a day",
+   "mhl": [
+    0,
+    1,
+    7,
+    8
+   ],
+   "memeFs": 64,
+   "chips": [
+    [
+     0.4,
+     3.5,
+     "DAY 1",
+     470,
+     380,
+     "#ffffff"
+    ],
+    [
+     3.5,
+     6.4,
+     "DAY 4",
+     470,
+     380,
+     "#ff5d73"
+    ],
+    [
+     9.0,
+     12.9,
+     "DAY 31",
+     450,
+     380,
+     "#2ee6a6"
+    ]
+   ],
+   "bubbles": [
+    [
+     1.0,
+     3.3,
+     "I'll do it ALL 💪",
+     70,
+     1240,
+     40
+    ],
+    [
+     1.5,
+     3.3,
+     "Just 10 min 📖",
+     640,
+     1240,
+     40
+    ]
+   ],
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.5,
+     "set": "none"
+    },
+    {
+     "t0": 3.5,
+     "t1": 6.4,
+     "set": "none",
+     "shake": [
+      0.05,
+      0.4
+     ]
+    },
+    {
+     "t0": 6.4,
+     "t1": 8.6,
+     "set": "glow",
+     "screen": {
+      "file": "Rhythm_Habit_Tracker_2027.xlsx",
+      "sample": "Sample data",
+      "title": "January 2027 · read",
+      "top": 330,
+      "step": 0.28,
+      "rows": [
+       [
+        "Jan 14",
+        "Done",
+        "g",
+        "✓"
+       ],
+       [
+        "Jan 15",
+        "missed",
+        "#8f9bc0",
+        "blank · no guilt"
+       ],
+       [
+        "Jan 16",
+        "Minimum version",
+        "y",
+        "5 min"
+       ]
+      ],
+      "total": [
+       "January",
+       0,
+       27,
+       "",
+       " / 31 days"
+      ],
+      "stamp": "Keep going"
+     }
+    },
+    {
+     "t0": 8.6,
+     "t1": 10.8,
+     "set": "none"
+    },
+    {
+     "t0": 10.8,
+     "t1": 13.0,
+     "set": "none",
+     "cap": "Small beats perfect. 🏁",
+     "hl": [
+      0,
+      2
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 84
+     }
+    }
+   ],
+   "end": {
+    "name": "Rhythm Habit Tracker 2027",
+    "sub": "Excel · EN / FR · no macros<br>Sample data in this video",
+    "btn": "👉 Link in bio",
+    "btn2": "📤 Send this to your 2027 buddy"
+   },
+   "id": "X4_stickman_habit_EN"
+  }
+ ]
+}
