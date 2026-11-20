@@ -146,6 +146,20 @@ def track(style, dur, seed=1):
     return x / max(1e-6, np.max(np.abs(x))) * .9
 
 
+def notes_track(notes, prog, dur):
+    """notes = [(t, midi)] -> rendu fluidsynth, un instrument GM (0 piano, 10 boîte à musique, 12 marimba, 8 célesta)."""
+    mid = pm.PrettyMIDI(); ins = pm.Instrument(prog)
+    for t, m in notes: ins.notes.append(pm.Note(96, int(m), t, t + .45))
+    mid.instruments.append(ins)
+    with tempfile.TemporaryDirectory() as d:
+        mp, wp = os.path.join(d, 'm.mid'), os.path.join(d, 'm.wav'); mid.write(mp)
+        subprocess.run(['fluidsynth', '-ni', '-g', '0.8', '-r', str(SR), '-F', wp, SF2, mp], check=True, capture_output=True)
+        w = wave.open(wp); ch = w.getnchannels(); x = np.frombuffer(w.readframes(w.getnframes()), dtype='<i2').astype(np.float32) / 32768
+    if ch == 2: x = x.reshape(-1, 2).mean(1)
+    n = int(dur * SR); x = x[:n] if len(x) >= n else np.pad(x, (0, n - len(x)))
+    return x / max(1e-6, np.max(np.abs(x))) * .9
+
+
 if __name__ == '__main__':
     import sys
     out = sys.argv[1] if len(sys.argv) > 1 else '/tmp/m'

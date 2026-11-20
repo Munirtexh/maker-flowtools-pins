@@ -98,6 +98,9 @@ def sfx(kind, rng):
         f = 220 * 2 ** (tt / d * 2)
         tone_ = np.sin(2 * np.pi * np.cumsum(f) / SR) * .35
         return (nz * .5 + tone_) * (tt / d) ** 2 * 0.16
+    if kind == 'shatter':  # éclat de verre doux
+        d = .35; tt = np.arange(int(SR * d)) / SR; nz = rng.normal(0, 1, len(tt)) * np.exp(-tt * 22) * .08
+        return nz + sum(np.sin(2 * np.pi * f * tt) * np.exp(-tt * 9) * .05 for f in (2637, 3520, 4186))
     if kind == 'impact':  # impact doux (pas de « boum boum »)
         d = .6; tt = np.arange(int(d * SR)) / SR
         body = np.sin(2 * np.pi * (70 + 60 * np.exp(-tt * 20)) * tt) * np.exp(-tt * 9) * .22
@@ -113,7 +116,11 @@ def main():
     extra = sys.argv[5:]; loop = 'loop' in extra
     style = next((x.split('=', 1)[1] for x in extra if x.startswith('music=')), None)
     gm = bool(style and style.startswith('gm:'))
-    if gm:  # vrais instruments (music2.py, banque FluidR3_GM) ; bruitages plus discrets
+    if style and style.startswith('notes:'):  # simulations : chaque rebond joue la note suivante (vrai instrument, fluidsynth)
+        import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from music2 import notes_track
+        mix = notes_track([(e['t'], e['m']) for e in events if e['type'] == 'note'], int(style.split(':')[1]), dur); gm = True
+    elif gm:  # vrais instruments (music2.py, banque FluidR3_GM) ; bruitages plus discrets
         import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         from music2 import track as track2
         mix = track2(style[3:], dur, seed=int(dur * 10)) * 0.8
@@ -135,7 +142,7 @@ def main():
     for e in events:
         if e['type'] in ('mute', 'unmute'): continue
         k = e['type']; t0 = e['t']
-        if gm and k in ('word', 'tick'): continue
+        if gm and k in ('word', 'tick', 'note'): continue
         if k == 'word' and t0 - last.get(k, -9) < .12: continue
         if k in ('tick', 'ping') and t0 - last.get(k, -9) < .1: continue
         last[k] = t0

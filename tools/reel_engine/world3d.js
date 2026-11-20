@@ -321,7 +321,7 @@
         one.position.set(1.6 + .35, 3.05 + Math.sin(t * 6) * .05, .3); one.visible = true;
         zz.visible = zz2.visible = t > 4.4; const zp = (t * .8) % 1; zz.position.set(-.9 + zp * .5, .9 + zp * 1.2, .2); zz.scale.setScalar(.4 + zp * .4); zz2.position.set(-.6 + ((zp + .5) % 1) * .5, .9 + ((zp + .5) % 1) * 1.2, .2);
       } else {
-        const lt = t - 8.6; CAM.position.set(0, 3.2, 22 - lt * .3); CAM.lookAt(0, 2.8, 0);
+        const lt = t - 8.6; const up_ = eo3(ln(t, 9.6, 11.6)); CAM.position.set(0, 3.2 + up_ * 1.6, 22 - lt * .3 + up_ * 3.5); CAM.lookAt(0, 2.8 + up_ * 1.7, 0);
         const k = cl(lt / 2.6); const step = Math.min(30, Math.floor(k * 30));
         B.g.position.set(-3.9 + step * .22, step * .12 + .02, 0); walk(B, lt, k < 1 ? 9 : 0, .1); B.g.rotation.z = 0;
         if (k >= 1) { pose_cheer(B, t); }
@@ -332,6 +332,58 @@
       }
     };
     function pose_cheer(P, t) { P.arm.forEach(([u, l], i) => { u.rotation.z = Math.PI + (i ? 2.6 : -2.6) + Math.sin(t * 10) * .15; l.rotation.z = 0; }); P.hip.position.y = 1.9 + Math.abs(Math.sin(t * 7)) * .25; }
+  };
+
+  // Gag stickman (fond noir) : « juste UN épisode » à 23 h… jusqu'à 7 h du matin, puis « ok, encore un ». Aucun produit.
+  WORLDS.binge = function (cfg) {
+    S.background = new TH.Color('#000000');
+    const wm = new TH.MeshBasicMaterial({ color: '#ffffff' }), box = (w, h, x, y, m) => { const b = new TH.Mesh(new TH.BoxGeometry(w, h, .06), m || wm); b.position.set(x, y, 0); S.add(b); return b; };
+    box(9, .05, 0, 0);                                                     // sol
+    box(2.5, .1, -1.55, .95); box(.1, 1.5, -2.75, 1.65); box(.1, .5, -.3, 1.2); box(.1, .5, -2.75, .7); box(.1, .9, -.4, .45); box(.1, .9, -2.7, .45); // canapé
+    const tvx = 1.95; box(1.75, .06, tvx, 1.45); box(1.75, .06, tvx, 2.55); box(.06, 1.16, tvx - .87, 2.0); box(.06, 1.16, tvx + .87, 2.0); box(.06, 1.4, tvx, .72); box(.8, .06, tvx, .03);
+    const scr = new TH.Mesh(new TH.PlaneGeometry(1.66, 1.04), new TH.MeshBasicMaterial({ color: '#3a6bff' })); scr.position.set(tvx, 2.0, -.02); S.add(scr);
+    const glow = new TH.Mesh(new TH.PlaneGeometry(4.5, 3.2), new TH.MeshBasicMaterial({ color: '#3a6bff', transparent: true, opacity: .12 })); glow.position.set(tvx - .6, 1.8, -.3); S.add(glow);
+    // fenêtre (ciel : nuit -> aube -> jour)
+    const wx = -1.5, wy = 4.3; box(1.6, .06, wx, wy + .8); box(1.6, .06, wx, wy - .8); box(.06, 1.66, wx - .8, wy); box(.06, 1.66, wx + .8, wy); box(.04, 1.6, wx, wy); box(1.6, .04, wx, wy);
+    const sky = new TH.Mesh(new TH.PlaneGeometry(1.56, 1.56), new TH.MeshBasicMaterial({ color: '#0a0b2a' })); sky.position.set(wx, wy, -.05); S.add(sky);
+    const moon = textSprite('🌙', '#fff'); moon.scale.setScalar(.7); moon.position.set(wx + .35, wy + .3, .1); S.add(moon);
+    const sun = textSprite('☀️', '#fff'); sun.scale.setScalar(.9); sun.position.set(wx - .3, wy + .25, .1); S.add(sun);
+    // horloge : une étiquette par heure
+    const H = [['11:00 PM', 0], ['12:14 AM', 2.6], ['1:38 AM', 3.9], ['2:51 AM', 5.1], ['4:09 AM', 6.3], ['5:27 AM', 7.5], ['6:42 AM', 8.7], ['6:59 AM', 9.6], ['7:00 AM', 10.4]];
+    const clocks = H.map(([txt]) => { const c = textSprite(txt, txt === '7:00 AM' ? '#ff5d73' : '#ffffff'); c.scale.setScalar(1.9); c.position.set(1.55, 4.45, .1); S.add(c); return c; });
+    const alarm = textSprite('⏰', '#fff'); alarm.scale.setScalar(1.0); alarm.position.set(1.55, 3.55, .1); S.add(alarm);
+    const nextEp = textSprite('NEXT ▶', '#ffffff'); nextEp.scale.setScalar(1.0); nextEp.position.set(tvx, 2.0, .05); S.add(nextEp);
+    const remote = new TH.Mesh(new TH.BoxGeometry(.12, .3, .06), new TH.MeshBasicMaterial({ color: '#ffd23d' }));
+    const P = stick('#ffffff'); P.g.position.set(-1.35, 0, 0); S.add(P.g); P.arm[1][1].add(remote); remote.position.set(0, -.62, 0);
+    const zz = textSprite('z', '#ffffff'); S.add(zz);
+    H.forEach(([, at], i) => i && i < 8 && window.__ev(at, 'ping')); window.__ev(10.4, 'alert'); window.__ev(10.45, 'impact'); window.__ev(13.0, 'pop');
+    const TV = ['#3a6bff', '#ff5d73', '#2ee6a6', '#b18cff', '#ffc23d', '#5cc8ff'];
+    function sit(slump, t) { P.hip.position.y = 1.08; P.hip.rotation.z = 0; P.spine.rotation.z = Math.PI + .12 + slump * .55;
+      P.leg.forEach(([u, l], i) => { u.rotation.z = Math.PI / 2 - .05 + i * .1 - slump * .25; l.rotation.z = -Math.PI / 2 + slump * .35; });
+      P.arm[0][0].rotation.z = Math.PI + .5 + slump * .3; P.arm[0][1].rotation.z = .3;
+      P.arm[1][0].rotation.z = Math.PI - .9 + slump * .9 + Math.sin(t * 2) * .03; P.arm[1][1].rotation.z = -.6 + slump * .5; }
+    return function (t) {
+      // caméra : léger zoom lent, secousse à l'alarme
+      const shk = t > 10.4 && t < 11.0 ? (1 - (t - 10.4) / .6) * .18 : 0;
+      CAM.position.set(Math.sin(t * 70) * shk + .1, 2.55, 15.5 - t * .12); CAM.lookAt(.1, 2.35, 0); if (CAM.fov !== 40) { CAM.fov = 40; CAM.updateProjectionMatrix(); }
+      let ci = 0; H.forEach(([, at], i) => { if (t >= at) ci = i; }); clocks.forEach((c, i) => { c.visible = i === ci; const d = t - H[i][1]; c.scale.setScalar(1.9 * (i === ci ? (d < .25 ? .7 + d / .25 * .3 + Math.sin(d * 25) * .05 : 1) : 1)); });
+      // ciel
+      const dawn = ln(t, 7.4, 10.0); const col = new TH.Color('#0a0b2a').lerp(new TH.Color('#ff9a5c'), cl(dawn * 1.4)).lerp(new TH.Color('#9fd8ff'), cl(dawn * 2 - 1)); sky.material.color.copy(col);
+      moon.visible = dawn < .5; sun.visible = dawn > .45; sun.position.y = wy - .5 + dawn * .75;
+      // télé qui change de couleur à chaque épisode
+      const ep = Math.max(0, ci); scr.material.color.set(TV[ep % TV.length]); glow.material.color.set(TV[ep % TV.length]); glow.visible = false;
+      const auto = H.some(([, at], i) => i && i < 8 && t > at - .7 && t < at) || (t > 12.0 && t < 13.2); nextEp.visible = auto; nextEp.scale.setScalar(.9 + .1 * Math.sin(t * 14));
+      alarm.visible = t > 10.4 && t < 12.6; alarm.position.x = 1.55 + Math.sin(t * 60) * .06 * (t < 11.6 ? 1 : 0); alarm.scale.setScalar(t < 10.6 ? 1.0 + sp(t, 10.4) * .2 : 1.1);
+      zz.visible = t > 5.6 && t < 10.4; const zp = (t * .9) % 1; zz.position.set(-1.2 + zp * .5, 3.75 + zp * .9, .1); zz.scale.setScalar(.35 + zp * .35);
+      if (t < 10.4) { const slump = eo3(ln(t, 2.4, 9.6)); sit(slump, t); P.g.position.y = 0; P.g.position.x = -1.35; P.g.rotation.z = 0; }
+      else if (t < 13.0) { // sursaut : debout d'un bond, bras en l'air, puis il fixe la télé
+        const j = ln(t, 10.4, 10.75); P.g.position.x = -1.35 + .25 * j; P.g.position.y = Math.sin(Math.PI * cl((t - 10.4) / .55)) * .9; P.g.rotation.z = 0;
+        P.hip.position.y = 1.08 + .82 * eo3(j); P.spine.rotation.z = Math.PI - .05;
+        P.leg.forEach(([u, l], i) => { u.rotation.z = (Math.PI / 2) * (1 - j) + (i ? .12 : -.12) * j; l.rotation.z = (-Math.PI / 2) * (1 - j); });
+        const up = t < 11.6 ? 1 : 1 - ln(t, 11.6, 12.0); P.arm.forEach(([u, l], i) => { u.rotation.z = Math.PI + (i ? 2.5 : -2.5) * up + (i ? -.15 : .15) * (1 - up); l.rotation.z = (i ? .3 : -.3) * up; });
+        if (t > 12.0) { P.arm[1][0].rotation.z = Math.PI - 1.2 * ln(t, 12.0, 12.3); P.arm[1][1].rotation.z = -.3; } }
+      else { const k = eo3(ln(t, 13.0, 13.3)); sit(.1 * (1 - k), t); P.g.position.x = -1.35 + .25 * (1 - k); P.g.position.y = 0; }
+    };
   };
 
   // ---------- papier découpé (formes plates extrudées, couches avec ombres) ----------

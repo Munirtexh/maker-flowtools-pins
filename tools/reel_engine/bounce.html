@@ -1,0 +1,202 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Moteur « simulation satisfaisante » (20 nov. 2026, nouvelle stratégie de Yaacoub : vues, likes, abonnés).
+     Formats viraux de balles rebondissantes (fond noir, néon, chaque rebond joue la note suivante d'une mélodie du domaine public).
+     Modes : rings (la balle s'échappe des anneaux, plus vite à chaque fois), grow (grossit à chaque rebond jusqu'à remplir le cercle),
+     multiply (chaque rebond peut créer une balle, jusqu'au débordement), wars (2 couleurs se battent pour le terrain).
+     Même API que les autres moteurs : init(cfg) -> {dur, events}, render(t). Déterministe : simulation calculée une fois à l'init. -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#05060d;font-family:'Inter Display','Inter','Noto Color Emoji',sans-serif;color:#fff}
+canvas{position:absolute;inset:0}
+.hook{position:absolute;left:50px;right:50px;top:150px;text-align:center;font-weight:900;font-size:76px;line-height:1.06;letter-spacing:-1px;
+  -webkit-text-stroke:3px #000;paint-order:stroke fill;text-shadow:0 6px 0 #000,0 10px 30px rgba(0,0,0,.8)}
+.hook em{font-style:normal;color:var(--hl,#ffd23d)}
+.cnt{position:absolute;left:0;right:0;top:1580px;text-align:center;font-weight:900;font-size:92px;letter-spacing:-2px;font-variant-numeric:tabular-nums;
+  -webkit-text-stroke:3px #000;paint-order:stroke fill;text-shadow:0 8px 30px rgba(0,0,0,.8)}
+.sub{position:absolute;left:0;right:0;top:1700px;text-align:center;font-weight:800;font-size:40px;color:rgba(255,255,255,.7)}
+.big{position:absolute;left:0;right:0;top:820px;text-align:center;font-weight:900;font-size:150px;letter-spacing:-4px;opacity:0;
+  -webkit-text-stroke:5px #000;paint-order:stroke fill;text-shadow:0 10px 0 #000,0 20px 60px rgba(0,0,0,.9)}
+</style></head>
+<body><canvas id="cv" width="1080" height="1920"></canvas>
+<div class="hook" id="hook"></div><div class="cnt" id="cnt"></div><div class="sub" id="sub"></div><div class="big" id="big"></div>
+<script>
+const W = 1080, H = 1920, CX = 540, CY = 1010, FPS = 30, SUB = 8; // 240 pas/s
+const cv = document.getElementById('cv'), X = cv.getContext('2d');
+let CFG, FR = [], EV = [], DUR = 15, FIN = 99;
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+function rng(seed) { let s = seed >>> 0 || 1; return () => { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
+const hue = (h, l = 60) => `hsl(${(h % 360 + 360) % 360},100%,${l}%)`;
+const MEL = { // mélodies du domaine public (notes MIDI), une note par rebond
+  elise: [76, 75, 76, 75, 76, 71, 74, 72, 69, 60, 64, 69, 71, 64, 68, 71, 72, 64, 76, 75, 76, 75, 76, 71, 74, 72, 69, 60, 64, 69, 71, 64, 72, 71, 69],
+  joy: [64, 64, 65, 67, 67, 65, 64, 62, 60, 60, 62, 64, 64, 62, 62, 64, 64, 65, 67, 67, 65, 64, 62, 60, 60, 62, 64, 62, 60, 60],
+  turk: [71, 69, 68, 69, 72, 74, 72, 71, 72, 76, 77, 76, 75, 76, 83, 81, 80, 81, 83, 81, 80, 81, 84, 81, 84, 83, 81, 79, 81],
+  king: [57, 59, 60, 62, 64, 60, 64, 63, 59, 63, 62, 58, 62, 57, 59, 60, 62, 64, 60, 64, 69, 67, 64, 60, 64, 67],
+  canon: [78, 76, 74, 73, 71, 69, 71, 73, 74, 73, 71, 69, 67, 66, 67, 64, 62, 66, 69, 67, 66, 62, 66, 64, 62, 59, 62, 69, 67, 71, 69, 67, 66, 64]
+};
+let noteI = 0, lastNote = -9;
+function note(t, mel) { if (t - lastNote < .075) return; lastNote = t; const m = MEL[mel]; EV.push({ t, type: 'note', m: m[noteI++ % m.length] }); }
+
+// ---------- rings : la balle s'échappe des anneaux qui tournent ----------
+function simRings(c, seed) {
+  const R = rng(seed), N = c.rings || 10, r0 = 150, step = 36, gap = c.gap || .62;
+  const rings = Array.from({ length: N }, (_, i) => ({ r: r0 + i * step, a: R() * 6.283, w: (i % 2 ? -1 : 1) * (.7 + R() * .6), alive: true, tb: 99 }));
+  let px = CX, py = CY, ang = R() * 6.283, sp = c.speed || 620, vx = Math.cos(ang) * sp, vy = Math.sin(ang) * sp; const br = 17, g = c.grav || 900;
+  const frames = [], breaks = [], bounces = []; let k = 0, mult = 1; const dt = 1 / (FPS * SUB); const trail = [];
+  for (let f = 0; f < DUR * FPS; f++) {
+    for (let s = 0; s < SUB; s++) {
+      const t = (f * SUB + s) * dt; vy += g * dt; px += vx * dt; py += vy * dt;
+      rings.forEach(q => q.a += q.w * dt * (1 + .08 * breaks.length));
+      while (k < N && !rings[k].alive) k++;
+      if (k < N) {
+        const q = rings[k], dx = px - CX, dy = py - CY, d = Math.hypot(dx, dy);
+        if (d + br > q.r) {
+          const th = Math.atan2(dy, dx); let rel = ((th - q.a) % 6.283 + 6.283) % 6.283; // trou centré sur q.a, largeur gap
+          if (rel < gap / 2 || rel > 6.283 - gap / 2) { if (d > q.r + br) { q.alive = false; q.tb = t; breaks.push(t); mult *= c.boost || 1.07; const v = Math.hypot(vx, vy) * (c.boost || 1.07); const a2 = Math.atan2(vy, vx); vx = Math.cos(a2) * v; vy = Math.sin(a2) * v; } }
+          else { const nx = dx / d, ny = dy / d, vn = vx * nx + vy * ny; if (vn > 0) { vx -= 2 * vn * nx; vy -= 2 * vn * ny; const v = Math.hypot(vx, vy), mn = (c.minv || 700) * mult; if (v < mn) { vx *= mn / v; vy *= mn / v; } bounces.push(t); }
+            px = CX + nx * (q.r - br); py = CY + ny * (q.r - br); }
+        }
+      }
+    }
+    trail.push([px, py]); if (trail.length > 14) trail.shift();
+    frames.push({ px, py, rings: rings.map(q => [q.a, q.alive, q.tb]), trail: trail.slice(), nb: breaks.length });
+  }
+  return { frames, breaks, bounces, rings, N };
+}
+function rings(c) {
+  let best = null;
+  for (let s = 1; s < 1500; s++) { const r = simRings(c, c.seed * 1000 + s); const b = r.breaks; if (b.length < r.N) continue;
+    const last = b[r.N - 1], gaps = b.map((x, i) => x - (i ? b[i - 1] : 0)); const mx = Math.max(...gaps);
+    if (last > 12.0 && last < 13.2 && b[0] > .9 && mx < 2.6) { best = r; break; }
+    if (!best || Math.abs(last - 12.6) < Math.abs(best.breaks[r.N - 1] - 12.6)) best = r; }
+  FIN = best.breaks[best.N - 1];
+  best.bounces.forEach(t => note(t, c.mel)); best.breaks.forEach(t => EV.push({ t, type: 'shatter' }));
+  const parts = []; best.breaks.forEach((t, i) => { const q = best.rings[i]; for (let j = 0; j < 46; j++) { const a = j / 46 * 6.283; parts.push({ t, i, a, r: q.r, v: 160 + (j * 37 % 11) * 30 }); } });
+  return function (t, f) {
+    const F = best.frames[f]; X.lineCap = 'round';
+    F.rings.forEach(([a, alive, tb], i) => { if (!alive) return; const r = best.rings[i].r, gp = c.gap || .62;
+      X.strokeStyle = hue(c.h0 + i * 32); X.lineWidth = 9; X.shadowColor = hue(c.h0 + i * 32); X.shadowBlur = 22;
+      X.beginPath(); X.arc(CX, CY, r, a + gp / 2, a + 6.283 - gp / 2); X.stroke(); });
+    X.shadowBlur = 0;
+    parts.forEach(p => { const d = t - p.t; if (d < 0 || d > 1.4) return; const rr = p.r + p.v * d, y = CY + Math.sin(p.a) * rr + 500 * d * d;
+      X.globalAlpha = 1 - d / 1.4; X.fillStyle = hue(c.h0 + p.i * 32); X.fillRect(CX + Math.cos(p.a) * rr - 5, y - 5, 10, 10); }); X.globalAlpha = 1;
+    F.trail.forEach(([x, y], i) => { X.globalAlpha = i / F.trail.length * .5; X.fillStyle = '#fff'; X.beginPath(); X.arc(x, y, 17 * i / F.trail.length, 0, 6.283); X.fill(); }); X.globalAlpha = 1;
+    X.fillStyle = '#fff'; X.shadowColor = '#fff'; X.shadowBlur = 30; X.beginPath(); X.arc(F.px, F.py, 17, 0, 6.283); X.fill(); X.shadowBlur = 0;
+    return { cnt: (best.N - F.nb) + ' / ' + best.N, sub: c.subTxt || '' };
+  };
+}
+
+// ---------- grow : la balle grossit à chaque rebond ----------
+function simGrow(c, dr) {
+  const RC = c.R || 430, g = c.grav || 1000, dt = 1 / (FPS * SUB); let r = c.r0 || 18, px = CX + 60, py = CY - 120, vx = 420, vy = 0;
+  const frames = [], bounces = []; let full = 99, h = c.h0;
+  for (let f = 0; f < DUR * FPS; f++) { for (let s = 0; s < SUB; s++) { const t = (f * SUB + s) * dt;
+      if (t < full) { vy += g * dt; px += vx * dt; py += vy * dt; const dx = px - CX, dy = py - CY, d = Math.hypot(dx, dy);
+        if (d + r > RC) { const nx = dx / d, ny = dy / d, vn = vx * nx + vy * ny; if (vn > 0) { vx -= 2 * vn * nx; vy -= 2 * vn * ny; const v = Math.hypot(vx, vy); if (v < 900) { vx *= 900 / v; vy *= 900 / v; } bounces.push(t); r += dr; h += 23; if (r >= RC - 6) { r = RC - 6; full = t; } }
+          px = CX + nx * (RC - r); py = CY + ny * (RC - r); } }
+      else { px += (CX - px) * .02; py += (CY - py) * .02; } }
+    frames.push({ px, py, r, h }); }
+  return { frames, bounces, full };
+}
+function grow(c) {
+  let lo = .5, hi = 20, best; for (let it = 0; it < 30; it++) { const m = (lo + hi) / 2; const s = simGrow(c, m); if (s.full > 12.6) lo = m; else hi = m; best = s; }
+  FIN = best.full; best.bounces.forEach(t => note(t, c.mel)); EV.push({ t: FIN, type: 'riserEnd' });
+  const RC = c.R || 430;
+  return function (t, f) {
+    const F = best.frames[f];
+    X.strokeStyle = hue(F.h); X.lineWidth = 10; X.shadowColor = hue(F.h); X.shadowBlur = 30; X.beginPath(); X.arc(CX, CY, RC, 0, 6.283); X.stroke(); X.shadowBlur = 0;
+    const gr = X.createRadialGradient(F.px - F.r * .35, F.py - F.r * .35, F.r * .1, F.px, F.py, F.r); gr.addColorStop(0, hue(F.h, 78)); gr.addColorStop(1, hue(F.h, 48));
+    X.fillStyle = gr; X.shadowColor = hue(F.h); X.shadowBlur = 40; X.beginPath(); X.arc(F.px, F.py, F.r, 0, 6.283); X.fill(); X.shadowBlur = 0;
+    const pct = Math.round(F.r * F.r / ((RC - 6) * (RC - 6)) * 100);
+    return { cnt: pct + ' %', sub: c.subTxt || '' };
+  };
+}
+
+// ---------- multiply : chaque rebond peut créer une nouvelle balle ----------
+function simMul(c, p, seed) {
+  const R = rng(seed), RC = c.R || 430, g = c.grav || 1000, dt = 1 / (FPS * SUB), br = 13, cap = c.cap || 999;
+  let balls = [{ x: CX, y: CY - 200, vx: 380, vy: 0, h: c.h0 }]; const frames = [], bounces = []; let over = 99;
+  for (let f = 0; f < DUR * FPS; f++) { for (let s = 0; s < SUB; s++) { const t = (f * SUB + s) * dt; const add = [];
+      for (const b of balls) { b.vy += g * dt; b.x += b.vx * dt; b.y += b.vy * dt; if (t >= over) continue;
+        const dx = b.x - CX, dy = b.y - CY, d = Math.hypot(dx, dy);
+        if (d + br > RC) { const nx = dx / d, ny = dy / d, vn = b.vx * nx + b.vy * ny; if (vn > 0) { b.vx -= 2 * vn * nx; b.vy -= 2 * vn * ny; const v = Math.hypot(b.vx, b.vy); if (v < 850) { b.vx *= 850 / v; b.vy *= 850 / v; }
+            bounces.push(t); if (balls.length + add.length < cap && R() < p) { const a = R() * 6.283; add.push({ x: b.x - nx * 4, y: b.y - ny * 4, vx: -nx * 700 + Math.cos(a) * 300, vy: -ny * 700 + Math.sin(a) * 300, h: b.h + 37 }); } }
+          b.x = CX + nx * (RC - br); b.y = CY + ny * (RC - br); } }
+      balls = balls.concat(add); if (balls.length >= cap && over > 50) over = t; }
+    frames.push({ b: balls.map(b => [b.x, b.y, b.h]) }); }
+  return { frames, bounces, over };
+}
+function multiply(c) {
+  let best = null; for (let s = 1; s < 60; s++) { for (const p of [.35, .42, .5, .58, .66, .75, .85]) { const r = simMul(c, p, c.seed * 100 + s);
+      if (!best || Math.abs(r.over - 12.4) < Math.abs(best.over - 12.4)) best = r; } if (best && Math.abs(best.over - 12.4) < .25) break; }
+  FIN = best.over; best.bounces.forEach(t => note(t, c.mel)); EV.push({ t: FIN, type: 'shatter' });
+  const RC = c.R || 430;
+  return function (t, f) {
+    const F = best.frames[f]; const broken = t >= FIN;
+    if (!broken) { X.strokeStyle = '#fff'; X.lineWidth = 9; X.shadowColor = '#9be7ff'; X.shadowBlur = 26; X.beginPath(); X.arc(CX, CY, RC, 0, 6.283); X.stroke(); X.shadowBlur = 0; }
+    else { const d = t - FIN; for (let j = 0; j < 40; j++) { const a = j / 40 * 6.283, rr = RC + 260 * d; X.globalAlpha = cl(1 - d / 1.5); X.strokeStyle = '#fff'; X.lineWidth = 9;
+        X.beginPath(); X.arc(CX + Math.cos(a) * 200 * d, CY + Math.sin(a) * 200 * d + 400 * d * d, rr * .0 + RC, a, a + .12); X.stroke(); } X.globalAlpha = 1; }
+    F.b.forEach(([x, y, h]) => { X.fillStyle = hue(h); X.beginPath(); X.arc(x, y, 13, 0, 6.283); X.fill(); });
+    return { cnt: F.b.length + (F.b.length >= (c.cap || 999) ? '' : ''), sub: c.subTxt || '' };
+  };
+}
+
+// ---------- wars : 2 couleurs se battent pour le terrain (chaque balle convertit les cases) ----------
+function simWars(c, seed) {
+  const R = rng(seed), n = c.n || 30, cs = c.cs || 30, S = n * cs, x0 = CX - S / 2, y0 = CY - S / 2, dt = 1 / (FPS * SUB), br = 13;
+  const grid = Array.from({ length: n * n }, (_, i) => (i % n) < n / 2 ? 0 : 1); const cols = [c.ca || '#ff3d8b', c.cb || '#22d3ee'];
+  const sp = c.speed || 900; const nb = c.nb || 3; const balls = Array.from({ length: nb * 2 }, (_, i) => { const k = i % 2, a = R() * 6.283; return { k, x: k ? x0 + S * (.1 + R() * .3) : x0 + S * (.6 + R() * .3), y: y0 + S * (.1 + R() * .8), vx: Math.cos(a) * sp, vy: Math.sin(a) * sp }; });
+  // la balle k vit sur les cases de l'autre couleur ; une case de sa couleur touchée passe à l'autre couleur et la balle rebondit
+  const frames = [], flips = [];
+  for (let f = 0; f < DUR * FPS; f++) { for (let s = 0; s < SUB; s++) { const t = (f * SUB + s) * dt;
+      for (const b of balls) { const own = b.k; // couleur interdite pour la balle k = sa propre couleur
+        for (const ax of [0, 1]) { const nx = b.x + (ax ? 0 : b.vx * dt), ny = b.y + (ax ? b.vy * dt : 0);
+          const ex = nx + (ax ? 0 : Math.sign(b.vx) * br), ey = ny + (ax ? Math.sign(b.vy) * br : 0);
+          const gx = Math.floor((ex - x0) / cs), gy = Math.floor((ey - y0) / cs);
+          if (gx < 0 || gy < 0 || gx >= n || gy >= n) { if (ax) b.vy = -b.vy; else b.vx = -b.vx; continue; }
+          if (grid[gy * n + gx] === own) { grid[gy * n + gx] = 1 - own; flips.push([t, own]); if (ax) b.vy = -b.vy; else b.vx = -b.vx; }
+          else { if (ax) b.y = ny; else b.x = nx; } } } }
+    let a = 0; for (const v of grid) if (v === 0) a++; // cases de chaque couleur
+    frames.push({ g: grid.slice(), b: balls.map(b => [b.x, b.y]), sa: a, sb: n * n - a }); }
+  return { frames, flips, n, cs, x0, y0, S, cols };
+}
+function wars(c) {
+  let best = null, bs = -1;
+  for (let s = 1; s < 120; s++) { const r = simWars(c, c.seed * 100 + s); const N = r.n * r.n; let lead = 0, changes = 0; r.frames.forEach(F => { const l = Math.sign(F.sa - F.sb); if (l && l !== lead) { if (lead) changes++; lead = l; } });
+    const L = r.frames[Math.round(13 * FPS)]; const margin = Math.abs(L.sa - L.sb) / N; const score = changes * 2 + margin * 20; if (score > bs) { bs = score; best = r; } }
+  FIN = 13; best.flips.forEach(([t]) => note(t, c.mel));
+  return function (t, f) {
+    const F = best.frames[Math.min(f, Math.round(13 * FPS))], { n, cs, x0, y0, cols } = best;
+    for (let i = 0; i < n * n; i++) { X.fillStyle = cols[F.g[i]]; X.fillRect(x0 + (i % n) * cs, y0 + Math.floor(i / n) * cs, cs - 1, cs - 1); }
+    // la balle A (couleur A) vit sur les cases B : on la dessine en couleur A ; la balle B en couleur B
+    F.b.forEach(([x, y], i) => { X.fillStyle = cols[i % 2]; X.strokeStyle = '#05060d'; X.lineWidth = 5; X.beginPath(); X.arc(x, y, 13, 0, 6.283); X.fill(); X.stroke(); });
+    X.strokeStyle = 'rgba(255,255,255,.85)'; X.lineWidth = 6; X.strokeRect(x0 - 6, y0 - 6, best.S + 11, best.S + 11);
+    // la balle A gagne des cases en les passant en B : score affiché = territoire où vit chaque balle
+    return { cnt: `<span style="color:${cols[0]}">${F.sa}</span>  ·  <span style="color:${cols[1]}">${F.sb}</span>`, sub: c.subTxt || '', win: F.sa > F.sb ? 0 : 1 };
+  };
+}
+
+let DRAW;
+function init(cfg) {
+  CFG = cfg; DUR = cfg.dur || 15; EV = []; noteI = 0; lastNote = -9;
+  document.getElementById('hook').innerHTML = cfg.hook || ''; document.documentElement.style.setProperty('--hl', cfg.hl || '#ffd23d');
+  DRAW = ({ rings, grow, multiply, wars })[cfg.mode](cfg);
+  return { dur: DUR, events: EV };
+}
+function render(t) {
+  const f = Math.min(Math.round(t * FPS), DUR * FPS - 1);
+  X.fillStyle = '#05060d'; X.fillRect(0, 0, W, H);
+  const vg = X.createRadialGradient(CX, CY, 100, CX, CY, 1100); vg.addColorStop(0, CFG.bg || '#141a3a'); vg.addColorStop(1, '#05060d'); X.fillStyle = vg; X.fillRect(0, 0, W, H);
+  // petite secousse au moment fort
+  const sh = t > FIN && t < FIN + .35 ? (1 - (t - FIN) / .35) * 14 : 0; X.save(); X.translate(Math.sin(t * 90) * sh, Math.cos(t * 77) * sh);
+  const info = DRAW(t, f); X.restore();
+  const cnt = document.getElementById('cnt'), sub = document.getElementById('sub'), big = document.getElementById('big');
+  cnt.innerHTML = info.cnt; sub.textContent = info.sub;
+  const pulse = 1 + .06 * Math.max(0, 1 - ((t * 2) % 1) * 4) * (t > FIN - 3 && t < FIN ? 1 : 0); cnt.style.transform = `scale(${pulse})`;
+  const hk = document.getElementById('hook'); hk.style.transform = `scale(${t < .25 ? .6 + t / .25 * .4 : 1})`;
+  // fin : gros mot qui « pop »
+  const d = t - FIN; if (d > 0) { const fin = CFG.mode === 'wars' ? (CFG.winTxt || ['🩷 WINS', '🩵 WINS'])[info.win] : CFG.finTxt; big.innerHTML = fin;
+    const s = d < .25 ? .3 + d / .25 * .9 : d < .4 ? 1.2 - (d - .25) / .15 * .2 : 1; big.style.opacity = 1; big.style.transform = `scale(${s}) rotate(${Math.sin(t * 3) * 2}deg)`; }
+  else big.style.opacity = 0;
+}
+</script></body></html>

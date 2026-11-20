@@ -1,0 +1,387 @@
+{
+ "reels": [
+  {
+   "id": "V1_anneaux_FR",
+   "engine": "bounce.html",
+   "mode": "rings",
+   "dur": 15,
+   "seed": 11,
+   "mel": "elise",
+   "music": "notes:0",
+   "theme": "seat",
+   "h0": 190,
+   "bg": "#141a3a",
+   "previewTimes": [
+    0.2,
+    1.5,
+    3.0,
+    5.0,
+    7.5,
+    10.0,
+    12.0,
+    12.9,
+    13.6,
+    14.6
+   ],
+   "coverAt": 6.0,
+   "hook": "Elle va plus vite à chaque <em>évasion</em> 😳",
+   "finTxt": "LIBRE ! 🎉",
+   "subTxt": "anneaux restants"
+  },
+  {
+   "id": "V2_grossit_EN",
+   "engine": "bounce.html",
+   "mode": "grow",
+   "dur": 15,
+   "seed": 12,
+   "mel": "joy",
+   "music": "notes:10",
+   "theme": "seat",
+   "h0": 320,
+   "bg": "#1f1235",
+   "previewTimes": [
+    0.2,
+    1.5,
+    3.0,
+    5.0,
+    7.5,
+    10.0,
+    12.0,
+    12.9,
+    13.6,
+    14.6
+   ],
+   "coverAt": 8.0,
+   "hook": "Every bounce makes it <em>bigger</em>…<br>wait for it 👀",
+   "finTxt": "FULL! 🤯",
+   "subTxt": "of the circle"
+  },
+  {
+   "id": "V3_multiplie_FR",
+   "engine": "bounce.html",
+   "mode": "multiply",
+   "dur": 15,
+   "seed": 13,
+   "mel": "turk",
+   "music": "notes:12",
+   "theme": "seat",
+   "h0": 40,
+   "cap": 999,
+   "bg": "#10233a",
+   "previewTimes": [
+    0.2,
+    1.5,
+    3.0,
+    5.0,
+    7.5,
+    10.0,
+    12.0,
+    12.9,
+    13.6,
+    14.6
+   ],
+   "coverAt": 10.0,
+   "hook": "Chaque rebond peut créer <em>une balle</em>.<br>Le cercle va tenir ? 😬",
+   "finTxt": "ÇA DÉBORDE 🤯",
+   "subTxt": "balles"
+  },
+  {
+   "id": "V4_guerre_FR",
+   "engine": "bounce.html",
+   "mode": "wars",
+   "dur": 15,
+   "seed": 14,
+   "speed": 1500,
+   "nb": 3,
+   "mel": "king",
+   "music": "notes:8",
+   "theme": "seat",
+   "bg": "#151530",
+   "previewTimes": [
+    0.2,
+    1.5,
+    3.0,
+    5.0,
+    7.5,
+    10.0,
+    12.0,
+    12.9,
+    13.6,
+    14.6
+   ],
+   "coverAt": 6.0,
+   "hook": "🩷 contre 🩵<br>Choisis ton camp <em>avant la fin</em> 👇",
+   "winTxt": [
+    "🩷 GAGNE",
+    "🩵 GAGNE"
+   ],
+   "subTxt": "cases"
+  },
+  {
+   "id": "V5_stickman_habitudes_EN",
+   "engine": "story.html",
+   "world": "versus",
+   "look": "stick",
+   "theme": "habit",
+   "lang": "en",
+   "dur": 15,
+   "music": "gm:keys",
+   "seed": 404,
+   "coverAt": 4.4,
+   "endAt": 15,
+   "cinema": false,
+   "previewTimes": [
+    0.2,
+    1.5,
+    3.0,
+    5.0,
+    7.5,
+    10.0,
+    12.0,
+    12.9,
+    13.6,
+    14.6
+   ],
+   "accent": "#0b4a33",
+   "a1": "#4dffb5",
+   "a2": "#ffd166",
+   "meme": "10 new habits on Jan 1 vs. 1 tiny habit a day",
+   "mhl": [
+    0,
+    1,
+    7,
+    8
+   ],
+   "memeFs": 64,
+   "chips": [
+    [
+     0.4,
+     3.5,
+     "DAY 1",
+     470,
+     380,
+     "#ffffff"
+    ],
+    [
+     3.5,
+     5.6,
+     "DAY 4",
+     470,
+     380,
+     "#ff5d73"
+    ],
+    [
+     5.6,
+     7.1,
+     "DAY 12",
+     450,
+     380,
+     "#ff5d73"
+    ],
+    [
+     7.1,
+     8.6,
+     "DAY 20",
+     450,
+     380,
+     "#ff5d73"
+    ],
+    [
+     9.0,
+     15,
+     "DAY 31",
+     450,
+     380,
+     "#2ee6a6"
+    ]
+   ],
+   "bubbles": [
+    [
+     1.0,
+     3.3,
+     "I'll do it ALL 💪",
+     70,
+     1240,
+     40
+    ],
+    [
+     1.5,
+     3.3,
+     "Just 10 min 📖",
+     640,
+     1240,
+     40
+    ]
+   ],
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 3.5,
+     "set": "none"
+    },
+    {
+     "t0": 3.5,
+     "t1": 8.6,
+     "set": "none",
+     "shake": [
+      0.05,
+      0.4
+     ]
+    },
+    {
+     "t0": 8.6,
+     "t1": 10.8,
+     "set": "none"
+    },
+    {
+     "t0": 10.8,
+     "t1": 15,
+     "set": "none",
+     "cap": "Small beats perfect. 🏁",
+     "hl": [
+      0,
+      2
+     ],
+     "capO": {
+      "top": 1500,
+      "fs": 84
+     }
+    }
+   ]
+  },
+  {
+   "id": "V6_stickman_episode_EN",
+   "engine": "story.html",
+   "world": "binge",
+   "look": "stick",
+   "theme": "habit",
+   "lang": "en",
+   "dur": 15,
+   "music": "gm:keys",
+   "seed": 606,
+   "coverAt": 10.6,
+   "endAt": 15,
+   "cinema": false,
+   "previewTimes": [
+    0.2,
+    1.5,
+    3.0,
+    5.0,
+    7.5,
+    10.0,
+    12.0,
+    12.9,
+    13.6,
+    14.6
+   ],
+   "accent": "#000000",
+   "a1": "#ffd23d",
+   "a2": "#5cc8ff",
+   "meme": "Me at 11 PM: “just ONE episode” 📺",
+   "mhl": [
+    5,
+    6
+   ],
+   "memeFs": 66,
+   "chips": [
+    [
+     0.3,
+     2.6,
+     "EP 1",
+     140,
+     1500,
+     "#ffffff"
+    ],
+    [
+     2.6,
+     3.9,
+     "EP 2",
+     140,
+     1500,
+     "#ffffff"
+    ],
+    [
+     3.9,
+     5.1,
+     "EP 3",
+     140,
+     1500,
+     "#ffffff"
+    ],
+    [
+     5.1,
+     6.3,
+     "EP 4",
+     140,
+     1500,
+     "#ffc23d"
+    ],
+    [
+     6.3,
+     7.5,
+     "EP 5",
+     140,
+     1500,
+     "#ffc23d"
+    ],
+    [
+     7.5,
+     8.7,
+     "EP 6",
+     140,
+     1500,
+     "#ff9f43"
+    ],
+    [
+     8.7,
+     10.4,
+     "EP 7",
+     140,
+     1500,
+     "#ff5d73"
+    ],
+    [
+     10.4,
+     15,
+     "EP 8 😵",
+     140,
+     1500,
+     "#ff5d73"
+    ]
+   ],
+   "bubbles": [
+    [
+     0.6,
+     2.4,
+     "Just one 😌",
+     120,
+     960,
+     44
+    ],
+    [
+     10.6,
+     12.0,
+     "WORK?!",
+     200,
+     1050,
+     54
+    ],
+    [
+     13.2,
+     15,
+     "…ok ONE more 😌",
+     90,
+     960,
+     44
+    ]
+   ],
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 15,
+     "set": "none"
+    }
+   ]
+  }
+ ]
+}
