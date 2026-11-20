@@ -57,7 +57,7 @@ R['V7_stickman_snooze_FR'] = dict(ep='Stickman · Ép. 2', engine='story.html', 
          [6.8, 8.4, 'SNOOZE ×4', 120, 1500, '#ff9f43'], [8.4, 9.8, 'SNOOZE ×5 😴', 120, 1500, '#ff5d73'], [12.6, 15, 'Nouvelle habitude : jour 1 ❌', 90, 1500, '#ff5d73']],
   bubbles=[[0.4, 1.8, 'Facile 😎', 140, 960, 44], [2.5, 3.4, '5 min…', 300, 960, 40], [10.0, 11.6, 'QUOI ?!', 220, 1000, 56]],
   scenes=[dict(t0=0, t1=15, set='none')])
-CAP['V7_stickman_snooze_FR'] = "Moi hier soir : « demain, gym à 6 h » 💪\\nÉpisode 2 de ses mauvaises habitudes 😂 Tu as appuyé combien de fois sur snooze ce matin ? 👇\\nIdentifie ton/ta partenaire de gym 🏋️\\n#stickman #animation #snooze #gym #relatable #humour"
+CAP['V7_stickman_snooze_FR'] = "Moi hier soir : « demain, gym à 6 h » 💪\nÉpisode 2 de ses mauvaises habitudes 😂 Tu as appuyé combien de fois sur snooze ce matin ? 👇\nIdentifie ton/ta partenaire de gym 🏋️\n#stickman #animation #snooze #gym #relatable #humour"
 PLACE['V7_stickman_snooze_FR'] = 'd25C'
 
 # ---- Versions « pures » 30 s (aucun produit, juste pour les vues) : posts en plus à 16 h 30 (sam., dim., jeu., ven.) ----
