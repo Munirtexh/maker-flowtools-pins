@@ -1,0 +1,23 @@
+{
+ "note": "Reels « un style par jour » programmés sur Facebook le 20 nov. 2026 à 20 h 30 Montréal (les reels animaux déjà programmés à 19 h 30 sur FB restent en place, rien supprimé).",
+ "posts": [
+  {
+   "slot": "d23B",
+   "local_montreal": "2026-11-21 20:30",
+   "video": "videos/styles/X1_clay_mariage_FR.mp4",
+   "fb_video_id": "2137389913811649"
+  },
+  {
+   "slot": "d24B",
+   "local_montreal": "2026-11-22 20:30",
+   "video": "videos/styles/X2_lowpoly_rentday_EN.mp4",
+   "fb_video_id": "1664837445020477"
+  },
+  {
+   "slot": "d25B",
+   "local_montreal": "2026-11-23 20:30",
+   "video": "videos/styles/X3_pixel_tresorier_FR.mp4",
+   "fb_video_id": "1066471296413223"
+  }
+ ]
+}
