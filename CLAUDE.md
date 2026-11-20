@@ -38,3 +38,8 @@
 - Mêmes 2 héros récurrents d'un style à l'autre (Mochi la chatte, Biscuit le chien) : les pages à 2 personnages récurrents font ≈3,7 fois plus de vues.
 - Couche 3D `tools/reel_engine/world3d.js` (three.js, `vendor/three.min.js`) branchée sur `story.html` : `world` (wedding, rentday, meeting, versus…) + `look` (film, lowpoly, pixel, stick, paper, blueprint, silhouette ; clay = saccadé, refusé par Yaacoub le 20 nov. : jamais d'animation qui « beugue »). Configs `build_styles.py`, placement `apply_styles.py`, vidéos `videos/styles/`.
 - Musique : `music2.py` = vrais instruments (banque FluidR3_GM via fluidsynth, `apt-get install fluidsynth fluid-soundfont-gm`, `pip install pretty_midi`), 7 styles (pizz, uke, chip, synthwave, keys, marimba, swing) ; `music='gm:<style>'`. Un morceau différent chaque jour, bruitages plus discrets.
+
+## Nouvelle stratégie : vues, likes, abonnés (20 nov. 2026, Yaacoub ; prime sur « un style par jour »)
+- Le but devient la portée (vues, likes, abonnés) ; la vente viendra après. Copier exactement les formats animés les plus viraux du moment.
+- La plupart des reels sont 100 % animation SANS mention du produit (ni écran, ni fin pub, ni lien dans la légende) ; le produit seulement à la fin de quelques-uns (ex. X1 mariage). Habit tracker = jamais de produit.
+- Formats : simulations satisfaisantes `tools/reel_engine/bounce.html` (modes rings, grow, multiply, wars ; une note de mélodie du domaine public par rebond, `music='notes:<programme GM>'`) et stickman sur fond noir (`story.html` look `stick`, mondes `versus`, `binge`). Configs `build_viral.py`, placement `apply_viral.py`, vidéos `videos/viral/`. Yaacoub a aimé le stickman.
