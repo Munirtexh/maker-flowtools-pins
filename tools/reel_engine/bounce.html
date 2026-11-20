@@ -39,7 +39,7 @@ function note(t, mel) { if (t - lastNote < .075) return; lastNote = t; const m =
 
 // ---------- rings : la balle s'échappe des anneaux qui tournent ----------
 function simRings(c, seed) {
-  const R = rng(seed), N = c.rings || 10, r0 = 150, step = 36, gap = c.gap || .62;
+  const R = rng(seed), N = c.rings || 10, r0 = 150, step = Math.min(36, 330 / (N - 1)), gap = c._gap || c.gap || .62;
   const rings = Array.from({ length: N }, (_, i) => ({ r: r0 + i * step, a: R() * 6.283, w: (i % 2 ? -1 : 1) * (.7 + R() * .6), alive: true, tb: 99 }));
   let px = CX, py = CY, ang = R() * 6.283, sp = c.speed || 620, vx = Math.cos(ang) * sp, vy = Math.sin(ang) * sp; const br = 17, g = c.grav || 900;
   const frames = [], breaks = [], bounces = []; let k = 0, mult = 1; const dt = 1 / (FPS * SUB); const trail = [];
@@ -65,16 +65,16 @@ function simRings(c, seed) {
 }
 function rings(c) {
   let best = null;
-  for (let s = 1; s < 1500; s++) { const r = simRings(c, c.seed * 1000 + s); const b = r.breaks; if (b.length < r.N) continue;
+  for (let s = 1; s < 1500; s++) { c._gap = [.62, .5, .42, .36][s % 4]; const r = simRings(c, c.seed * 1000 + s); r.gap = c._gap; const b = r.breaks; if (b.length < r.N) continue;
     const last = b[r.N - 1], gaps = b.map((x, i) => x - (i ? b[i - 1] : 0)); const mx = Math.max(...gaps);
-    if (last > 12.0 && last < 13.2 && b[0] > .9 && mx < 2.6) { best = r; break; }
-    if (!best || Math.abs(last - 12.6) < Math.abs(best.breaks[r.N - 1] - 12.6)) best = r; }
+    const FA = c.finAt || 12.6; if (Math.abs(last - FA) < .6 && b[0] > .9 && mx < (c.maxGap || 2.6)) { best = r; break; }
+    if (!best || Math.abs(last - (c.finAt || 12.6)) < Math.abs(best.breaks[r.N - 1] - (c.finAt || 12.6))) best = r; }
   FIN = best.breaks[best.N - 1];
   best.bounces.forEach(t => note(t, c.mel)); best.breaks.forEach(t => EV.push({ t, type: 'shatter' }));
   const parts = []; best.breaks.forEach((t, i) => { const q = best.rings[i]; for (let j = 0; j < 46; j++) { const a = j / 46 * 6.283; parts.push({ t, i, a, r: q.r, v: 160 + (j * 37 % 11) * 30 }); } });
   return function (t, f) {
     const F = best.frames[f]; X.lineCap = 'round';
-    F.rings.forEach(([a, alive, tb], i) => { if (!alive) return; const r = best.rings[i].r, gp = c.gap || .62;
+    F.rings.forEach(([a, alive, tb], i) => { if (!alive) return; const r = best.rings[i].r, gp = best.gap;
       X.strokeStyle = hue(c.h0 + i * 32); X.lineWidth = 9; X.shadowColor = hue(c.h0 + i * 32); X.shadowBlur = 22;
       X.beginPath(); X.arc(CX, CY, r, a + gp / 2, a + 6.283 - gp / 2); X.stroke(); });
     X.shadowBlur = 0;
@@ -82,7 +82,8 @@ function rings(c) {
       X.globalAlpha = 1 - d / 1.4; X.fillStyle = hue(c.h0 + p.i * 32); X.fillRect(CX + Math.cos(p.a) * rr - 5, y - 5, 10, 10); }); X.globalAlpha = 1;
     F.trail.forEach(([x, y], i) => { X.globalAlpha = i / F.trail.length * .5; X.fillStyle = '#fff'; X.beginPath(); X.arc(x, y, 17 * i / F.trail.length, 0, 6.283); X.fill(); }); X.globalAlpha = 1;
     X.fillStyle = '#fff'; X.shadowColor = '#fff'; X.shadowBlur = 30; X.beginPath(); X.arc(F.px, F.py, 17, 0, 6.283); X.fill(); X.shadowBlur = 0;
-    return { cnt: (best.N - F.nb) + ' / ' + best.N, sub: c.subTxt || '' };
+    if (c.ballEmoji) { X.font = '48px "Noto Color Emoji"'; X.textAlign = 'center'; X.textBaseline = 'middle'; X.fillText(c.ballEmoji, F.px, F.py + 2); }
+    return { cnt: (c.cntUp ? F.nb : best.N - F.nb) + ' / ' + best.N, sub: c.subTxt || '' };
   };
 }
 
@@ -99,7 +100,7 @@ function simGrow(c, dr) {
   return { frames, bounces, full };
 }
 function grow(c) {
-  let lo = .5, hi = 20, best; for (let it = 0; it < 30; it++) { const m = (lo + hi) / 2; const s = simGrow(c, m); if (s.full > 12.6) lo = m; else hi = m; best = s; }
+  let lo = .5, hi = 20, best; for (let it = 0; it < 30; it++) { const m = (lo + hi) / 2; const s = simGrow(c, m); if (s.full > (c.finAt || 12.6)) lo = m; else hi = m; best = s; }
   FIN = best.full; best.bounces.forEach(t => note(t, c.mel)); EV.push({ t: FIN, type: 'riserEnd' });
   const RC = c.R || 430;
   return function (t, f) {
@@ -108,7 +109,8 @@ function grow(c) {
     const gr = X.createRadialGradient(F.px - F.r * .35, F.py - F.r * .35, F.r * .1, F.px, F.py, F.r); gr.addColorStop(0, hue(F.h, 78)); gr.addColorStop(1, hue(F.h, 48));
     X.fillStyle = gr; X.shadowColor = hue(F.h); X.shadowBlur = 40; X.beginPath(); X.arc(F.px, F.py, F.r, 0, 6.283); X.fill(); X.shadowBlur = 0;
     const pct = Math.round(F.r * F.r / ((RC - 6) * (RC - 6)) * 100);
-    return { cnt: pct + ' %', sub: c.subTxt || '' };
+    if (c.ballTxt && t < FIN) { const fs = Math.max(10, F.r * .32); X.font = `900 ${fs}px Inter, sans-serif`; X.textAlign = 'center'; X.textBaseline = 'middle'; X.fillStyle = 'rgba(10,10,30,.85)'; X.fillText(c.ballTxt, F.px, F.py); }
+    const gc = c.growCount; return { cnt: gc ? Math.round(gc[0] + (gc[1] - gc[0]) * pct / 100) + (c.cntSuffix || '') : pct + ' %', sub: c.subTxt || '' };
   };
 }
 
@@ -128,7 +130,7 @@ function simMul(c, p, seed) {
 }
 function multiply(c) {
   let best = null; for (let s = 1; s < 60; s++) { for (const p of [.35, .42, .5, .58, .66, .75, .85]) { const r = simMul(c, p, c.seed * 100 + s);
-      if (!best || Math.abs(r.over - 12.4) < Math.abs(best.over - 12.4)) best = r; } if (best && Math.abs(best.over - 12.4) < .25) break; }
+      const FA = c.finAt || 12.4; if (!best || Math.abs(r.over - FA) < Math.abs(best.over - FA)) best = r; } if (best && Math.abs(best.over - (c.finAt || 12.4)) < .25) break; }
   FIN = best.over; best.bounces.forEach(t => note(t, c.mel)); EV.push({ t: FIN, type: 'shatter' });
   const RC = c.R || 430;
   return function (t, f) {
@@ -163,10 +165,10 @@ function simWars(c, seed) {
 function wars(c) {
   let best = null, bs = -1;
   for (let s = 1; s < 120; s++) { const r = simWars(c, c.seed * 100 + s); const N = r.n * r.n; let lead = 0, changes = 0; r.frames.forEach(F => { const l = Math.sign(F.sa - F.sb); if (l && l !== lead) { if (lead) changes++; lead = l; } });
-    const L = r.frames[Math.round(13 * FPS)]; const margin = Math.abs(L.sa - L.sb) / N; const score = changes * 2 + margin * 20; if (score > bs) { bs = score; best = r; } }
-  FIN = 13; best.flips.forEach(([t]) => note(t, c.mel));
+    const L = r.frames[Math.round((c.finAt || 13) * FPS)]; const margin = Math.abs(L.sa - L.sb) / N; const score = changes * 2 + margin * 20; if (score > bs) { bs = score; best = r; } }
+  FIN = c.finAt || 13; best.flips.forEach(([t]) => note(t, c.mel));
   return function (t, f) {
-    const F = best.frames[Math.min(f, Math.round(13 * FPS))], { n, cs, x0, y0, cols } = best;
+    const F = best.frames[Math.min(f, Math.round(FIN * FPS))], { n, cs, x0, y0, cols } = best;
     for (let i = 0; i < n * n; i++) { X.fillStyle = cols[F.g[i]]; X.fillRect(x0 + (i % n) * cs, y0 + Math.floor(i / n) * cs, cs - 1, cs - 1); }
     // la balle A (couleur A) vit sur les cases B : on la dessine en couleur A ; la balle B en couleur B
     F.b.forEach(([x, y], i) => { X.fillStyle = cols[i % 2]; X.strokeStyle = '#05060d'; X.lineWidth = 5; X.beginPath(); X.arc(x, y, 13, 0, 6.283); X.fill(); X.stroke(); });

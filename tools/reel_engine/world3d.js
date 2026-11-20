@@ -386,6 +386,47 @@
     };
   };
 
+  // Série stickman, Ép. 2 : « demain je me lève à 6 h pour le gym » -> 5 fois « snooze » -> 8 h 59, panique, course. Aucun produit.
+  WORLDS.snooze = function (cfg) {
+    S.background = new TH.Color('#000000');
+    const wm = new TH.MeshBasicMaterial({ color: '#ffffff' }), box = (w, h, x, y) => { const b = new TH.Mesh(new TH.BoxGeometry(w, h, .06), wm); b.position.set(x, y, 0); S.add(b); return b; };
+    box(9, .05, 0, 0); box(3.4, .12, -1.2, .75); box(.12, 1.5, -2.9, .75); box(.12, .9, .5, .45); box(.6, .25, -2.45, .95); // sol, lit, tête, pied, oreiller
+    const blanket = new TH.Mesh(new TH.BoxGeometry(2.2, .32, .1), new TH.MeshBasicMaterial({ color: '#5cc8ff' })); blanket.position.set(-.75, 1.0, .05); S.add(blanket);
+    box(.9, .06, 1.7, .9); box(.06, .9, 1.4, .45); box(.06, .9, 2.0, .45); // table de nuit
+    const phone = new TH.Mesh(new TH.BoxGeometry(.32, .55, .05), new TH.MeshBasicMaterial({ color: '#ffd23d' })); phone.position.set(1.7, 1.2, .05); S.add(phone);
+    const T = [['6:00 AM', 0], ['6:09 AM', 2.0], ['6:18 AM', 3.6], ['6:27 AM', 5.2], ['6:36 AM', 6.8], ['6:45 AM', 8.4], ['8:59 AM', 9.8]];
+    const clocks = T.map(([txt]) => { const c = textSprite(txt, txt === '8:59 AM' ? '#ff5d73' : '#ffffff'); c.scale.setScalar(1.9); c.position.set(1.3, 4.3, .1); S.add(c); return c; });
+    const ring = textSprite('⏰', '#fff'); ring.scale.setScalar(.9); ring.position.set(1.7, 2.05, .1); S.add(ring);
+    const gym = textSprite('🏋️', '#fff'); gym.scale.setScalar(1.1); gym.position.set(-1.6, 4.2, .1); S.add(gym);
+    const zz = textSprite('z', '#ffffff'); S.add(zz);
+    const P = stick('#ffffff'); P.g.scale.setScalar(.85); S.add(P.g);
+    T.forEach(([, at], i) => i < 6 && window.__ev(at + .05, 'alert')); window.__ev(9.85, 'impact'); window.__ev(12.4, 'whoosh');
+    function lie(t, reach) { P.g.rotation.z = Math.PI / 2; P.g.position.set(.65, 1.0, 0); P.hip.position.y = 1.9; P.spine.rotation.z = Math.PI;
+      P.leg.forEach(([u, l], i) => { u.rotation.z = i * .08; l.rotation.z = 0; });
+      P.arm[0][0].rotation.z = Math.PI - .2; P.arm[0][1].rotation.z = .2;
+      P.arm[1][0].rotation.z = Math.PI + (reach ? -1.9 * reach : -.3); P.arm[1][1].rotation.z = reach ? 0 : .3; }
+    return function (t) {
+      const shk = t > 9.8 && t < 10.4 ? (1 - (t - 9.8) / .6) * .2 : 0;
+      CAM.position.set(Math.sin(t * 70) * shk, 2.55, 15.2 - t * .1); CAM.lookAt(0, 2.3, 0); if (CAM.fov !== 40) { CAM.fov = 40; CAM.updateProjectionMatrix(); }
+      let ci = 0; T.forEach(([, at], i) => { if (t >= at) ci = i; }); clocks.forEach((c, i) => { c.visible = i === ci; const d = t - T[i][1]; c.scale.setScalar(1.9 * (i === ci && d < .25 ? .7 + d / .25 * .3 : 1)); });
+      const ringing = T.some(([, at], i) => i < 6 && t > at && t < at + 1.0); ring.visible = ringing || (t > 9.8 && t < 11); ring.position.x = 1.7 + Math.sin(t * 60) * .06;
+      phone.position.y = 1.2 + (ringing ? Math.abs(Math.sin(t * 50)) * .04 : 0);
+      gym.visible = t < 1.8 || t > 12.6; gym.material.opacity = 1;
+      zz.visible = t < 9.8 && !ringing; const zp = (t * .9) % 1; zz.position.set(-2.2 + zp * .5, 1.8 + zp * 1.0, .1); zz.scale.setScalar(.35 + zp * .35);
+      if (t < 9.8) { // chaque sonnerie : le bras tape « snooze » puis retombe
+        let reach = 0; T.forEach(([, at], i) => { if (i < 6) { const d = t - at; if (d > .35 && d < 1.0) reach = Math.sin(Math.PI * (d - .35) / .65); } });
+        lie(t, reach); blanket.visible = true; blanket.position.set(-.75, 1.0, .05); blanket.rotation.z = 0;
+      } else if (t < 11.0) { // 8 h 59 : il saute du lit
+        const j = ln(t, 9.8, 10.3); P.g.rotation.z = Math.PI / 2 * (1 - eo3(j)); P.g.position.set(.65 + .4 * j, 1.0 * (1 - j) + Math.sin(Math.PI * j) * 1.2, 0);
+        P.arm.forEach(([u, l], i) => { u.rotation.z = Math.PI + (i ? 2.6 : -2.6) * j; l.rotation.z = 0; }); P.leg.forEach(([u, l], i) => { u.rotation.z = (i ? .3 : -.3) * j; l.rotation.z = 0; });
+        blanket.position.set(-.75 + 1.5 * j, 1.0 + 2.2 * Math.sin(Math.PI * cl(j * .8)), .2); blanket.rotation.z = j * 2.5;
+      } else { // course vers la porte (droite), il sort du cadre
+        const k = t - 11.0; P.g.rotation.z = 0; P.g.position.set(1.05 + k * 2.6, 0, .1); walk(P, t, 18, .35);
+        blanket.position.set(.6, .2, .2); blanket.rotation.z = .2;
+      }
+    };
+  };
+
   // ---------- papier découpé (formes plates extrudées, couches avec ombres) ----------
   function flat(shape, depth, color) { const g = new TH.ExtrudeGeometry(shape, { depth: depth || .1, bevelEnabled: true, bevelThickness: .015, bevelSize: .015, bevelSegments: 1, curveSegments: 24 }); const m = new TH.Mesh(g, mat(color)); m.castShadow = m.receiveShadow = true; return m; }
   const circ = r => { const s_ = new TH.Shape(); s_.absarc(0, 0, r, 0, Math.PI * 2, false); return s_; };

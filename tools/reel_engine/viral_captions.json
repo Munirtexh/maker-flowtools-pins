@@ -1,18 +1,18 @@
 {
  "V1_anneaux_FR": {
-  "caption": "Elle va plus vite à chaque évasion 😳\nTu as reconnu la musique ? 🎹👇\n#satisfaisant #satisfying #simulation #oddlysatisfying #asmr #animation",
+  "caption": "Moi qui essaie d'encaisser les 12 loyers du mois 😮‍💨\nProprios : il vous reste combien de loyers à encaisser ? 👇 (et tu as reconnu la musique ? 🎹)\n#propriétaire #immobilier #plex #satisfaisant #satisfying #simulation #oddlysatisfying #asmr #animation",
   "slot": "d23B"
  },
  "V2_grossit_EN": {
-  "caption": "Every bounce makes it bigger… wait for it 👀\nDid you guess the song? 🎶👇\n#satisfying #oddlysatisfying #simulation #bouncingball #asmr #animation",
+  "caption": "Our wedding guest list after every family dinner 🙃\nHow many guests did YOUR list start with? 👇 (and did you guess the song? 🎶)\nTag your other half 💍\n#weddingplanning #guestlist #engaged #wedding2027 #satisfying #oddlysatisfying #simulation #bouncingball #asmr #animation",
   "slot": "d26B"
  },
  "V3_multiplie_FR": {
-  "caption": "Chaque rebond peut créer une balle. Le cercle va tenir ? 😬\nTu dirais combien au moment où ça casse ? 👇\n#satisfaisant #satisfying #simulation #oddlysatisfying #asmr",
+  "caption": "Mes commandes avant le marché de Noël 🎄 Je vais tenir ? 😬\nArtisans : vous en êtes à combien de commandes ? 👇\n#artisan #faitmain #marchédenoël #petitecommerce #satisfaisant #satisfying #simulation #oddlysatisfying #asmr",
   "slot": "d27B"
  },
  "V4_guerre_FR": {
-  "caption": "🩷 contre 🩵 : choisis ton camp avant la fin 👇\nCommente ta couleur !\n#satisfaisant #satisfying #simulation #pongwars #oddlysatisfying",
+  "caption": "Cotisations du club : 🩷 payé contre 🩵 pas payé 👇\nTrésoriers, dans votre club, qui gagne ? Commente ta couleur !\n#trésorier #association #clubétudiant #cotisations #satisfaisant #satisfying #simulation #pongwars #oddlysatisfying",
   "slot": "d29B"
  },
  "V5_stickman_habitudes_EN": {
@@ -20,7 +20,27 @@
   "slot": "d24B"
  },
  "V6_stickman_episode_EN": {
-  "caption": "Me at 11 PM: “just ONE episode” 📺\nWhat show did this to you? 👇\nTag the friend who does this every night 😂\n#stickman #stickmananimation #relatable #bingewatching #funnyanimation #animation",
+  "caption": "Me at 11 PM: “just ONE episode” 📺\nNew habit: sleep by 11 PM… Day 1 ❌\nWhat show did this to you? 👇\nTag the friend who does this every night 😂\n#stickman #stickmananimation #relatable #bingewatching #funnyanimation #animation",
   "slot": "d28B"
+ },
+ "V7_stickman_snooze_FR": {
+  "caption": "Moi hier soir : « demain, gym à 6 h » 💪\\nÉpisode 2 de ses mauvaises habitudes 😂 Tu as appuyé combien de fois sur snooze ce matin ? 👇\\nIdentifie ton/ta partenaire de gym 🏋️\\n#stickman #animation #snooze #gym #relatable #humour",
+  "slot": "d25C"
+ },
+ "A1_anneaux_pur": {
+  "caption": "Elle va plus vite à chaque évasion… reste jusqu'à la fin 😳\nTu as reconnu la musique ? 🎹👇\n#satisfaisant #satisfying #simulation #oddlysatisfying #asmr #animation",
+  "slot": "d23C"
+ },
+ "A2_grossit_pur": {
+  "caption": "Every bounce makes it bigger… wait for it 👀\nDid you guess the song? 🎶👇\n#satisfying #oddlysatisfying #simulation #bouncingball #asmr #animation",
+  "slot": "d24C"
+ },
+ "A3_multiplie_pur": {
+  "caption": "Chaque rebond peut créer une balle. Le cercle va tenir ? 😬\nTu dirais combien au moment où ça casse ? 👇\n#satisfying #simulation #oddlysatisfying #asmr #animation",
+  "slot": "d28C"
+ },
+ "A4_guerre_pur": {
+  "caption": "🩷 contre 🩵 : choisis ton camp avant la fin 👇\nCommente ta couleur !\n#satisfying #simulation #pongwars #oddlysatisfying #asmr",
+  "slot": "d29C"
  }
 }

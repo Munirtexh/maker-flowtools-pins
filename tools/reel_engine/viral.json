@@ -4,7 +4,10 @@
    "id": "V1_anneaux_FR",
    "engine": "bounce.html",
    "mode": "rings",
-   "dur": 15,
+   "dur": 30,
+   "finAt": 26.8,
+   "rings": 12,
+   "maxGap": 3.4,
    "seed": 11,
    "mel": "elise",
    "music": "notes:0",
@@ -13,26 +16,28 @@
    "bg": "#141a3a",
    "previewTimes": [
     0.2,
-    1.5,
-    3.0,
-    5.0,
-    7.5,
-    10.0,
-    12.0,
-    12.9,
-    13.6,
-    14.6
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
    ],
-   "coverAt": 6.0,
-   "hook": "Elle va plus vite à chaque <em>évasion</em> 😳",
-   "finTxt": "LIBRE ! 🎉",
-   "subTxt": "anneaux restants"
+   "coverAt": 8.0,
+   "hook": "Moi qui essaie d'encaisser<br><em>les 12 loyers</em> du mois 😮‍💨",
+   "finTxt": "TOUT PAYÉ ! 🎉",
+   "subTxt": "loyers encaissés",
+   "ballEmoji": "💵",
+   "cntUp": true
   },
   {
    "id": "V2_grossit_EN",
    "engine": "bounce.html",
    "mode": "grow",
-   "dur": 15,
+   "dur": 30,
+   "finAt": 26.8,
    "seed": 12,
    "mel": "joy",
    "music": "notes:10",
@@ -41,26 +46,31 @@
    "bg": "#1f1235",
    "previewTimes": [
     0.2,
-    1.5,
-    3.0,
-    5.0,
-    7.5,
-    10.0,
-    12.0,
-    12.9,
-    13.6,
-    14.6
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
    ],
    "coverAt": 8.0,
-   "hook": "Every bounce makes it <em>bigger</em>…<br>wait for it 👀",
-   "finTxt": "FULL! 🤯",
-   "subTxt": "of the circle"
+   "hook": "Our wedding guest list after<br><em>every family dinner</em> 🙃",
+   "finTxt": "VENUE FULL! 🤯",
+   "subTxt": "guests",
+   "ballTxt": "GUEST LIST",
+   "growCount": [
+    40,
+    220
+   ]
   },
   {
    "id": "V3_multiplie_FR",
    "engine": "bounce.html",
    "mode": "multiply",
-   "dur": 15,
+   "dur": 30,
+   "finAt": 26.6,
    "seed": 13,
    "mel": "turk",
    "music": "notes:12",
@@ -70,26 +80,26 @@
    "bg": "#10233a",
    "previewTimes": [
     0.2,
-    1.5,
-    3.0,
-    5.0,
-    7.5,
-    10.0,
-    12.0,
-    12.9,
-    13.6,
-    14.6
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
    ],
-   "coverAt": 10.0,
-   "hook": "Chaque rebond peut créer <em>une balle</em>.<br>Le cercle va tenir ? 😬",
-   "finTxt": "ÇA DÉBORDE 🤯",
-   "subTxt": "balles"
+   "coverAt": 8.0,
+   "hook": "Mes commandes avant le <em>marché de Noël</em> 🎄<br>Je vais tenir ? 😬",
+   "finTxt": "DÉBORDÉE 🤯",
+   "subTxt": "commandes"
   },
   {
    "id": "V4_guerre_FR",
    "engine": "bounce.html",
    "mode": "wars",
-   "dur": 15,
+   "dur": 30,
+   "finAt": 27.0,
    "seed": 14,
    "speed": 1500,
    "nb": 3,
@@ -99,23 +109,22 @@
    "bg": "#151530",
    "previewTimes": [
     0.2,
-    1.5,
-    3.0,
-    5.0,
-    7.5,
-    10.0,
-    12.0,
-    12.9,
-    13.6,
-    14.6
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
    ],
-   "coverAt": 6.0,
-   "hook": "🩷 contre 🩵<br>Choisis ton camp <em>avant la fin</em> 👇",
+   "coverAt": 8.0,
+   "hook": "Cotisations du club :<br>🩷 payé contre 🩵 <em>pas payé</em> 👇",
    "winTxt": [
-    "🩷 GAGNE",
-    "🩵 GAGNE"
+    "PAYÉ GAGNE 🎉",
+    "PAS PAYÉ GAGNE 😭"
    ],
-   "subTxt": "cases"
+   "subTxt": "🩷 payé · 🩵 pas payé"
   },
   {
    "id": "V5_stickman_habitudes_EN",
@@ -251,6 +260,7 @@
   },
   {
    "id": "V6_stickman_episode_EN",
+   "ep": "Stickman · Ep. 1",
    "engine": "story.html",
    "world": "binge",
    "look": "stick",
@@ -342,9 +352,17 @@
     ],
     [
      10.4,
-     15,
+     13.0,
      "EP 8 😵",
      140,
+     1500,
+     "#ff5d73"
+    ],
+    [
+     13.0,
+     15,
+     "New habit: sleep by 11 PM… Day 1 ❌",
+     90,
      1500,
      "#ff5d73"
     ]
@@ -375,6 +393,7 @@
      44
     ]
    ],
+   "memeSub": null,
    "scenes": [
     {
      "t0": 0,
@@ -382,6 +401,246 @@
      "set": "none"
     }
    ]
+  },
+  {
+   "id": "V7_stickman_snooze_FR",
+   "ep": "Stickman · Ép. 2",
+   "engine": "story.html",
+   "world": "snooze",
+   "look": "stick",
+   "theme": "habit",
+   "lang": "fr",
+   "dur": 15,
+   "music": "gm:uke",
+   "seed": 707,
+   "coverAt": 10.0,
+   "endAt": 15,
+   "cinema": false,
+   "previewTimes": [
+    0.2,
+    1.5,
+    3.0,
+    5.0,
+    7.5,
+    10.0,
+    12.0,
+    12.9,
+    13.6,
+    14.6
+   ],
+   "accent": "#000000",
+   "a1": "#ffd23d",
+   "a2": "#5cc8ff",
+   "meme": "Moi hier soir : « demain, gym à 6 h » 💪",
+   "mhl": [
+    5,
+    6,
+    7
+   ],
+   "memeFs": 66,
+   "chips": [
+    [
+     2.0,
+     3.6,
+     "SNOOZE ×1",
+     120,
+     1500,
+     "#ffffff"
+    ],
+    [
+     3.6,
+     5.2,
+     "SNOOZE ×2",
+     120,
+     1500,
+     "#ffffff"
+    ],
+    [
+     5.2,
+     6.8,
+     "SNOOZE ×3",
+     120,
+     1500,
+     "#ffc23d"
+    ],
+    [
+     6.8,
+     8.4,
+     "SNOOZE ×4",
+     120,
+     1500,
+     "#ff9f43"
+    ],
+    [
+     8.4,
+     9.8,
+     "SNOOZE ×5 😴",
+     120,
+     1500,
+     "#ff5d73"
+    ],
+    [
+     12.6,
+     15,
+     "Nouvelle habitude : jour 1 ❌",
+     90,
+     1500,
+     "#ff5d73"
+    ]
+   ],
+   "bubbles": [
+    [
+     0.4,
+     1.8,
+     "Facile 😎",
+     140,
+     960,
+     44
+    ],
+    [
+     2.5,
+     3.4,
+     "5 min…",
+     300,
+     960,
+     40
+    ],
+    [
+     10.0,
+     11.6,
+     "QUOI ?!",
+     220,
+     1000,
+     56
+    ]
+   ],
+   "scenes": [
+    {
+     "t0": 0,
+     "t1": 15,
+     "set": "none"
+    }
+   ]
+  },
+  {
+   "id": "A1_anneaux_pur",
+   "engine": "bounce.html",
+   "mode": "rings",
+   "dur": 30,
+   "finAt": 26.8,
+   "rings": 12,
+   "maxGap": 3.4,
+   "seed": 21,
+   "mel": "canon",
+   "music": "notes:0",
+   "theme": "seat",
+   "h0": 190,
+   "bg": "#141a3a",
+   "previewTimes": [
+    0.2,
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
+   ],
+   "coverAt": 8.0,
+   "hook": "Elle va plus vite à chaque <em>évasion</em>.<br>Reste jusqu'à la fin 😳",
+   "finTxt": "LIBRE ! 🎉",
+   "subTxt": "anneaux restants",
+   "cntUp": false
+  },
+  {
+   "id": "A2_grossit_pur",
+   "engine": "bounce.html",
+   "mode": "grow",
+   "dur": 30,
+   "finAt": 26.8,
+   "seed": 22,
+   "mel": "elise",
+   "music": "notes:10",
+   "theme": "seat",
+   "h0": 320,
+   "bg": "#1f1235",
+   "previewTimes": [
+    0.2,
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
+   ],
+   "coverAt": 8.0,
+   "hook": "Every bounce makes it <em>bigger</em>…<br>wait for it 👀",
+   "finTxt": "FULL! 🤯",
+   "subTxt": "of the circle"
+  },
+  {
+   "id": "A3_multiplie_pur",
+   "engine": "bounce.html",
+   "mode": "multiply",
+   "dur": 30,
+   "finAt": 26.6,
+   "seed": 23,
+   "mel": "joy",
+   "music": "notes:12",
+   "theme": "seat",
+   "h0": 40,
+   "cap": 999,
+   "bg": "#10233a",
+   "previewTimes": [
+    0.2,
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
+   ],
+   "coverAt": 8.0,
+   "hook": "Chaque rebond peut créer <em>une balle</em>.<br>Le cercle va tenir ? 😬",
+   "finTxt": "ÇA DÉBORDE 🤯",
+   "subTxt": "balles"
+  },
+  {
+   "id": "A4_guerre_pur",
+   "engine": "bounce.html",
+   "mode": "wars",
+   "dur": 30,
+   "finAt": 27.0,
+   "seed": 24,
+   "speed": 1500,
+   "nb": 3,
+   "mel": "turk",
+   "music": "notes:8",
+   "theme": "seat",
+   "bg": "#151530",
+   "previewTimes": [
+    0.2,
+    3,
+    8,
+    14,
+    20,
+    25,
+    26.5,
+    27.5,
+    29.5
+   ],
+   "coverAt": 8.0,
+   "hook": "🩷 contre 🩵<br>Choisis ton camp <em>avant la fin</em> 👇",
+   "winTxt": [
+    "🩷 GAGNE",
+    "🩵 GAGNE"
+   ],
+   "subTxt": "cases"
   }
  ]
 }

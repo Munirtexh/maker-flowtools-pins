@@ -10,6 +10,13 @@ st = datetime.datetime.now().strftime('%Y-%m-%d_%H%M')
 for p, nm in ((man_p, f'manifest_avant_viral_{st}.json'), (cal_p, f'calendar_avant_viral_{st}.csv')):
     shutil.copy(p, os.path.join(root, 'ig/archive', nm))
 man = json.load(open(man_p)); by = {p['id']: p for p in man}; touched = set()
+# posts en plus à 16 h 30 (créneaux « C », publiés par la tâche « Publication Instagram après-midi ») : créés à partir du créneau B du même jour
+for rid in ids:
+    slot = B.PLACE[rid]
+    if slot.endswith('C') and slot not in by:
+        b = by[slot[:-1] + 'B']; e = dict(id=slot, epoch=b['epoch'] - 3 * 3600, local=b['local'][:10] + ' 16:30', type='reel', needs='', repeat=False)
+        man.append(e); by[slot] = e
+man.sort(key=lambda e: e['epoch'])
 for rid in ids:
     slot = B.PLACE[rid]
     by[slot].update(type='reel', url=RAW + f'videos/viral/{rid}.mp4', cover=RAW + f'videos/viral/{rid}_cover.jpg', caption=B.CAP[rid], needs='', repeat=False); touched.add(slot)
@@ -17,6 +24,10 @@ for rid in ids:
 by['d25B'].update(type='reel', url=RAW + 'videos/styles/X1_film3d_mariage_FR.mp4', cover=RAW + 'videos/styles/X1_film3d_mariage_FR_cover.jpg', caption=BS.CAP['X1_film3d_mariage_FR'], needs='', repeat=False); touched.add('d25B')
 json.dump(man, open(man_p, 'w'), ensure_ascii=False, indent=1)
 raw = open(cal_p, encoding='utf-8-sig', newline='').read(); rows = list(csv.reader(io.StringIO(raw)))
+have = {r[0] for r in rows[1:] if r}
+for sl in sorted(touched):
+    if sl not in have: rows.append([sl, by[sl]['local'], '', '', '', 'False', ''])
+rows = rows[:1] + sorted([r for r in rows[1:] if r], key=lambda r: r[1])
 for r in rows[1:]:
     if r and r[0] in touched:
         p = by[r[0]]; r[2] = p['type']; r[3] = p['url'].split('/main/')[1]; r[4] = ''; r[5] = 'False'; r[6] = p['caption'].replace('\n', ' | ')
