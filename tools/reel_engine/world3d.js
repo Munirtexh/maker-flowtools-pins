@@ -26,8 +26,14 @@
     const im = x.getImageData(0, 0, 512, 512); for (let i = 0; i < im.data.length; i += 4) { const n = (hash(i * .37) - .5) * 26; im.data[i] += n; im.data[i + 1] += n; im.data[i + 2] += n; } x.putImageData(im, 0, 0);
     fpTex = new TH.CanvasTexture(c); fpTex.wrapS = fpTex.wrapT = TH.RepeatWrapping; fpTex.repeat.set(2, 2); return fpTex;
   }
+  let ppTex = null;
+  function paperTex() { if (ppTex) return ppTex; const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d'); x.fillStyle = '#ffffff'; x.fillRect(0, 0, 256, 256);
+    for (let i = 0; i < 1400; i++) { const a = hash(i) * 256, b = hash(i + 99) * 256; x.strokeStyle = `rgba(0,0,0,${.025 + hash(i + 7) * .04})`; x.beginPath(); x.moveTo(a, b); x.lineTo(a + (hash(i + 3) - .5) * 14, b + (hash(i + 5) - .5) * 14); x.stroke(); }
+    ppTex = new TH.CanvasTexture(c); ppTex.wrapS = ppTex.wrapT = TH.RepeatWrapping; ppTex.colorSpace = TH.SRGBColorSpace; return ppTex; }
   function mat(color, o = {}) {
     if (LOOK === 'clay') return new TH.MeshStandardMaterial({ color, roughness: o.gloss ? .25 : .82, metalness: 0, bumpMap: o.gloss ? null : fingerprint(), bumpScale: .9, emissive: o.em || 0, emissiveIntensity: o.em ? 1 : 0 });
+    if (LOOK === 'film') return new TH.MeshPhysicalMaterial({ color, roughness: o.gloss ? .15 : .5, metalness: 0, clearcoat: o.gloss ? 1 : .35, clearcoatRoughness: .3, sheen: .4, sheenRoughness: .6, emissive: o.em || 0, emissiveIntensity: o.em ? 1 : 0 });
+    if (LOOK === 'paper') return new TH.MeshLambertMaterial({ color, map: paperTex(), emissive: o.em || 0, emissiveIntensity: o.em ? .8 : 0 });
     if (LOOK === 'stick') return new TH.MeshBasicMaterial({ color: o.em ? o.em : color });
     if (LOOK === 'lowpoly') return new TH.MeshLambertMaterial({ color, flatShading: true, emissive: o.em || 0, emissiveIntensity: o.em ? 1 : 0 });
     return new TH.MeshToonMaterial({ color, emissive: o.em || 0, emissiveIntensity: o.em ? 1 : 0 }); // pixel
@@ -71,7 +77,7 @@
   // pose/émotion : mood = happy | shock | angry | sad | cheer | point | type | idle
   function pose(P, t, mood, ph = 0) {
     const sq = mood === 'cheer' ? Math.abs(Math.sin(t * 7 + ph)) : 0;
-    const bob = mood === 'cheer' ? sq * .45 : Math.sin(t * 3 + ph) * .03;
+    const bob = mood === 'cheer' ? sq * .28 : Math.sin(t * 3 + ph) * .03;
     P.torso.position.y = 1.05 + bob; const st = 1 + (mood === 'cheer' ? (sq < .15 ? -.12 : .05) : Math.sin(t * 3 + ph) * .02);
     P.torso.scale.y = (P.o.kind === 'guest' ? .78 : 1) * st; P.torso.scale.x = P.torso.scale.z = 1 / Math.sqrt(st);
     const shock = mood === 'shock', ang = mood === 'angry', sad = mood === 'sad';
@@ -95,8 +101,8 @@
   function room(o) {
     S.background = new TH.Color(o.bg || '#1d0f24'); S.fog = new TH.Fog(o.bg || '#1d0f24', 14, 34);
     const fl = new TH.Mesh(new TH.CircleGeometry(30, LOOK === 'lowpoly' ? 12 : 64), mat(o.floor || '#7a3d3a')); fl.rotation.x = -Math.PI / 2; fl.receiveShadow = true; S.add(fl);
-    const hemi = new TH.HemisphereLight(o.sky || '#ffd9c2', o.ground || '#3a1f40', LOOK === 'clay' ? .9 : 1.1); S.add(hemi);
-    const key = new TH.DirectionalLight('#fff1dc', LOOK === 'clay' ? 2.2 : 1.6); key.position.set(5, 11, 8); key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
+    const hemi = new TH.HemisphereLight(o.sky || '#ffd9c2', o.ground || '#3a1f40', LOOK === 'clay' || LOOK === 'film' ? .9 : 1.1); S.add(hemi);
+    const key = new TH.DirectionalLight('#fff1dc', LOOK === 'clay' || LOOK === 'film' ? 2.2 : 1.6); key.position.set(5, 11, 8); key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
     Object.assign(key.shadow.camera, { left: -12, right: 12, top: 12, bottom: -12, near: 1, far: 40 }); key.shadow.radius = 6; key.shadow.bias = -.0005; S.add(key);
     const rim = new TH.DirectionalLight(o.rim || '#8fb4ff', 1.1); rim.position.set(-6, 6, -8); S.add(rim);
     // guirlande d'ampoules au fond (bokeh chaud)
@@ -105,8 +111,8 @@
   function table(x, z, cloth) { const g = new TH.Group(); const top = cyl(1.25, 1.25, .16, mat(cloth || '#f6c7d6'), LOOK === 'lowpoly' ? 10 : 48); top.position.y = 1.0; g.add(top);
     const leg = cyl(.12, .2, 1, mat('#5a2f3a')); leg.position.y = .5; g.add(leg); const fl = sph(.18, mat('#ff7aa8')); fl.position.y = 1.2; g.add(fl);
     g.position.set(x, 0, z); return shadowy(g); }
-  function textSprite(txt, col) { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d');
-    x.font = '900 96px Inter, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.lineWidth = 12; x.strokeStyle = '#000'; x.strokeText(txt, 64, 70); x.fillStyle = col; x.fillText(txt, 64, 70);
+  function textSprite(txt, col) { const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d'); const fs = txt.length > 2 ? Math.min(150, 340 / txt.length) : 190;
+    x.font = `900 ${fs}px Inter, sans-serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.lineWidth = fs / 8; x.strokeStyle = '#000'; x.strokeText(txt, 128, 140); x.fillStyle = col; x.fillText(txt, 128, 140);
     const sp = new TH.Sprite(new TH.SpriteMaterial({ map: new TH.CanvasTexture(c), transparent: true })); return sp; }
   function check(x, y, z) { const g = new TH.Group(); const m = mat('#2ee6a6', { em: '#0d5a40' }); const a = cap(.07, .16, m); a.rotation.z = .8; a.position.set(-.1, -.05, 0); const b = cap(.07, .42, m); b.rotation.z = -.6; b.position.set(.12, .08, 0); g.add(a, b); g.position.set(x, y, z); return shadowy(g); }
 
@@ -144,7 +150,7 @@
     const SH = [[0, 3.2, { p: [0, 6.5, 13.5], l: [0, 1.2, 0] }, { p: [0, 5.6, 11.2], l: [0, 1.4, 0] }, 38],
       [3.2, 6.6, { p: [2.2, 3.4, 5.2], l: [0, 2.3, -3] }, { p: [1.4, 3.1, 4.2], l: [0, 2.5, -3] }, 42],
       [6.6, 9.0, { p: [0, 6, 12], l: [0, 1, 0] }, { p: [0, 6, 12], l: [0, 1, 0] }, 38],
-      [9.0, 13.2, { p: [-3, 7.5, 13], l: [0, .8, -.5] }, { p: [2.5, 6.2, 11.5], l: [0, 1.2, 0] }, 40]];
+      [9.0, 13.2, { p: [-3, 7.5, 14], l: [0, .8, -.5] }, { p: [2, 6.6, 13], l: [0, 1.3, .5] }, 40]];
     return function (t) {
       const frz = t > 5.55 && t < 6.6; const ta = frz ? 5.55 : t; // gel (silence) avant le tableur
       shots(SH, t);
@@ -328,6 +334,186 @@
     function pose_cheer(P, t) { P.arm.forEach(([u, l], i) => { u.rotation.z = Math.PI + (i ? 2.6 : -2.6) + Math.sin(t * 10) * .15; l.rotation.z = 0; }); P.hip.position.y = 1.9 + Math.abs(Math.sin(t * 7)) * .25; }
   };
 
+  // ---------- papier découpé (formes plates extrudées, couches avec ombres) ----------
+  function flat(shape, depth, color) { const g = new TH.ExtrudeGeometry(shape, { depth: depth || .1, bevelEnabled: true, bevelThickness: .015, bevelSize: .015, bevelSegments: 1, curveSegments: 24 }); const m = new TH.Mesh(g, mat(color)); m.castShadow = m.receiveShadow = true; return m; }
+  const circ = r => { const s_ = new TH.Shape(); s_.absarc(0, 0, r, 0, Math.PI * 2, false); return s_; };
+  const ell = (rx, ry) => { const s_ = new TH.Shape(); s_.absellipse(0, 0, rx, ry, 0, Math.PI * 2, false, 0); return s_; };
+  const rect = (w, h, r = 0) => { const s_ = new TH.Shape(); if (!r) { s_.moveTo(-w / 2, -h / 2); s_.lineTo(w / 2, -h / 2); s_.lineTo(w / 2, h / 2); s_.lineTo(-w / 2, h / 2); return s_; }
+    s_.moveTo(-w / 2 + r, -h / 2); s_.lineTo(w / 2 - r, -h / 2); s_.quadraticCurveTo(w / 2, -h / 2, w / 2, -h / 2 + r); s_.lineTo(w / 2, h / 2 - r); s_.quadraticCurveTo(w / 2, h / 2, w / 2 - r, h / 2); s_.lineTo(-w / 2 + r, h / 2); s_.quadraticCurveTo(-w / 2, h / 2, -w / 2, h / 2 - r); s_.lineTo(-w / 2, -h / 2 + r); s_.quadraticCurveTo(-w / 2, -h / 2, -w / 2 + r, -h / 2); return s_; };
+  const tri = (w, h) => { const s_ = new TH.Shape(); s_.moveTo(-w / 2, 0); s_.lineTo(w / 2, 0); s_.lineTo(0, h); return s_; };
+  function paperChar(o) { const g = new TH.Group(); const P = { g, o }; const z = (k) => k * .06;
+    P.body = new TH.Group(); g.add(P.body); P.body.position.y = 1.1;
+    const b = flat(ell(.62, .8), .08, o.color); P.body.add(b);
+    if (o.apron) { const a = flat(rect(.75, .7, .12), .04, o.apron); a.position.set(0, -.2, z(2)); P.body.add(a); }
+    P.head = new TH.Group(); P.head.position.set(0, .95, z(1)); P.body.add(P.head);
+    const h = flat(ell(.62, .52), .08, o.color); P.head.add(h);
+    if (o.kind === 'cat') [-1, 1].forEach(k => { const e = flat(tri(.36, .42), .06, o.color); e.position.set(k * .36, .3, -.02); e.rotation.z = -k * .3; P.head.add(e); const ei = flat(tri(.18, .22), .02, '#ff9fb3'); ei.position.set(k * .36, .36, .07); ei.rotation.z = -k * .3; P.head.add(ei); });
+    if (o.kind === 'dog') P.ears = [-1, 1].map(k => { const piv = new TH.Group(); piv.position.set(k * .5, .3, .1); const e = flat(ell(.17, .34), .05, o.dark); e.position.y = -.28; piv.add(e); P.head.add(piv); return piv; });
+    if (o.kind === 'dog') { const m = flat(ell(.24, .16), .03, o.muzzle || '#f3e0c8'); m.position.set(0, -.18, .1); P.head.add(m); }
+    P.eyes = [-1, 1].map(k => { const e = new TH.Group(); e.position.set(k * .22, .04, .1); const w = flat(ell(.13, .15), .02, '#fbf7f0'); const p_ = flat(circ(.075), .02, '#16121c'); p_.position.z = .03; const hl = flat(circ(.025), .01, '#ffffff'); hl.position.set(.03, .04, .055); e.add(w, p_, hl); P.head.add(e); return e; });
+    const nose = flat(ell(.06, .045), .02, o.kind === 'cat' ? '#ff7a8a' : '#1c1416'); nose.position.set(0, -.12, .14); P.head.add(nose);
+    P.mouth = flat(ell(.09, .05), .01, '#4a1620'); P.mouth.position.set(0, -.27, .13); P.head.add(P.mouth);
+    [-1, 1].forEach(k => { const c = flat(circ(.07), .01, '#ff8fa3'); c.position.set(k * .38, -.15, .1); P.head.add(c); });
+    P.arms = [-1, 1].map(k => { const piv = new TH.Group(); piv.position.set(k * .5, .3, z(3)); const a = flat(rect(.16, .6, .08), .04, o.color); a.position.y = -.27; piv.add(a); P.body.add(piv); return piv; });
+    [-1, 1].forEach(k => { const l = flat(rect(.2, .4, .08), .05, o.dark || o.color); l.position.set(k * .25, .25, -.02); g.add(l); });
+    if (o.tail) { P.tail = new TH.Group(); P.tail.position.set(.45, .6, -.1); const t_ = flat(rect(.12, .7, .06), .04, o.color); t_.position.y = .3; P.tail.add(t_); g.add(P.tail); }
+    g.scale.setScalar(o.s || 1); return P; }
+  function ppose(P, t, mood, ph = 0) { const cheer = mood === 'cheer', shock = mood === 'shock';
+    P.body.rotation.z = Math.sin(t * 2.2 + ph) * .04; P.body.position.y = 1.1 + (cheer ? Math.abs(Math.sin(t * 7 + ph)) * .25 : Math.sin(t * 3 + ph) * .02);
+    P.head.rotation.z = Math.sin(t * 1.7 + ph) * .07; P.eyes.forEach(e => { e.scale.setScalar(shock ? 1.3 : 1); if (((t + ph) % 3.3) < .09) e.scale.y = .15; });
+    P.mouth.scale.set(shock ? .8 : 1.2, shock ? 2.2 : .6, 1);
+    const [L, Rr] = P.arms; if (cheer || shock) { L.rotation.z = -2.4 - Math.sin(t * 9 + ph) * .3; Rr.rotation.z = 2.4 + Math.sin(t * 9 + ph) * .3; }
+    else if (mood === 'point') { L.rotation.z = -.2; Rr.rotation.z = 1.6; } else if (mood === 'count') { L.rotation.z = -.9 + Math.sin(t * 9) * .2; Rr.rotation.z = .9 - Math.sin(t * 9) * .2; }
+    else { L.rotation.z = -.25 - Math.sin(t * 2 + ph) * .1; Rr.rotation.z = .25 + Math.sin(t * 2 + ph) * .1; }
+    if (P.tail) P.tail.rotation.z = Math.sin(t * (cheer ? 12 : 3) + ph) * .5; if (P.ears) P.ears.forEach((e, i) => e.rotation.z = Math.sin(t * 5 + i) * .12); }
+
+  // Marché de Noël en papier : savons à 5 $, tout se vend… et elle perd de l'argent ; le vrai coût, puis le bon prix.
+  WORLDS.market = function (cfg) {
+    S.background = new TH.Color('#10233a');
+    const hemi = new TH.HemisphereLight('#fff3e0', '#2a3b5a', 1.2); S.add(hemi);
+    const key = new TH.DirectionalLight('#fff0d8', 1.8); key.position.set(-4, 8, 10); key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
+    Object.assign(key.shadow.camera, { left: -10, right: 10, top: 12, bottom: -6, near: 1, far: 40 }); key.shadow.radius = 4; S.add(key);
+    // couches de collines en papier
+    ['#173a52', '#1f4e5e', '#2a6a64', '#357a5a'].forEach((c, i) => { const sh = new TH.Shape(); sh.moveTo(-14, -2); for (let k = 0; k <= 28; k++) { const x = -14 + k; sh.lineTo(x, 2.2 - i * .7 + Math.sin(k * .7 + i * 2) * .5 + Math.sin(k * .23 + i) * .8); } sh.lineTo(14, -2);
+      const m = flat(sh, .1, c); m.position.set(0, 1.6 - i * .2, -6 + i * 1.2); S.add(m); });
+    for (let i = 0; i < 40; i++) { const st = flat(circ(.05 + hash(i) * .05), .02, '#fff2c4'); st.material.emissive = new TH.Color('#ffe08a'); st.material.emissiveIntensity = .9; st.position.set(-8 + hash(i + 1) * 16, 6 + hash(i + 2) * 6, -7); S.add(st); }
+    const moon = flat(circ(.9), .05, '#fff1c2'); moon.material.emissive = new TH.Color('#ffd86a'); moon.material.emissiveIntensity = .7; moon.position.set(3.2, 9.4, -6.5); S.add(moon);
+    // fanions
+    for (let i = 0; i < 13; i++) { const f = flat(tri(.4, -.5), .02, ['#ff7aa8', '#ffc23d', '#5cc8ff', '#2ee6a6'][i % 4]); f.position.set(-3.6 + i * .6, 6.4 - Math.sin(i / 12 * Math.PI) * .5, .2); f.rotation.x = Math.PI; f.rotation.z = Math.PI; S.add(f); }
+    // étal
+    const stall = new TH.Group(); const back = flat(rect(6.4, 4, .1), .1, '#7a4a2e'); back.position.set(0, 3, -1.2); stall.add(back);
+    for (let i = 0; i < 8; i++) { const a = flat(rect(.8, 1, 0), .08, i % 2 ? '#ff5d73' : '#fff3ea'); a.position.set(-2.8 + i * .8, 5.2, -.6); a.rotation.x = -.3; stall.add(a); }
+    const counter = flat(rect(6, 1.5, .08), .25, '#c9905a'); counter.position.set(0, .75, .9); stall.add(counter);
+    S.add(stall);
+    const soaps = []; for (let i = 0; i < 10; i++) { const so = flat(rect(.42, .3, .07), .18, ['#ffb3c8', '#c7f27a', '#b18cff', '#ffd27a', '#9ad0ff'][i % 5]); so.position.set(-2.3 + (i % 5) * 1.15, 1.62 + Math.floor(i / 5) * .36, 1.0 + Math.floor(i / 5) * -.05); S.add(so); soaps.push(so); }
+    const tag = new TH.Group(); const tb = flat(rect(1.15, .72, .12), .04, '#fff3d6'); tb.position.x = -.0; tag.add(tb); tag.position.set(-2.1, 3.75, -.3); S.add(tag);
+    const t5 = textSprite('5 $', '#ff5d73'); t5.scale.setScalar(.95); t5.position.set(0, 0, .14); tag.add(t5); const t12 = textSprite('12 $', '#1f9e6e'); t12.scale.setScalar(.95); t12.position.set(0, 0, .14); tag.add(t12);
+    const seller = paperChar({ kind: 'cat', color: '#f5b46a', dark: '#c27a3a', apron: '#5cc8ff', tail: 1 }); seller.g.position.set(-.9, 1.0, -.2); S.add(seller.g);
+    const helper = paperChar({ kind: 'dog', color: '#b97a4a', dark: '#6a3e20', muzzle: '#f3e0c8', apron: '#ffc23d', tail: 1, s: .9 }); helper.g.position.set(1.0, 1.0, -.3); S.add(helper.g);
+    const CUST = ['#ff9f43', '#b18cff', '#2ee6a6', '#ff7aa8', '#5cc8ff', '#c7f27a'];
+    const cust = CUST.map((c, i) => { const P = paperChar({ kind: i % 2 ? 'cat' : 'dog', color: c, dark: '#3a2a4a', s: .85 }); S.add(P.g); return { P, i }; });
+    const coins = []; for (let i = 0; i < 6; i++) { const c = flat(circ(.16), .05, '#ffd23d'); c.material.emissive = new TH.Color('#7a5a00'); c.material.emissiveIntensity = .4; S.add(c); coins.push(c); }
+    const SH = [[0, 3.3, { p: [0, 3.3, 15], l: [0, 2.8, 0] }, { p: [0, 3.2, 13], l: [0, 2.8, 0] }, 40],
+      [3.3, 6.6, { p: [-1.4, 3.0, 7.5], l: [-.7, 2.6, 0] }, { p: [-1.0, 2.9, 6.6], l: [-.7, 2.7, 0] }, 40],
+      [6.6, 9.0, { p: [0, 3.3, 14], l: [0, 2.8, 0] }, { p: [0, 3.3, 14], l: [0, 2.8, 0] }, 40],
+      [9.0, 13.2, { p: [-1.3, 3.5, 9.0], l: [-1.2, 3.1, 0] }, { p: [0, 3.2, 13.5], l: [0, 2.8, 0] }, 40]];
+    soaps.forEach((so, i) => window.__ev(.8 + i * .2, 'pop'));
+    return function (t) {
+      const frz = t > 5.6 && t < 6.6; const ta = frz ? 5.6 : t; shots(SH, t);
+      ppose(seller, ta, ta < 3.3 ? 'cheer' : ta < 6.6 ? (ta < 4.2 ? 'count' : 'shock') : ta < 11 ? 'point' : 'cheer', 0);
+      ppose(helper, ta, ta < 3.3 ? 'happy' : ta < 6.6 ? 'shock' : 'cheer', 1.4);
+      soaps.forEach((so, i) => { const sold = .8 + i * .2; const back_ = 9.4 + i * .1; const gone = ta > sold && ta < back_; const p = gone ? 0 : ta >= back_ ? cl(sp(ta, back_, 1.5), 0, 1.2) : 1; so.scale.setScalar(Math.max(.001, p)); });
+      cust.forEach(({ P, i }) => { const ts = .2 + i * .33; const x0 = 8 + i * 1.1; const x1 = -2.6 + i * 1.05; const p = eo3(ln(ta, ts, ts + .9)); const leave = ln(ta, 3.0 + i * .08, 3.9 + i * .08);
+        P.g.position.set(x0 + (x1 - x0) * p - leave * 12, .0, 2.4 + (i % 2) * .5); ppose(P, ta, p > .9 && leave === 0 ? 'cheer' : 'happy', i); P.g.visible = ta < 9 || ta > 10.6;
+        if (ta > 10.6) { const q = eo3(ln(ta, 10.6 + i * .12, 11.3 + i * .12)); P.g.position.set(8 + i - q * (10.6 - i * 1.05), 0, 2.4 + (i % 2) * .5); ppose(P, ta, 'happy', i); } });
+      coins.forEach((c, i) => { const ts = 4.0 + i * .12; const p = ln(ta, ts, ts + .4); c.visible = ta > ts && ta < 6.6; c.position.set(-1.6 + i * .32, 1.6 + Math.sin(p * Math.PI) * .8, 1.3); c.rotation.y = ta * 6; });
+      const flip = ln(ta, 9.2, 9.7); const sx = Math.max(.02, Math.abs(Math.cos(flip * Math.PI))); tag.scale.x = sx; t5.visible = flip < .5; t12.visible = flip >= .5; tag.rotation.z = Math.sin(ta * 2) * .05;
+    };
+  };
+
+  // ---------- plan technique (« blueprint ») : traits clairs sur fond bleu, faces cachées ----------
+  const BP_BG = '#0b3566', BP_LINE = '#d6ecff';
+  function blueprint(root) { const list = []; root.traverse(o => { if (o.isMesh && !o.userData.noBP) list.push(o); });
+    list.forEach(m => { const lc = m.userData.lc || BP_LINE;
+      m.material = new TH.MeshBasicMaterial({ color: BP_BG, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 }); m.castShadow = m.receiveShadow = false;
+      const e = new TH.LineSegments(new TH.EdgesGeometry(m.geometry, 28), new TH.LineBasicMaterial({ color: lc })); e.userData.noBP = 1; m.add(e);
+      const hull = new TH.Mesh(m.geometry, new TH.MeshBasicMaterial({ color: lc, side: TH.BackSide })); hull.scale.setScalar(m.geometry.type === 'SphereGeometry' && m.geometry.parameters.radius < .3 ? 1.22 : 1.06); hull.userData.noBP = 1; m.add(hull);
+      m.userData.edge = e; m.userData.hull = hull; }); }
+  function setLine(m, col) { if (m.userData.edge) { m.userData.edge.material.color.set(col); m.userData.hull.material.color.set(col); } }
+  WORLDS.floorplan = function (cfg) {
+    S.background = new TH.Color(BP_BG);
+    const grid = new TH.GridHelper(40, 80, '#3f7fc0', '#1f5a96'); grid.position.y = .001; S.add(grid);
+    const g2 = new TH.GridHelper(40, 16, '#6fa8dc', '#6fa8dc'); g2.position.y = .002; S.add(g2);
+    const world = new TH.Group(); S.add(world);
+    // murs de la salle
+    [[0, -7.4, 9.2, .25], [0, 5.4, 9.2, .25], [-4.6, -1, .25, 12.8], [4.6, -1, .25, 12.8]].forEach(([x, z, w, d]) => { const m = new TH.Mesh(new TH.BoxGeometry(w, .6, d), mat('#fff')); m.position.set(x, .3, z); world.add(m); });
+    const TB = [[-2.2, -5], [2.2, -5], [-2.2, -1], [2.2, -1], [-2.2, 3], [2.2, 3]].map(([x, z], i) => { const m = new TH.Mesh(new TH.CylinderGeometry(1.0, 1.0, .25, 28), mat('#fff')); m.position.set(x, .4, z); world.add(m);
+      const lab = textSprite('T' + (i + 1), '#d6ecff'); lab.position.set(x, 1.2, z); lab.scale.setScalar(1.1); S.add(lab); return { m, x, z, lab }; });
+    const seats = []; TB.forEach((tb, ti) => { const n = ti === 4 ? 12 : 8; for (let k = 0; k < n; k++) { const a = k / n * Math.PI * 2; const r = ti === 4 ? 1.6 : 1.45;
+      const g = new TH.Mesh(new TH.SphereGeometry(.22, 14, 10), mat('#fff')); g.position.set(tb.x + Math.cos(a) * r, .3, tb.z + Math.sin(a) * r); world.add(g); seats.push({ g, ti, k, home: g.position.clone() }); } });
+    // couple qui fait le plan (dessiné au trait)
+    const bride = blob({ kind: 'cat', color: '#fff', veil: 0 }), groom = blob({ kind: 'dog', color: '#fff', bow: '#fff' });
+    bride.g.position.set(-1.2, 0, 6.6); groom.g.position.set(1.2, 0, 6.6); bride.g.scale.setScalar(.9); groom.g.scale.setScalar(.9); world.add(bride.g, groom.g);
+    blueprint(world);
+    // conflit : oncle (T2) et tante (T2) côte à côte ; T5 = 12/10
+    const uncle = seats.find(s_ => s_.ti === 1 && s_.k === 2), aunt = seats.find(s_ => s_.ti === 1 && s_.k === 3);
+    const link = new TH.Line(new TH.BufferGeometry().setFromPoints([uncle.home, aunt.home]), new TH.LineDashedMaterial({ color: '#ff5d73', dashSize: .15, gapSize: .1 })); link.computeLineDistances(); link.position.y = .6; S.add(link);
+    const extra = seats.filter(s_ => s_.ti === 4 && s_.k >= 10);
+    // déplacements décidés par le couple : la tante vers T6, 2 invités de T5 vers T3 et T6
+    const ring = (tb, a) => [TB[tb].x + Math.cos(a) * 1.45, .3, TB[tb].z + Math.sin(a) * 1.45]; const moves = [[aunt, ring(5, Math.PI / 8)], [extra[0], ring(3, Math.PI * 9 / 8)], [extra[1], ring(2, Math.PI * 3 / 8)]];
+    const checks = TB.map(tb => { const c = textSprite('✓', '#2ee6a6'); c.position.set(tb.x + .9, 1.6, tb.z - .6); S.add(c); return c; });
+    const SH = [[0, 3.4, { p: [0, 25, 8], l: [0, 0, -.6] }, { p: [0, 22.5, 7.4], l: [0, 0, -.6] }, 42],
+      [3.4, 6.6, { p: [2.2, 10, -1.2], l: [2.2, 0, -5] }, { p: [-2.2, 10, 6.6], l: [-2.2, 0, 2.8] }, 42],
+      [6.6, 9.0, { p: [0, 22.5, 7.4], l: [0, 0, -.6] }, { p: [0, 22.5, 7.4], l: [0, 0, -.6] }, 42],
+      [9.0, 13.2, { p: [0, 21, 7.2], l: [0, 0, -.6] }, { p: [0, 23.5, 7.8], l: [0, 0, -.6] }, 42]];
+    TB.forEach((tb, i) => window.__ev(.2 + i * .25, 'tick')); window.__ev(3.6, 'alert');
+    return function (t) {
+      const frz = t > 5.6 && t < 6.6; const ta = frz ? 5.6 : t; shots(SH, t);
+      TB.forEach((tb, i) => { const p = cl(sp(ta, .2 + i * .25, 1.3), 0, 1.15); tb.m.scale.set(Math.max(.01, p), 1, Math.max(.01, p)); tb.lab.visible = p > .5;
+        setLine(tb.m, i === 4 && ta > 3.4 && ta < 10.8 ? (Math.floor(ta * 4) % 2 ? '#ff5d73' : '#ffb3bd') : ta > 11 ? '#2ee6a6' : BP_LINE); });
+      seats.forEach((s_, i) => { const ts = .8 + i * .025; const p = cl(sp(ta, ts, 1.5), 0, 1.2); s_.g.scale.setScalar(Math.max(.01, p)); s_.g.position.copy(s_.home);
+        const red = (s_ === uncle || s_ === aunt) && ta > 3.4 && ta < 10.2;
+        setLine(s_.g, red ? '#ff5d73' : ta > 11 ? '#2ee6a6' : BP_LINE); });
+      moves.forEach(([s_, d], j) => { const ts = 9.3 + j * .35; const q = eio3(ln(ta, ts, ts + .8)); if (q > 0) { s_.g.position.set(s_.home.x + (d[0] - s_.home.x) * q, .3 + Math.sin(q * Math.PI) * 1.6, s_.home.z + (d[2] - s_.home.z) * q); } });
+      link.visible = ta > 3.4 && ta < 9.4 && Math.floor(ta * 5) % 2 === 0;
+      pose(bride, ta, ta < 3.4 ? 'happy' : ta < 9 ? 'shock' : ta < 11 ? 'point' : 'cheer', 0); pose(groom, ta, ta < 3.4 ? 'happy' : ta < 9 ? 'shock' : 'cheer', 1.3);
+      checks.forEach((c, i) => { const p = cl(sp(ta, 11.0 + i * .1, 1.4), 0, 1.2); c.scale.setScalar(p * 1.1); c.visible = p > 0; });
+    };
+  };
+
+  // ---------- silhouettes à l'encre devant un ciel dégradé ----------
+  function silhouette(root) { root.traverse(o => { if (o.isMesh && !o.userData.glow && !o.userData.sky) { o.material = new TH.MeshBasicMaterial({ color: '#07040c' }); o.castShadow = o.receiveShadow = false; } }); }
+  WORLDS.porch = function (cfg) {
+    const skyU = { top: { value: new TH.Color('#2a1250') }, bot: { value: new TH.Color('#ff8a4c') } };
+    const sky = new TH.Mesh(new TH.PlaneGeometry(80, 60), new TH.ShaderMaterial({ uniforms: skyU, depthWrite: false,
+      vertexShader: 'varying float vy; void main(){ vy = uv.y; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 top; uniform vec3 bot; varying float vy; void main(){ gl_FragColor = vec4(mix(bot, top, smoothstep(0.30, 0.75, vy)), 1.0); }' }));
+    sky.position.set(0, 10, -30); sky.userData.sky = 1; S.add(sky);
+    const sun = new TH.Mesh(new TH.CircleGeometry(4.2, 64), new TH.MeshBasicMaterial({ color: '#ffd27a' })); sun.userData.glow = 1; sun.position.set(-1.5, 4.5, -25); S.add(sun);
+    const moon = new TH.Mesh(new TH.CircleGeometry(1.6, 48), new TH.MeshBasicMaterial({ color: '#fff4d6' })); moon.userData.glow = 1; moon.position.set(4.5, 15, -25); S.add(moon);
+    const stars = []; for (let i = 0; i < 60; i++) { const st = new TH.Mesh(new TH.CircleGeometry(.05 + hash(i) * .06, 6), new TH.MeshBasicMaterial({ color: '#ffffff', transparent: true })); st.userData.glow = 1; st.position.set(-14 + hash(i + 1) * 28, 8 + hash(i + 2) * 16, -24); S.add(st); stars.push(st); }
+    const W = new TH.Group(); S.add(W);
+    const ground = new TH.Mesh(new TH.PlaneGeometry(80, 30), mat('#000')); ground.rotation.x = -Math.PI / 2; W.add(ground);
+    
+    // maison à droite
+    const house = new TH.Group(); const hb = new TH.Mesh(new TH.BoxGeometry(5, 4.2, 4), mat('#000')); hb.position.y = 2.1; house.add(hb);
+    const rf = new TH.Mesh(new TH.ConeGeometry(3.9, 2.4, 4), mat('#000')); rf.position.y = 5.4; rf.rotation.y = Math.PI / 4; house.add(rf);
+    const ch = new TH.Mesh(new TH.BoxGeometry(.6, 1.6, .6), mat('#000')); ch.position.set(1.3, 5.6, 0); house.add(ch);
+    house.position.set(4.6, 0, -4); W.add(house);
+    const wins = []; [[-1.2, 1.4], [1.2, 1.4], [-1.2, 3.1], [1.2, 3.1]].forEach(([x, y], i) => { const w = new TH.Mesh(new TH.PlaneGeometry(.95, .85), new TH.MeshBasicMaterial({ color: '#ffcf6a' })); w.userData.glow = 1; w.position.set(4.6 + x, y, -1.98); S.add(w); wins.push(w); });
+    // deux arbres + hamac
+    const tree = (x) => { const g = new TH.Group(); const tr = new TH.Mesh(new TH.CylinderGeometry(.18, .3, 4.2, 8), mat('#000')); tr.position.y = 2.1; g.add(tr);
+      for (let k = 0; k < 5; k++) { const b = new TH.Mesh(new TH.SphereGeometry(.75 + hash(x + k) * .35, 12, 10), mat('#000')); b.position.set((hash(k + x * 3) - .5) * 1.6, 4.5 + hash(k + 9) * .9, 0); g.add(b); } g.position.set(x, 0, -1); W.add(g); };
+    tree(-4.3); tree(.1);
+    const ham = new TH.Mesh(new TH.TorusGeometry(2.3, .09, 6, 24, Math.PI), mat('#000')); ham.rotation.z = Math.PI; ham.position.set(-2.1, 2.9, -1); ham.scale.y = .35; W.add(ham);
+    const cat = blob({ kind: 'cat', color: '#000' }); W.add(cat.g);
+    const phone = new TH.Mesh(new TH.PlaneGeometry(.32, .5), new TH.MeshBasicMaterial({ color: '#9fe7ff' })); phone.userData.glow = 1; S.add(phone);
+    const dog = blob({ kind: 'dog', color: '#000', s: .45 }); dog.g.position.set(4.6 + 1.2, .9, -1.9); W.add(dog.g);
+    silhouette(W); silhouette(cat.g);
+    CAM.position.set(0, 3.2, 13); CAM.lookAt(0, 3.4, -2);
+    const C1 = [new TH.Color('#3a1a6a'), new TH.Color('#ff7a3c')], C2 = [new TH.Color('#0a0b2a'), new TH.Color('#5a42a8')], C3 = [new TH.Color('#2b3a8a'), new TH.Color('#ffb37a')];
+    const SH = [[0, 3.3, { p: [0, 1.1, 15], l: [-.6, 3.0, -2] }, { p: [-.8, 1.0, 12.5], l: [-1.2, 2.9, -2] }, 40],
+      [3.3, 6.6, { p: [-2.0, 1.0, 8.5], l: [-1.6, 2.4, -1] }, { p: [-1.6, .9, 7.6], l: [-1.4, 2.2, -1] }, 40],
+      [6.6, 9.0, { p: [0, 1.1, 15], l: [0, 3, -2] }, { p: [0, 1.1, 15], l: [0, 3, -2] }, 40],
+      [9.0, 13.2, { p: [.4, 1.2, 16.5], l: [0, 3.1, -2] }, { p: [-.6, 1.0, 13], l: [-1.0, 3.0, -2] }, 40]];
+    [3.4, 3.8, 4.2].forEach(a => window.__ev(a, 'ping'));
+    return function (t) { shots(SH, t);
+      const night = ln(t, 1.8, 3.4), dawn = ln(t, 9.0, 10.6);
+      const top = C1[0].clone().lerp(C2[0], night).lerp(C3[0], dawn), bot = C1[1].clone().lerp(C2[1], night).lerp(C3[1], dawn);
+      skyU.top.value.copy(top); skyU.bot.value.copy(bot);
+      sun.position.y = 4.5 - night * 9 + dawn * 7.5; sun.material.color.set(dawn > 0 ? '#ffe2a0' : '#ffd27a'); moon.visible = night > .3 && dawn < .6;
+      stars.forEach((st, i) => { st.material.opacity = night * (1 - dawn) * (.5 + .5 * Math.sin(t * 3 + i)); });
+      wins.forEach((w, i) => { w.visible = t > 2.2 + i * .15 && t < 10.2; });
+      // chat : dans le hamac (balance) -> saute en bas avec le téléphone -> retour au hamac
+      const out = t > 3.3 && t < 9.0;
+      if (!out) { const sw = Math.sin(t * 1.4) * .12; cat.g.position.set(-2.1 + sw, 2.0, -1); cat.g.rotation.set(0, 0, -1.25 + sw * .3); pose(cat, t, t > 11 ? 'happy' : 'idle', 0); }
+      else { const j = eo3(ln(t, 3.3, 3.8)); cat.g.position.set(-2.1 + j * .4, 2.0 * (1 - j) + Math.sin(j * Math.PI) * 1.0, -1 + j * 2.5); cat.g.rotation.set(0, 0, -1.25 * (1 - j)); pose(cat, t, 'shock', 0); }
+      const hand = new TH.Vector3(); cat.arms[1].children[0].getWorldPosition(hand); phone.position.copy(hand); phone.position.z += .25; phone.position.y += .1;
+      phone.visible = t > 2.6 && t < 9.0; phone.material.color.set(Math.floor(t * 8) % 2 && t < 6.6 ? '#ffffff' : '#9fe7ff'); phone.rotation.z = t < 6.6 ? Math.sin(t * 40) * .15 : 0;
+      dog.g.visible = t > 3.0 && t < 10.2; pose(dog, t, 'happy', 2);
+    };
+  };
+
   // ---------- installation ----------
   window.initWorld = function (cfg) {
     LOOK = cfg.look || 'clay';
@@ -336,8 +522,8 @@
     const stage = document.getElementById('stage'); stage.insertBefore(cv, stage.firstChild);
     R = new TH.WebGLRenderer({ canvas: cv, antialias: !pix, preserveDrawingBuffer: true });
     R.setPixelRatio(1); R.setSize(pix ? 216 : 1080, pix ? 384 : 1920, false);
-    R.shadowMap.enabled = LOOK !== 'stick'; R.shadowMap.type = LOOK === 'clay' ? TH.PCFSoftShadowMap : TH.BasicShadowMap;
-    R.toneMapping = TH.ACESFilmicToneMapping; R.toneMappingExposure = LOOK === 'clay' ? 1.05 : 1.15; R.outputColorSpace = TH.SRGBColorSpace;
+    R.shadowMap.enabled = LOOK !== 'stick' && LOOK !== 'blueprint' && LOOK !== 'silhouette'; R.shadowMap.type = LOOK === 'clay' || LOOK === 'film' || LOOK === 'paper' ? TH.PCFSoftShadowMap : TH.BasicShadowMap;
+    R.toneMapping = TH.ACESFilmicToneMapping; R.toneMappingExposure = LOOK === 'clay' ? 1.05 : LOOK === 'film' ? 1.1 : 1.15; R.outputColorSpace = TH.SRGBColorSpace;
     S = new TH.Scene(); CAM = new TH.PerspectiveCamera(38, 1080 / 1920, .1, 100);
     window.__ev = (t, type) => ev(t, type);
     W = WORLDS[cfg.world](cfg);
