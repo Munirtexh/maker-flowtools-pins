@@ -427,6 +427,64 @@
     };
   };
 
+  // Série stickman, Ép. 5 : « je vais juste ouvrir le frigo » à minuit -> huit snacks sortent et s'empilent. Aucun produit.
+  WORLDS.fridge = function (cfg) {
+    S.background = new TH.Color('#000000');
+    const wm = new TH.MeshBasicMaterial({ color: '#ffffff' }), box = (w, h, x, y, p) => { const b = new TH.Mesh(new TH.BoxGeometry(w, h, .06), wm); b.position.set(x, y, 0); (p || S).add(b); return b; };
+    box(9, .05, 0, 0);
+    const fx = 1.9; box(.08, 3.8, fx - .9, 1.9); box(.08, 3.8, fx + .9, 1.9); box(1.88, .08, fx, 3.8); box(1.88, .08, fx, .04); box(1.8, .05, fx, 2.6);
+    const light = new TH.Mesh(new TH.PlaneGeometry(1.7, 3.6), new TH.MeshBasicMaterial({ color: '#ffe9a0', transparent: true, opacity: .0 })); light.position.set(fx, 1.9, -.03); S.add(light);
+    const door = new TH.Group(); door.position.set(fx - .9, 0, .05); S.add(door); box(1.8, 3.8, .9, 1.9, door).material = new TH.MeshBasicMaterial({ color: '#1b1b22' }); box(.08, .9, 1.6, 2.9, door); box(.08, .9, 1.6, 1.4, door);
+    const SN = ['🍕', '🧀', '🍗', '🍰', '🥛', '🍫', '🍦', '🍔'], T0 = 2.4, DT = 1.0;
+    const snacks = SN.map(e => { const sp_ = textSprite(e, '#fff'); sp_.scale.setScalar(.95); sp_.visible = false; S.add(sp_); return sp_; });
+    const H = cfg.clock || [['0:00', 0], ['0:04', 2.4], ['0:11', 3.4], ['0:19', 4.4], ['0:26', 5.4], ['0:33', 6.4], ['0:41', 7.4], ['0:48', 8.4], ['0:55', 9.4], ['1:00', 10.4]];
+    const clocks = H.map(([txt]) => { const c = textSprite(txt, '#ffffff'); c.scale.setScalar(1.9); c.position.set(-.5, 4.5, .1); S.add(c); return c; });
+    const P = stick('#ffffff'); P.g.position.set(-1.6, 0, 0); S.add(P.g);
+    SN.forEach((_, i) => window.__ev(T0 + i * DT, 'ping')); window.__ev(10.4, 'alert'); window.__ev(10.45, 'impact'); window.__ev(13, 'pop');
+    const pile = i => [-.9 - (i % 4) * .38, .45 + Math.floor(i / 4) * .8];
+    return function (t) {
+      CAM.position.set(0, 2.55, 15.5 - t * .1); CAM.lookAt(.3, 2.35, 0); if (CAM.fov !== 40) { CAM.fov = 40; CAM.updateProjectionMatrix(); }
+      const open = t < 1.6 ? 0 : eo3(ln(t, 1.6, 2.3)); door.rotation.y = -1.45 * open; light.material.opacity = .18 * open;
+      let ci = 0; H.forEach(([, at], i) => { if (t >= at) ci = i; }); clocks.forEach((c, i) => { c.visible = i === ci; c.material.color.set(i === H.length - 1 ? '#ff5d73' : '#ffffff'); const d = t - H[i][1]; c.scale.setScalar(1.9 * (i === ci && d < .25 ? .7 + d / .25 * .3 : 1)); });
+      snacks.forEach((sn, i) => { const a = T0 + i * DT, k = ln(t, a, a + .7); sn.visible = t >= a; const [px, py] = pile(i); const shake = t > 10.4 && t < 11.2 ? Math.sin(t * 60) * .06 : 0;
+        sn.position.set(fx - .4 + (px - (fx - .4)) * eo3(k) + shake, 2.4 + (py - 2.4) * eo3(k) + Math.sin(Math.PI * k) * 1.3, .2); });
+      const reach = t < 1.6 ? 0 : 1, over = t > 10.4;
+      walk(P, 0, 0, 0); P.g.position.x = -1.3 + Math.min(1, ln(t, 0, 1.6)) * .8;
+      if (!over) { P.arm[1][0].rotation.z = Math.PI - 1.3 * reach + Math.sin(t * 6) * .05 * reach; P.arm[1][1].rotation.z = -.3 * reach; }
+      else { const j = ln(t, 10.4, 10.75); P.g.position.y = Math.sin(Math.PI * cl((t - 10.4) / .55)) * .8;
+        P.arm.forEach(([u, l], i) => { u.rotation.z = Math.PI + (i ? 2.5 : -2.5) * (t < 12.0 ? 1 : 1 - ln(t, 12, 12.4)); l.rotation.z = 0; }); }
+    };
+  };
+
+  // Série stickman, Ép. 6 : « je regarde juste » en ligne -> 8 objets dans le panier, le total monte. Aucun produit.
+  WORLDS.cart = function (cfg) {
+    S.background = new TH.Color('#000000');
+    const wm = new TH.MeshBasicMaterial({ color: '#ffffff' }), box = (w, h, x, y) => { const b = new TH.Mesh(new TH.BoxGeometry(w, h, .06), wm); b.position.set(x, y, 0); S.add(b); return b; };
+    box(9, .05, 0, 0); box(3.0, .1, .6, 1.2); box(.1, 1.2, -.8, .6); box(.1, 1.2, 2.0, .6); // bureau
+    box(1.7, .06, .9, 1.3); const lx = .9; box(.06, 1.8, lx - .85, 2.2); box(.06, 1.8, lx + .85, 2.2); box(1.7, .06, lx, 3.1); box(1.7, .06, lx, 1.3); // ordi
+    const scr = new TH.Mesh(new TH.PlaneGeometry(1.64, 1.74), new TH.MeshBasicMaterial({ color: '#3a6bff' })); scr.position.set(lx, 2.2, -.02); S.add(scr);
+    const IT = ['👟', '🎧', '🧴', '📱', '🎮', '👜', '⌚', '🪴'], T0 = 2.4, DT = 1.0;
+    const items = IT.map(e => { const sp_ = textSprite(e, '#fff'); sp_.scale.setScalar(.8); sp_.visible = false; S.add(sp_); return sp_; });
+    const cart = textSprite('🛒', '#fff'); cart.scale.setScalar(1.7); cart.position.set(2.3, 3.5, .1); S.add(cart);
+    const TOT = cfg.totals || ['$0', '$14', '$37', '$89', '$156', '$248', '$412', '$689', '$1 240'];
+    const tots = TOT.map((x, i) => { const c = textSprite(x, i === TOT.length - 1 ? '#ff5d73' : '#ffffff'); c.scale.setScalar(1.9); c.position.set(-.5, 4.6, .1); S.add(c); return c; });
+    const card = textSprite('💳', '#fff'); card.scale.setScalar(1.3); card.position.set(lx, 2.2, .1); S.add(card);
+    const P = stick('#ffffff'); P.g.position.set(-1.1, 0, 0); S.add(P.g);
+    IT.forEach((_, i) => window.__ev(T0 + i * DT, 'ping')); window.__ev(10.4, 'alert'); window.__ev(10.45, 'impact'); window.__ev(13, 'pop');
+    return function (t) {
+      const shk = t > 10.4 && t < 11.0 ? (1 - (t - 10.4) / .6) * .18 : 0;
+      CAM.position.set(Math.sin(t * 70) * shk + .3, 2.55, 15.5 - t * .1); CAM.lookAt(.3, 2.35, 0); if (CAM.fov !== 40) { CAM.fov = 40; CAM.updateProjectionMatrix(); }
+      let n = 0; IT.forEach((_, i) => { if (t >= T0 + i * DT + .55) n = i + 1; }); tots.forEach((c, i) => { c.visible = i === (t >= 10.4 ? TOT.length - 1 : n); });
+      scr.material.color.set(['#3a6bff', '#ff5d73', '#2ee6a6', '#b18cff', '#ffc23d', '#5cc8ff'][n % 6]);
+      cart.scale.setScalar(1.7 + (n ? .25 * Math.max(0, 1 - ((t - (T0 + (n - 1) * DT + .55)) * 5)) : 0));
+      items.forEach((it, i) => { const a = T0 + i * DT, k = ln(t, a, a + .55); it.visible = t >= a && k < 1; it.position.set(lx + (2.3 - lx) * eo3(k), 2.2 + 1.3 * eo3(k) + Math.sin(Math.PI * k) * 1.0, .2); });
+      card.visible = t > 10.4 && t < 12.6; card.position.x = lx + Math.sin(t * 50) * .05;
+      walk(P, 0, 0, 0);
+      if (t < 10.4) { P.arm[1][0].rotation.z = Math.PI - 1.2 + Math.sin(t * 9) * .1; P.arm[1][1].rotation.z = -.4; }
+      else { P.g.position.y = Math.sin(Math.PI * cl((t - 10.4) / .55)) * .8; P.arm.forEach(([u, l], i) => { u.rotation.z = Math.PI + (i ? 2.5 : -2.5) * (t < 12 ? 1 : 1 - ln(t, 12, 12.4)); l.rotation.z = 0; }); }
+    };
+  };
+
   // ---------- papier découpé (formes plates extrudées, couches avec ombres) ----------
   function flat(shape, depth, color) { const g = new TH.ExtrudeGeometry(shape, { depth: depth || .1, bevelEnabled: true, bevelThickness: .015, bevelSize: .015, bevelSegments: 1, curveSegments: 24 }); const m = new TH.Mesh(g, mat(color)); m.castShadow = m.receiveShadow = true; return m; }
   const circ = r => { const s_ = new TH.Shape(); s_.absarc(0, 0, r, 0, Math.PI * 2, false); return s_; };

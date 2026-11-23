@@ -78,7 +78,7 @@ for k, (base, upd, cap, slot) in PURE.items():
 def _ep(clock, chips, bubbles, meme, mhl, music, seed, lang, num, **kw):
     d = dict(ep='Stickman · %s' % num, engine='story.html', world='binge', look='stick', theme='habit', lang=lang, dur=15, music=music, seed=seed,
       coverAt=10.6, endAt=15, cinema=False, previewTimes=PT, accent='#000000', a1='#ffd23d', a2='#5cc8ff', meme=meme, mhl=mhl, memeFs=66,
-      clock=clock, chips=chips, bubbles=bubbles, memeSub=None, scenes=[dict(t0=0, t1=15, set='none')]); d.update(kw); return d
+      clock=clock, chips=chips, bubbles=bubbles, memeSub=None, scenes=[dict(t0=0, t1=15, set='none')]); d.update(kw); d = {a: v for a, v in d.items() if v is not None}; return d
 _at = [0, 2.6, 3.9, 5.1, 6.3, 7.5, 8.7, 9.6, 10.4]
 _hr = [[0.3, 2.6, None], [2.6, 3.9, None], [3.9, 5.1, None], [5.1, 6.3, None], [6.3, 7.5, None], [7.5, 8.7, None], [8.7, 10.4, None]]
 R['V8_stickman_scroll_FR'] = _ep([['21:00', 0], ['21:02', 2.6], ['21:47', 3.9], ['22:31', 5.1], ['23:14', 6.3], ['0:03', 7.5], ['0:58', 8.7], ['1:44', 9.6], ['2:00', 10.4]],
@@ -94,6 +94,16 @@ R['V9_stickman_level_EN'] = _ep([['8:00 PM', 0], ['8:20 PM', 2.6], ['9:05 PM', 3
   'Me: “just ONE more level” 🎮', [5, 6], 'gm:chip', 909, 'en', 'Ep. 4', nextTxt='NEXT ▶', alarmEmoji='🎮', noDawn=True)
 PLACE['V8_stickman_scroll_FR'] = None; PLACE['V9_stickman_level_EN'] = None
 CAP['V9_stickman_level_EN'] = "Me: “just ONE more level” 🎮\nEpisode 4 of his bad habits 😂 What time did you actually stop last night? 👇\nTag the gamer who says “last one” every night 🕹️\n#stickman #stickmananimation #gaming #relatable #funnyanimation #animation"
+
+R['V10_stickman_frigo_FR'] = _ep(None, [[0.3, 2.4, 'MINUIT 🌙', 120, 1500, '#ffffff'], [2.4, 4.4, '🍕 + 🧀', 130, 1500, '#ffffff'], [4.4, 6.4, '+ 🍗 + 🍰', 130, 1500, '#ffc23d'], [6.4, 8.4, '+ 🥛 + 🍫', 130, 1500, '#ff9f43'], [8.4, 10.4, '+ 🍦 + 🍔', 130, 1500, '#ff5d73'], [10.4, 13.0, 'ET LE DÉJEUNER ?! 😱', 110, 1500, '#ff5d73'], [13.0, 15, 'Lundi : je commence mon régime ❌', 82, 1500, '#ff5d73']],
+  [[0.5, 2.2, 'Juste de l’eau 😇', 120, 960, 44], [10.6, 12.2, 'MOI ?!', 200, 1050, 54], [13.2, 15, '…juste un petit 😌', 90, 960, 44]],
+  'Moi à minuit : « j’ouvre juste le frigo » 🧊', [4, 5, 6], 'gm:swing', 1010, 'fr', 'Ép. 5', world='fridge')
+CAP['V10_stickman_frigo_FR'] = "Moi à minuit : « j’ouvre juste le frigo » 🧊\nÉpisode 5 de ses mauvaises habitudes 😂 Tu as sorti quoi, toi, cette nuit ? 👇\nIdentifie la personne qui « goûte juste » 🍕\n#stickman #animation #minuit #relatable #humour #frigo"
+R['V11_stickman_cart_EN'] = _ep(None, [[0.3, 2.4, 'JUST BROWSING 👀', 110, 1500, '#ffffff'], [2.4, 4.4, 'ADDED TO CART 🛒', 110, 1500, '#ffffff'], [4.4, 6.4, 'ADDED TO CART 🛒', 110, 1500, '#ffc23d'], [6.4, 8.4, 'ADDED TO CART 🛒', 110, 1500, '#ff9f43'], [8.4, 10.4, 'ADDED TO CART 🛒', 110, 1500, '#ff5d73'], [10.4, 13.0, 'CHECKOUT?! 😱', 130, 1500, '#ff5d73'], [13.0, 15, 'Tomorrow: I only look ❌', 86, 1500, '#ff5d73']],
+  [[0.5, 2.2, 'Just looking 😇', 120, 960, 44], [10.6, 12.2, 'WHO DID THIS?!', 200, 1050, 54], [13.2, 15, '…it was on sale 😌', 90, 960, 44]],
+  'Me: “I’m just browsing” 🛒', [3, 4], 'gm:pizz', 1111, 'en', 'Ep. 6', world='cart')
+CAP['V11_stickman_cart_EN'] = "Me: “I’m just browsing” 🛒\nEpisode 6 of his bad habits 😂 How much was your last “just looking” session? 👇\nTag the friend with 47 tabs open 🛍️\n#stickman #stickmananimation #onlineshopping #relatable #funnyanimation #animation"
+PLACE['V10_stickman_frigo_FR'] = None; PLACE['V11_stickman_cart_EN'] = None
 for k in R:
     if R[k].get('dur') == 30: R[k]['previewTimes'] = PT30; R[k]['coverAt'] = 8.0
 
