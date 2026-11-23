@@ -349,10 +349,10 @@
     const moon = textSprite('🌙', '#fff'); moon.scale.setScalar(.7); moon.position.set(wx + .35, wy + .3, .1); S.add(moon);
     const sun = textSprite('☀️', '#fff'); sun.scale.setScalar(.9); sun.position.set(wx - .3, wy + .25, .1); S.add(sun);
     // horloge : une étiquette par heure
-    const H = [['11:00 PM', 0], ['12:14 AM', 2.6], ['1:38 AM', 3.9], ['2:51 AM', 5.1], ['4:09 AM', 6.3], ['5:27 AM', 7.5], ['6:42 AM', 8.7], ['6:59 AM', 9.6], ['7:00 AM', 10.4]];
-    const clocks = H.map(([txt]) => { const c = textSprite(txt, txt === '7:00 AM' ? '#ff5d73' : '#ffffff'); c.scale.setScalar(1.9); c.position.set(1.55, 4.45, .1); S.add(c); return c; });
-    const alarm = textSprite('⏰', '#fff'); alarm.scale.setScalar(1.0); alarm.position.set(1.55, 3.55, .1); S.add(alarm);
-    const nextEp = textSprite('NEXT ▶', '#ffffff'); nextEp.scale.setScalar(1.0); nextEp.position.set(tvx, 2.0, .05); S.add(nextEp);
+    const H = cfg.clock || [['11:00 PM', 0], ['12:14 AM', 2.6], ['1:38 AM', 3.9], ['2:51 AM', 5.1], ['4:09 AM', 6.3], ['5:27 AM', 7.5], ['6:42 AM', 8.7], ['6:59 AM', 9.6], ['7:00 AM', 10.4]];
+    const clocks = H.map(([txt]) => { const c = textSprite(txt, txt === H[H.length - 1][0] ? '#ff5d73' : '#ffffff'); c.scale.setScalar(1.9); c.position.set(1.55, 4.45, .1); S.add(c); return c; });
+    const alarm = textSprite(cfg.alarmEmoji || '⏰', '#fff'); alarm.scale.setScalar(1.0); alarm.position.set(1.55, 3.55, .1); S.add(alarm);
+    const nextEp = textSprite(cfg.nextTxt || 'NEXT ▶', '#ffffff'); nextEp.scale.setScalar(1.0); nextEp.position.set(tvx, 2.0, .05); S.add(nextEp);
     const remote = new TH.Mesh(new TH.BoxGeometry(.12, .3, .06), new TH.MeshBasicMaterial({ color: '#ffd23d' }));
     const P = stick('#ffffff'); P.g.position.set(-1.35, 0, 0); S.add(P.g); P.arm[1][1].add(remote); remote.position.set(0, -.62, 0);
     const zz = textSprite('z', '#ffffff'); S.add(zz);
@@ -368,7 +368,7 @@
       CAM.position.set(Math.sin(t * 70) * shk + .1, 2.55, 15.5 - t * .12); CAM.lookAt(.1, 2.35, 0); if (CAM.fov !== 40) { CAM.fov = 40; CAM.updateProjectionMatrix(); }
       let ci = 0; H.forEach(([, at], i) => { if (t >= at) ci = i; }); clocks.forEach((c, i) => { c.visible = i === ci; const d = t - H[i][1]; c.scale.setScalar(1.9 * (i === ci ? (d < .25 ? .7 + d / .25 * .3 + Math.sin(d * 25) * .05 : 1) : 1)); });
       // ciel
-      const dawn = ln(t, 7.4, 10.0); const col = new TH.Color('#0a0b2a').lerp(new TH.Color('#ff9a5c'), cl(dawn * 1.4)).lerp(new TH.Color('#9fd8ff'), cl(dawn * 2 - 1)); sky.material.color.copy(col);
+      const dawn = cfg.noDawn ? 0 : ln(t, 7.4, 10.0); const col = new TH.Color('#0a0b2a').lerp(new TH.Color('#ff9a5c'), cl(dawn * 1.4)).lerp(new TH.Color('#9fd8ff'), cl(dawn * 2 - 1)); sky.material.color.copy(col);
       moon.visible = dawn < .5; sun.visible = dawn > .45; sun.position.y = wy - .5 + dawn * .75;
       // télé qui change de couleur à chaque épisode
       const ep = Math.max(0, ci); scr.material.color.set(TV[ep % TV.length]); glow.material.color.set(TV[ep % TV.length]); glow.visible = false;

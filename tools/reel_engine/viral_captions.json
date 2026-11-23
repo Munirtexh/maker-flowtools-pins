@@ -24,7 +24,7 @@
   "slot": "d28B"
  },
  "V7_stickman_snooze_FR": {
-  "caption": "Moi hier soir : « demain, gym à 6 h » 💪\\nÉpisode 2 de ses mauvaises habitudes 😂 Tu as appuyé combien de fois sur snooze ce matin ? 👇\\nIdentifie ton/ta partenaire de gym 🏋️\\n#stickman #animation #snooze #gym #relatable #humour",
+  "caption": "Moi hier soir : « demain, gym à 6 h » 💪\nÉpisode 2 de ses mauvaises habitudes 😂 Tu as appuyé combien de fois sur snooze ce matin ? 👇\nIdentifie ton/ta partenaire de gym 🏋️\n#stickman #animation #snooze #gym #relatable #humour",
   "slot": "d25C"
  },
  "A1_anneaux_pur": {
@@ -42,5 +42,13 @@
  "A4_guerre_pur": {
   "caption": "🩷 contre 🩵 : choisis ton camp avant la fin 👇\nCommente ta couleur !\n#satisfying #simulation #pongwars #oddlysatisfying #asmr",
   "slot": "d29C"
+ },
+ "V8_stickman_scroll_FR": {
+  "caption": "Moi : « je regarde mes notifs 2 minutes » 📱\nÉpisode 3 de ses mauvaises habitudes 😂 À quelle heure tu as enfin posé ton téléphone hier ? 👇\nIdentifie la personne qui scrolle jusqu'à 2 h 😴\n#stickman #animation #scroll #relatable #humour #etudiant",
+  "slot": null
+ },
+ "V9_stickman_level_EN": {
+  "caption": "Me: “just ONE more level” 🎮\nEpisode 4 of his bad habits 😂 What time did you actually stop last night? 👇\nTag the gamer who says “last one” every night 🕹️\n#stickman #stickmananimation #gaming #relatable #funnyanimation #animation",
+  "slot": null
  }
 }

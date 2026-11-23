@@ -73,6 +73,27 @@ PURE = {
 }
 for k, (base, upd, cap, slot) in PURE.items():
     r = copy.deepcopy(R[base]); r.update(upd); r = {a: b for a, b in r.items() if b is not None}; R[k] = r; CAP[k] = cap; PLACE[k] = slot
+
+# ---- Série stickman (23 nov. 2026) : Ép. 3 FR (scroll) et Ép. 4 EN (« one more level ») ; décor du canapé de l'Ép. 1 (world3d.js binge paramétré), aucun produit ----
+def _ep(clock, chips, bubbles, meme, mhl, music, seed, lang, num, **kw):
+    d = dict(ep='Stickman · %s' % num, engine='story.html', world='binge', look='stick', theme='habit', lang=lang, dur=15, music=music, seed=seed,
+      coverAt=10.6, endAt=15, cinema=False, previewTimes=PT, accent='#000000', a1='#ffd23d', a2='#5cc8ff', meme=meme, mhl=mhl, memeFs=66,
+      clock=clock, chips=chips, bubbles=bubbles, memeSub=None, scenes=[dict(t0=0, t1=15, set='none')]); d.update(kw); return d
+_at = [0, 2.6, 3.9, 5.1, 6.3, 7.5, 8.7, 9.6, 10.4]
+_hr = [[0.3, 2.6, None], [2.6, 3.9, None], [3.9, 5.1, None], [5.1, 6.3, None], [6.3, 7.5, None], [7.5, 8.7, None], [8.7, 10.4, None]]
+R['V8_stickman_scroll_FR'] = _ep([['21:00', 0], ['21:02', 2.6], ['21:47', 3.9], ['22:31', 5.1], ['23:14', 6.3], ['0:03', 7.5], ['0:58', 8.7], ['1:44', 9.6], ['2:00', 10.4]],
+  [[0.3, 2.6, 'ÉCRAN 📱 2 min', 110, 1500, '#ffffff'], [2.6, 3.9, 'Encore 1 vidéo', 120, 1500, '#ffffff'], [3.9, 5.1, 'Encore 1 vidéo', 120, 1500, '#ffffff'], [5.1, 6.3, 'Encore 1 vidéo', 120, 1500, '#ffc23d'],
+   [6.3, 7.5, 'Encore 1 vidéo', 120, 1500, '#ffc23d'], [7.5, 8.7, 'Encore 1 vidéo', 120, 1500, '#ff9f43'], [8.7, 10.4, 'Encore 1 vidéo 😵', 120, 1500, '#ff5d73'], [10.4, 13.0, 'DEVOIRS ?! 😱', 150, 1500, '#ff5d73'], [13.0, 15, 'Demain : je commence plus tôt ❌', 82, 1500, '#ff5d73']],
+  [[0.6, 2.4, '2 min 😌', 120, 960, 44], [10.6, 12.0, 'LES DEVOIRS ?!', 200, 1050, 54], [13.2, 15, '…juste une 😌', 90, 960, 44]],
+  'Moi : « je regarde mes notifs 2 minutes » 📱', [4, 5, 6], 'gm:marimba', 808, 'fr', 'Ép. 3', nextTxt='ENCORE ▶', alarmEmoji='📚', noDawn=True)
+CAP['V8_stickman_scroll_FR'] = "Moi : « je regarde mes notifs 2 minutes » 📱\nÉpisode 3 de ses mauvaises habitudes 😂 À quelle heure tu as enfin posé ton téléphone hier ? 👇\nIdentifie la personne qui scrolle jusqu'à 2 h 😴\n#stickman #animation #scroll #relatable #humour #etudiant"
+R['V9_stickman_level_EN'] = _ep([['8:00 PM', 0], ['8:20 PM', 2.6], ['9:05 PM', 3.9], ['10:12 PM', 5.1], ['11:30 PM', 6.3], ['12:41 AM', 7.5], ['1:58 AM', 8.7], ['3:10 AM', 9.6], ['3:11 AM', 10.4]],
+  [[0.3, 2.6, 'LEVEL 1', 140, 1500, '#ffffff'], [2.6, 3.9, 'LEVEL 2', 140, 1500, '#ffffff'], [3.9, 5.1, 'LEVEL 3', 140, 1500, '#ffffff'], [5.1, 6.3, 'LEVEL 4', 140, 1500, '#ffc23d'],
+   [6.3, 7.5, 'LEVEL 5', 140, 1500, '#ffc23d'], [7.5, 8.7, 'LEVEL 6', 140, 1500, '#ff9f43'], [8.7, 10.4, 'LEVEL 7 😵', 140, 1500, '#ff5d73'], [10.4, 13.0, 'GAME OVER 💀', 150, 1500, '#ff5d73'], [13.0, 15, 'Tomorrow: bed by 11 PM ❌', 86, 1500, '#ff5d73']],
+  [[0.6, 2.4, 'One more 😎', 120, 960, 44], [10.6, 12.0, 'IT’S 3 AM?!', 200, 1050, 54], [13.2, 15, '…ok ONE more 😎', 90, 960, 44]],
+  'Me: “just ONE more level” 🎮', [5, 6], 'gm:chip', 909, 'en', 'Ep. 4', nextTxt='NEXT ▶', alarmEmoji='🎮', noDawn=True)
+PLACE['V8_stickman_scroll_FR'] = None; PLACE['V9_stickman_level_EN'] = None
+CAP['V9_stickman_level_EN'] = "Me: “just ONE more level” 🎮\nEpisode 4 of his bad habits 😂 What time did you actually stop last night? 👇\nTag the gamer who says “last one” every night 🕹️\n#stickman #stickmananimation #gaming #relatable #funnyanimation #animation"
 for k in R:
     if R[k].get('dur') == 30: R[k]['previewTimes'] = PT30; R[k]['coverAt'] = 8.0
 
