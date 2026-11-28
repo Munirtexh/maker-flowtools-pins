@@ -1,0 +1,178 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Moteur « comparaison 3 colonnes » (28 nov. 2026, demande de Yaacoub : format viral Motivation/Discipline/Obsession, version ORIGINALE).
+     3 stickmen lumineux dans 3 portes sous projecteur, compteur « JOUR n » qui monte jusqu'à 365, scores qui divergent, verdict final.
+     Même API : init(cfg) -> {dur, events}, render(t). Déterministe. cfg : lang, dur, cols[{title,emoji,color,bubbles,score}], hook, days, endTxt, caps. -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07081a}
+canvas{position:absolute;inset:0}
+</style></head>
+<body><canvas id="cv" width="1080" height="1920"></canvas>
+<script>
+const W = 1080, H = 1920, FPS = 30;
+const cv = document.getElementById('cv'), X = cv.getContext('2d');
+const FONT = "'Inter Display','Inter','Noto Sans','DejaVu Sans',sans-serif", EMO = "'Noto Color Emoji'";
+let C, EV = [], DUR = 20;
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => 1 - Math.pow(1 - cl(x), 3);
+const back = x => { x = cl(x); const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+function rng(seed) { let s = seed >>> 0 || 1; return () => { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
+const CXS = [185, 540, 895], DOORW = 290, DOORT = 830, FLOOR = 1390, T_POP = [0.9, 1.3, 1.7];
+const L = { fr: { day: 'JOUR', later: 'UN AN PLUS TARD', fg: '' }, en: { day: 'DAY', later: '1 YEAR LATER' } };
+
+function init(cfg) {
+  C = cfg; DUR = cfg.dur || 20; EV = [];
+  { const r = rng(21); C._pn = Array.from({ length: 46 }, () => ({ x: r() * 220 - 110, y: r() * 470, rot: (r() - .5) * .8, l: [r() * 12, r() * 12, r() * 12] }));
+    const r2 = rng(5); C._fin = Array.from({ length: 10 }, () => ({ x: r2() * 160 - 80, y: r2() * 330, rot: (r2() - .5) * .7 }));
+    const r3 = rng(7); C._ch = Array.from({ length: 14 }, (_, k) => ({ t0: 1.8 + k * .95 + r3() * .3, dx: r3() * 130 - 65 })); }
+  EV.push({ t: .1, type: 'whoosh' });
+  T_POP.forEach(t => EV.push({ t, type: 'pop' }));
+  for (let i = 0; i < 6; i++) EV.push({ t: 2.2 + i * 2.1, type: 'tick' });
+  EV.push({ t: 15.0, type: 'impact' });
+  EV.push({ t: 15.4, type: 'ding' }); EV.push({ t: 16.0, type: 'stamp' });
+  return { dur: DUR, events: EV };
+}
+
+function rr(x, y, w, h, r) { X.beginPath(); X.roundRect(x, y, w, h, r); }
+function txt(s, x, y, size, color, o = {}) {
+  X.save(); X.font = `${o.w || 900} ${size}px ${FONT}, ${EMO}`; X.textAlign = o.align || 'center'; X.textBaseline = 'middle';
+  if (o.glow) { X.shadowColor = o.glow; X.shadowBlur = o.gb || 30; }
+  if (o.stroke !== false) { X.lineWidth = o.sw || size * .09; X.strokeStyle = '#000'; X.lineJoin = 'round'; X.strokeText(s, x, y); }
+  X.fillStyle = color; X.fillText(s, x, y); X.restore();
+}
+function fit(s, x, y, size, color, maxW, o = {}) { X.save(); X.font = `900 ${size}px ${FONT}, ${EMO}`; const w = X.measureText(s).width; X.restore(); txt(s, x, y, Math.min(size, size * maxW / w), color, o); }
+
+// ----- stickman : p = {x,y(pieds), s, col, arms:[[ex,ey],[ex,ey]] (mains relatives), legs:[...], tilt, head:'neutral'|'worry'|'calm'|'dead', glow}
+function stick(p) {
+  const s = p.s || 1, col = p.col || '#fff', hy = p.y - 230 * s, nk = p.y - 190 * s, hip = p.y - 95 * s;
+  X.save(); X.translate(p.x, 0); X.lineCap = 'round'; X.lineJoin = 'round';
+  X.shadowColor = p.glow || col; X.shadowBlur = p.gb || 28; X.strokeStyle = col; X.lineWidth = 11 * s; X.fillStyle = '#10142e';
+  const tl = p.tilt || 0; X.translate(0, hip); X.rotate(tl); X.translate(0, -hip);
+  X.beginPath(); X.moveTo(0, nk); X.lineTo(0, hip); X.stroke();
+  const sh = p.y - 175 * s;
+  (p.arms || [[-50, 60], [50, 60]]).forEach(([ex, ey], i) => { X.beginPath(); X.moveTo(0, sh); X.quadraticCurveTo(ex * .6 * s + (i ? 14 : -14) * s, sh + ey * .35 * s, ex * s, sh + ey * s); X.stroke(); });
+  (p.legs || [[-34, 95], [34, 95]]).forEach(([ex, ey]) => { X.beginPath(); X.moveTo(0, hip); X.quadraticCurveTo(ex * .9 * s, hip + ey * .5 * s, ex * s, hip + ey * s); X.stroke(); });
+  X.beginPath(); X.arc(0, hy, 38 * s, 0, 6.283); X.fill(); X.stroke();
+  X.shadowBlur = 0; X.fillStyle = col; X.strokeStyle = col; X.lineWidth = 5 * s;
+  const h = p.head || 'neutral', ey = hy - 4 * s;
+  if (h === 'dead') { [-14, 14].forEach(dx => { X.beginPath(); X.moveTo(dx * s - 7 * s, ey - 7 * s); X.lineTo(dx * s + 7 * s, ey + 7 * s); X.moveTo(dx * s + 7 * s, ey - 7 * s); X.lineTo(dx * s - 7 * s, ey + 7 * s); X.stroke(); }); }
+  else if (h === 'calm') { [-14, 14].forEach(dx => { X.beginPath(); X.arc(dx * s, ey, 8 * s, .15 * 3.14, .85 * 3.14); X.stroke(); }); X.beginPath(); X.arc(0, hy + 10 * s, 13 * s, .15 * 3.14, .85 * 3.14); X.stroke(); }
+  else { [-14, 14].forEach(dx => { X.beginPath(); X.arc(dx * s, ey, 5 * s, 0, 6.283); X.fill(); }); X.beginPath(); if (h === 'worry') { X.moveTo(-12 * s, hy + 18 * s); X.quadraticCurveTo(0, hy + 8 * s, 12 * s, hy + 18 * s); } else { X.moveTo(-11 * s, hy + 14 * s); X.lineTo(11 * s, hy + 14 * s); } X.stroke(); }
+  X.restore();
+}
+
+function bubble(s, x, y, t0, t, size = 40, col = '#fff') {
+  const a = back((t - t0) / .35); if (t < t0 || a <= 0) return;
+  X.save(); X.translate(x, y); X.scale(a, a); X.font = `800 ${size}px ${FONT}, ${EMO}`; const w = X.measureText(s).width + 44;
+  X.fillStyle = '#f4f4ff'; rr(-w / 2, -size * .85, w, size * 1.7, size * .6); X.fill();
+  X.beginPath(); X.moveTo(-10, size * .8); X.lineTo(0, size * 1.25); X.lineTo(14, size * .8); X.fill();
+  X.fillStyle = '#12142a'; X.textAlign = 'center'; X.textBaseline = 'middle'; X.fillText(s, 0, 3); X.restore();
+}
+
+function door(cx, color, lit, t) {
+  const x = cx - DOORW / 2, h = FLOOR - DOORT;
+  // faisceau de projecteur
+  X.save(); const g = X.createLinearGradient(0, 360, 0, FLOOR); g.addColorStop(0, color + '00'); g.addColorStop(.55, color + (lit ? '55' : '28')); g.addColorStop(1, color + (lit ? '30' : '10'));
+  X.fillStyle = g; X.beginPath(); X.moveTo(cx - 60, 420); X.lineTo(cx + 60, 420); X.lineTo(cx + DOORW / 2 + 30, FLOOR); X.lineTo(cx - DOORW / 2 - 30, FLOOR); X.closePath(); X.fill(); X.restore();
+  X.save(); X.fillStyle = '#0c0f24'; X.strokeStyle = color + '99'; X.lineWidth = 6; X.shadowColor = color; X.shadowBlur = lit ? 36 : 10; rr(x, DOORT, DOORW, h, 8); X.fill(); X.stroke(); X.restore();
+}
+
+function render(t) {
+  const lang = C.lang || 'fr', p = cl(t / 15); // p = avancée dans l'année (0 -> 1 à 15 s)
+  X.clearRect(0, 0, W, H);
+  // fond : dégradé + rayures verticales (comme des rideaux)
+  let g = X.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0d1030'); g.addColorStop(.6, '#12123a'); g.addColorStop(1, '#07081a'); X.fillStyle = g; X.fillRect(0, 0, W, H);
+  X.fillStyle = 'rgba(255,255,255,.035)'; for (let i = 0; i < 12; i++) X.fillRect(i * 100 + (i % 3) * 9, 0, 2, 1500);
+  const shake = (t > 15 && t < 15.6) ? (Math.sin(t * 90) * 8 * (1 - (t - 15) / .6)) : 0; X.save(); X.translate(shake, 0);
+
+  // ---- hook (haut) ----
+  const ha = back((t - .1) / .5); X.save(); X.translate(W / 2, 175); X.scale(ha, ha);
+  const parts = C.hook; let y0 = -(parts.length - 1) * 48;
+  parts.forEach((ln, i) => { X.save(); X.font = `900 76px ${FONT}, ${EMO}`; X.restore(); txt(ln.t, 0, y0 + i * 96, ln.s || 78, ln.c || '#fff', { sw: 7 }); }); X.restore();
+
+  // ---- compteur JOUR n + horloge ----
+  const day = Math.max(1, Math.round(365 * (0.4 * cl((t - 1.5) / 13.5) + 0.6 * ease(cl((t - 1.5) / 13.5))))), dayShown = t < 1.5 ? 1 : (t >= 15 ? 365 : day);
+  const da = ease((t - .4) / .5); X.save(); X.globalAlpha = da;
+  txt(`${L[lang].day} ${dayShown}`, W / 2, 430, 150, '#fff', { glow: '#7aa2ff', gb: 40, sw: 10 });
+  txt(t >= 15 ? L[lang].later : (lang === 'fr' ? 'TOUT COMMENCE' : 'IT ALL STARTS'), W / 2, 535, 38, t >= 15 ? '#ffd23d' : '#8fa0d8', { w: 800, sw: 5 }); X.restore();
+  // horloge
+  X.save(); X.translate(965, 170); X.globalAlpha = da; X.fillStyle = '#e9ecff'; X.beginPath(); X.arc(0, 0, 50, 0, 6.283); X.fill(); X.strokeStyle = '#0a0c20'; X.lineWidth = 6; X.beginPath(); X.arc(0, 0, 50, 0, 6.283); X.stroke();
+  const ang = t * 7; X.lineCap = 'round'; X.lineWidth = 6; X.beginPath(); X.moveTo(0, 0); X.lineTo(Math.sin(ang) * 36, -Math.cos(ang) * 36); X.stroke(); X.lineWidth = 8; X.beginPath(); X.moveTo(0, 0); X.lineTo(Math.sin(ang / 12) * 24, -Math.cos(ang / 12) * 24); X.stroke(); X.restore();
+
+  // ---- 3 colonnes ----
+  C.cols.forEach((c, i) => {
+    const cx = CXS[i], ca = back((t - T_POP[i]) / .5); if (t < T_POP[i] - .05) return;
+    const lit = (i === 2 && t > 15), dim = (i === 0 && t > 15);
+    X.save(); X.translate(cx, 0); X.globalAlpha = cl(ca * 1.2); X.translate(-cx, 0);
+    door(cx, c.color, lit, t);
+    fit(c.title, cx, 640, 44, c.color, 300, {glow: c.color, gb: 22, sw: 6}); if (0) txt(c.title, cx, 640, 46, c.color, { glow: c.color, gb: 22, sw: 6 });
+    txt(c.emoji, cx, 700, 54, '#fff', { stroke: false });
+    // score
+    const sc = c.score === 0 ? 0 : Math.round(c.score * Math.pow(cl(dayShown / 365), c.pow || 1));
+    txt('x' + sc, cx, 775, 70, i === 2 ? '#7dffc0' : '#fff', { glow: i === 2 ? '#2ee6a6' : null, gb: 24, sw: 7 });
+    X.restore();
+    if (t < T_POP[i]) return;
+    X.save(); X.beginPath(); X.rect(cx - DOORW / 2 + 3, DOORT + 3, DOORW - 6, FLOOR - DOORT - 6); X.clip();
+    if (i === 0) col0(cx, t, p, c, dim); else if (i === 1) col1(cx, t, p, c); else col2(cx, t, p, c, lit);
+    X.restore();
+    // bulles (hors clip)
+    (c.bubbles || []).forEach(b => { if (t >= b[0] && t < b[1]) bubble(b[2], cx + (b[3] || 0), b[4] || 960, b[0], t, b[5] || 34); });
+  });
+  // ---- sol ----
+  const fg = X.createLinearGradient(0, FLOOR, 0, FLOOR + 220); fg.addColorStop(0, '#171a3c'); fg.addColorStop(1, '#07081a'); X.fillStyle = fg; X.fillRect(0, FLOOR, W, 330);
+
+  // ---- sous-titre UNE ligne ----
+  const cap = (C.caps || []).find(c => t >= c[0] && t < c[1]);
+  if (cap) { const a = ease((t - cap[0]) / .25); X.save(); X.globalAlpha = a; X.translate(0, (1 - a) * 18); fit(cap[2], W / 2, 1530, 62, cap[3] || '#fff', 980, { sw: 8 }); X.restore(); }
+  // ---- verdict final ----
+  if (t > 16.2) { const a = back((t - 16.2) / .5); X.save(); X.translate(W / 2, 1670); X.scale(a, a); fit(C.endTxt, 0, 0, 80, '#ffd23d', 980, { glow: '#ffb300', gb: 30, sw: 9 }); X.restore(); }
+  X.restore();
+}
+
+// col 0 : la tête. Les tâches s'envolent et disparaissent.
+function col0(cx, t, p, c, dim) {
+  const bob = Math.sin(t * 2.2) * 6, fall = dim ? ease((t - 15) / 1.2) : 0;
+  for (let k = 0; k < 14; k++) { // chips de tâches qui flottent puis fondent
+    const t0 = C._ch[k].t0, life = 3.2, a = (t - t0) / life; if (a < 0 || a > 1) continue;
+    const lab = c.tasks[k % c.tasks.length]; const x = cx + C._ch[k].dx + Math.sin(a * 5 + k) * 22, y = 1130 - a * 330;
+    X.save(); X.globalAlpha = Math.sin(a * Math.PI); X.font = `800 28px ${FONT}, ${EMO}`; const w = X.measureText(lab).width + 28;
+    X.fillStyle = '#7e8bff'; rr(x - w / 2, y - 22, w, 44, 22); X.fill(); X.fillStyle = '#fff'; X.textAlign = 'center'; X.textBaseline = 'middle'; X.fillText(lab, x, y + 2); X.restore();
+  }
+  const hand = [[-30, -85], [50, 55]];
+  stick({ x: cx, y: FLOOR - 8 + fall * 0, s: 1.15, col: dim ? '#8892c8' : '#c7d0ff', arms: dim ? [[-55, 70], [55, 70]] : hand, tilt: dim ? .9 * ease((t - 15) / 1) : Math.sin(t * 1.4) * .07, head: dim ? 'dead' : 'worry', gb: 18, y0: 0 });
+  if (!dim && Math.sin(t * 3) > .2) txt('?', cx + 70, 1000 + bob, 70, '#ffd23d', { sw: 8 });
+}
+// col 1 : les post-it s'accumulent partout
+function col1(cx, t, p, c) {
+  const cols = ['#ffe066', '#ff9ecf', '#8affc1', '#8ad4ff', '#ffb26b'];
+  const n = Math.min(46, Math.floor(2 + 46 * Math.pow(cl((t - 1.8) / 13.2), 1.2)));
+  for (let k = 0; k < n; k++) {
+    const P = C._pn[k], x = cx + P.x, y = DOORT + 40 + P.y, rot = P.rot, col = cols[k % 5], t0 = 1.8 + 13.2 * Math.pow(k / 46, 1 / 1.2);
+    const a = back((t - t0) / .25); if (a <= 0) continue;
+    X.save(); X.translate(x, y); X.rotate(rot); X.scale(a, a); X.fillStyle = col; X.shadowColor = 'rgba(0,0,0,.5)'; X.shadowBlur = 8; X.fillRect(-34, -34, 68, 68);
+    X.shadowBlur = 0; X.strokeStyle = 'rgba(0,0,0,.45)'; X.lineWidth = 3; for (let l = 0; l < 3; l++) { X.beginPath(); X.moveTo(-22, -14 + l * 14); X.lineTo(-22 + 30 + P.l[l], -14 + l * 14); X.stroke(); } X.restore();
+  }
+  const bodyNote = (t > 15);
+  stick({ x: cx, y: FLOOR - 8, s: 1.15, col: '#ffd0f0', arms: [[-50, -70], [52, 50]], head: t > 12 ? 'worry' : 'neutral', tilt: Math.sin(t * 2.6) * .05, gb: 18 });
+  // les post-it qui collent par-dessus à la fin (il disparaît presque)
+  if (bodyNote) { for (let k = 0; k < 10; k++) { const F = C._fin[k], a = back((t - 15 - k * .06) / .2); if (a <= 0) continue; X.save(); X.translate(cx + F.x, 1020 + F.y); X.rotate(F.rot); X.scale(a, a); X.fillStyle = cols[k % 5]; X.fillRect(-36, -36, 72, 72); X.restore(); } }
+}
+// col 2 : le tableau. Tout est rangé, coché ; le stickman rayonne.
+function col2(cx, t, p, c, lit) {
+  const rowsN = 6, bx = cx - 100, by = 960;
+  const a = ease((t - 1.7) / .6); X.save(); X.globalAlpha = a;
+  X.fillStyle = '#0f1f2e'; X.strokeStyle = '#2ee6a688'; X.lineWidth = 3; rr(bx, by, 200, 232, 12); X.fill(); X.stroke();
+  for (let k = 0; k < rowsN; k++) {
+    const y = by + 22 + k * 34, done = t > 2.6 + k * 2.0; X.fillStyle = 'rgba(255,255,255,.12)'; rr(bx + 52, y + 5, 120 - (k % 3) * 18, 16, 8); X.fill();
+    X.strokeStyle = done ? '#2ee6a6' : 'rgba(255,255,255,.3)'; X.lineWidth = 4; rr(bx + 14, y, 26, 26, 6); X.stroke();
+    if (done) { const q = ease((t - (2.6 + k * 2.0)) / .3); X.beginPath(); X.moveTo(bx + 19, y + 14); X.lineTo(bx + 25, y + 20); X.lineTo(bx + 19 + 16 * q, y + 20 - 14 * q); X.stroke(); }
+  }
+  X.restore();
+  const sway = Math.sin(t * 1.6) * 5;
+  const rich = lit ? 1 : 0;
+  stick({ x: cx - 20, y: FLOOR - 8, s: 1.15, col: lit ? '#e8fff3' : '#d6fff0', arms: lit ? [[-70, -90], [70, -90]] : [[-55, 20 + sway], [55, 22 - sway]], head: 'calm', tilt: 0, glow: '#2ee6a6', gb: lit ? 60 : 36 });
+  if (lit) { for (let k = 0; k < 22; k++) { const ph = (t * .8 + k * .37) % 1; X.fillStyle = `rgba(255,236,150,${1 - ph})`; X.beginPath(); X.arc(cx - 20 + (((k * 73) % 100) / 100 - .5) * 220, 1330 - ph * 330, 3 + (k % 4), 0, 6.283); X.fill(); } }
+}
+</script>
+</body></html>
