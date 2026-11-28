@@ -1,0 +1,152 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Moteur « course » (28 nov. 2026, idée de Yaacoub) : 3 stickmen (Motivation / Discipline / Obsession) courent 365 jours.
+     Motivation fonce puis s'assoit, Discipline avance régulière, Obsession tombe 3 fois et se relève avec un feu de plus en plus gros, puis bat tout le monde.
+     Même API : init(cfg) -> {dur, events}, render(t). Déterministe (positions intégrées à l'init). -->
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1920px;overflow:hidden;background:#07081a}canvas{position:absolute;inset:0}</style></head>
+<body><canvas id="cv" width="1080" height="1920"></canvas>
+<script>
+const W = 1080, H = 1920, FPS = 30, FIN = 100;
+const cv = document.getElementById('cv'), X = cv.getContext('2d');
+const FONT = "'Inter Display','Inter','Noto Sans','DejaVu Sans',sans-serif", EMO = "'Noto Color Emoji'";
+let C, EV = [], DUR = 27, S = [[], [], []], ST = [[], [], []], LV = [];
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), ease = x => 1 - Math.pow(1 - cl(x), 3);
+const back = x => { x = cl(x); const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const LANES = [860, 1190, 1520], COL = ['#ff7ab8', '#58a6ff', '#ffc233'];
+// chronologie d'Obsession : chutes (début, relevé)
+const FALLS = [[3.0, 4.6], [7.2, 8.9], [12.0, 14.0]];
+
+function vel(i, t) {
+  if (i === 0) return t < 6 ? 16 * Math.exp(-t / 1.6) : 0;
+  if (i === 1) return 4.2 * ease(t / .5);
+  for (const [a, b] of FALLS) if (t >= a && t < b) return 0;
+  if (t < 3) return 2.5; if (t < 7.2) return 3.6; if (t < 12) return 5.2;
+  const d = t - 14; return 3 + (8.4 - 3) * ease(d / 1.0); // après le 3e relèvement : explosion de vitesse
+}
+function init(cfg) {
+  C = cfg; DUR = cfg.dur || 27; EV = []; const N = Math.round(DUR * FPS), dt = 1 / FPS;
+  for (let i = 0; i < 3; i++) { let s = 0, fin = null; S[i] = []; ST[i] = []; for (let f = 0; f <= N; f++) { const t = f * dt; let v = vel(i, t); if (s >= FIN) { if (fin === null) fin = t; v = Math.max(0, 5 * (1 - (t - fin) / 1.2)); } s += v * dt; S[i].push(s); ST[i].push(v); } }
+  EV.push({ t: .1, type: 'whoosh' });
+  FALLS.forEach(([a, b], k) => { EV.push({ t: a, type: 'impact' }); EV.push({ t: b, type: 'whoosh' }); });
+  EV.push({ t: 11.4, type: 'riser' }); EV.push({ t: 14.0, type: 'impact' });
+  EV.push({ t: 6.0, type: 'alert' }); EV.push({ t: 22.6, type: 'ding' }); EV.push({ t: 23.4, type: 'stamp' });
+  return { dur: DUR, events: EV };
+}
+const pos = (i, t) => { const f = t * FPS, a = Math.floor(f), b = Math.min(a + 1, S[i].length - 1); return S[i][Math.min(a, S[i].length - 1)] * (1 - (f - a)) + S[i][b] * (f - a); };
+const spd = (i, t) => ST[i][Math.min(Math.round(t * FPS), ST[i].length - 1)];
+function rr(x, y, w, h, r) { X.beginPath(); X.roundRect(x, y, w, h, r); }
+function txt(s, x, y, size, color, o = {}) {
+  X.save(); X.font = `${o.w || 900} ${size}px ${FONT}, ${EMO}`; X.textAlign = o.align || 'center'; X.textBaseline = 'middle';
+  if (o.glow) { X.shadowColor = o.glow; X.shadowBlur = o.gb || 30; }
+  if (o.stroke !== false) { X.lineWidth = o.sw || size * .09; X.strokeStyle = '#000'; X.lineJoin = 'round'; X.strokeText(s, x, y); }
+  X.fillStyle = color; X.fillText(s, x, y); X.restore();
+}
+function fit(s, x, y, size, color, maxW, o = {}) { X.save(); X.font = `900 ${size}px ${FONT}, ${EMO}`; const w = X.measureText(s).width; X.restore(); txt(s, x, y, Math.min(size, size * maxW / w), color, o); }
+function bubble(s, x, y, size = 36) {
+  X.save(); X.translate(x, y); X.font = `800 ${size}px ${FONT}, ${EMO}`; const w = X.measureText(s).width + 44;
+  X.fillStyle = '#f4f4ff'; rr(-w / 2, -size * .85, w, size * 1.7, size * .6); X.fill(); X.beginPath(); X.moveTo(-10, size * .8); X.lineTo(0, size * 1.25); X.lineTo(14, size * .8); X.fill();
+  X.fillStyle = '#12142a'; X.textAlign = 'center'; X.textBaseline = 'middle'; X.fillText(s, 0, 3); X.restore();
+}
+// flammes : particules déterministes autour du corps (niveau 0..1)
+function fire(x, y, lvl, t, run) {
+  if (lvl <= 0) return; const n = Math.round(8 + 46 * lvl);
+  for (let k = 0; k < n; k++) {
+    const ph = ((t * (1.4 + (k % 5) * .25) + k * .173) % 1), ang = k * 2.399, rad = (20 + 90 * lvl) * (.3 + (k % 7) / 8);
+    const px = x + Math.cos(ang) * rad * .9 - (run ? ph * 90 * lvl : 0), py = y - 140 + Math.sin(ang) * rad * 1.4 - ph * (140 + 160 * lvl), r = (22 + 40 * lvl) * (1 - ph) * (.6 + (k % 3) * .25);
+    const g = X.createRadialGradient(px, py, 0, px, py, r); g.addColorStop(0, `rgba(255,250,200,${.95 * (1 - ph)})`); g.addColorStop(.4, `rgba(255,${150 - ph * 80 | 0},30,${.8 * (1 - ph)})`); g.addColorStop(1, 'rgba(255,60,0,0)');
+    X.fillStyle = g; X.beginPath(); X.arc(px, py, r, 0, 6.283); X.fill();
+  }
+}
+// stickman : mode 'run' | 'fall' | 'sit' | 'stand'
+function man(x, y, col, mode, ph, o = {}) {
+  const s = 1.0, hip = 95 * s;
+  X.save(); X.translate(x, y); X.scale(1.15, 1.15); X.lineCap = 'round'; X.lineJoin = 'round';
+  X.shadowColor = o.glow || col; X.shadowBlur = o.gb || 26; X.strokeStyle = col; X.fillStyle = '#10142e'; X.lineWidth = 11;
+  let rot = 0, dy = 0;
+  if (mode === 'fall') { rot = o.fallA || 0; }
+  if (mode === 'sit') dy = 0;
+  X.translate(0, -hip * 0); X.rotate(rot);
+  const sw = Math.sin(ph), top = -190, hipY = -95;
+  X.beginPath(); X.moveTo(0, top); X.lineTo(0, hipY); X.stroke();
+  let arms, legs;
+  if (mode === 'run') { arms = [[-45 * sw, -175 + 40 + Math.abs(sw) * -10, 60 * sw], [45 * sw, 0, 0]]; legs = [[-60 * sw, 0], [60 * sw, 0]]; }
+  X.beginPath();
+  if (mode === 'run') { // bras + jambes en ciseaux
+    X.moveTo(0, -175); X.lineTo(-55 * sw, -105 + 10 * Math.abs(sw)); X.moveTo(0, -175); X.lineTo(55 * sw, -105 + 10 * Math.abs(sw));
+    X.moveTo(0, hipY); X.lineTo(-48 * sw, -40 - 22 * Math.max(0, -sw)); X.lineTo(-62 * sw, 0 - 32 * Math.max(0, -sw)); X.moveTo(0, hipY); X.lineTo(48 * sw, -40 - 22 * Math.max(0, sw)); X.lineTo(62 * sw, 0 - 32 * Math.max(0, sw));
+  } else if (mode === 'sit') {
+    X.moveTo(0, -175); X.lineTo(-50, -120); X.moveTo(0, -175); X.lineTo(55, -125);
+    X.moveTo(0, hipY + 0); X.lineTo(-70, hipY + 25); X.lineTo(-95, 0); X.moveTo(0, hipY); X.lineTo(75, hipY + 20); X.lineTo(105, 0);
+  } else if (mode === 'fall') {
+    X.moveTo(0, -175); X.lineTo(-70, -150); X.moveTo(0, -175); X.lineTo(70, -130); X.moveTo(0, hipY); X.lineTo(-40, 0); X.moveTo(0, hipY); X.lineTo(45, -10);
+  } else { // stand / victoire : bras levés
+    const up = o.up ? -1 : 0; X.moveTo(0, -175); X.lineTo(-60, up ? -265 : -110); X.moveTo(0, -175); X.lineTo(60, up ? -265 : -110); X.moveTo(0, hipY); X.lineTo(-30, 0); X.moveTo(0, hipY); X.lineTo(30, 0);
+  }
+  X.stroke();
+  X.beginPath(); X.arc(0, -232, 38, 0, 6.283); X.fill(); X.stroke(); X.shadowBlur = 0; X.fillStyle = col; X.strokeStyle = col; X.lineWidth = 5;
+  const face = o.face || 'neutral';
+  if (face === 'dead') [-14, 14].forEach(dx => { X.beginPath(); X.moveTo(dx - 7, -243); X.lineTo(dx + 7, -229); X.moveTo(dx + 7, -243); X.lineTo(dx - 7, -229); X.stroke(); });
+  else { [-14, 14].forEach(dx => { X.beginPath(); X.arc(dx, -236, face === 'angry' ? 4 : 5, 0, 6.283); X.fill(); }); if (face === 'angry') { X.beginPath(); X.moveTo(-24, -255); X.lineTo(-6, -246); X.moveTo(24, -255); X.lineTo(6, -246); X.stroke(); } X.beginPath(); if (face === 'happy') X.arc(0, -224, 14, .1 * 3.14, .9 * 3.14); else if (face === 'angry') { X.moveTo(-12, -218); X.lineTo(12, -218); } else { X.moveTo(-11, -218); X.quadraticCurveTo(0, -226, 11, -218); } X.stroke(); }
+  X.restore();
+}
+
+function render(t) {
+  X.clearRect(0, 0, W, H);
+  let g = X.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0d1030'); g.addColorStop(.6, '#15103a'); g.addColorStop(1, '#07081a'); X.fillStyle = g; X.fillRect(0, 0, W, H);
+  const lead = Math.max(pos(0, t), pos(1, t), pos(2, t)), p = pos(2, t);
+  const lvl = t < FALLS[0][1] ? 0 : t < FALLS[1][1] ? .3 : t < FALLS[2][1] ? .6 : 1.0;
+  const boom = (t > 14 && t < 14.5) ? Math.sin(t * 100) * 9 * (1 - (t - 14) / .5) : 0; X.save(); X.translate(boom, 0);
+  // ---- accroche + compteur ----
+  const ha = back((t - .1) / .5); X.save(); X.translate(W / 2, 200); X.scale(ha, ha);
+  C.hook.forEach((ln, i) => txt(ln.t, 0, (i - (C.hook.length - 1) / 2) * 100, ln.s || 78, ln.c || '#fff', { sw: 7 })); X.restore();
+  const day = Math.min(365, Math.max(1, Math.round(365 * lead / FIN)));
+  txt(`${C.day} ${day}`, W / 2, 440, 130, '#fff', { glow: '#7aa2ff', gb: 36, sw: 9 });
+  // ---- couloirs ----
+  const camX = lead; const SC = 2.6;
+  for (let i = 0; i < 3; i++) {
+    const ly = LANES[i];
+    X.fillStyle = i === 2 && lvl > .5 ? `rgba(255,120,30,${.05 + .08 * lvl})` : 'rgba(255,255,255,.045)'; X.fillRect(0, ly - 320, W, 340);
+    X.strokeStyle = 'rgba(255,255,255,.25)'; X.lineWidth = 4; X.beginPath(); X.moveTo(0, ly + 20); X.lineTo(W, ly + 20); X.stroke();
+    // repères de sol défilants
+    for (let k = -2; k < 24; k++) { const wx = ((k * 60 - camX * 1.0 * 0 ) ); const xx = ((k * 90 - camX * SC * 1.0) % 2160 + 2160) % 2160 - 100; X.fillStyle = 'rgba(255,255,255,.18)'; X.fillRect(xx, ly + 30, 40, 6); }
+  }
+  // ligne d'arrivée
+  const fx = 640 + (FIN - lead) * SC; if (fx < W + 80) { X.save(); for (let r = 0; r < 17; r++) for (let c = 0; c < 2; c++) { X.fillStyle = (r + c) % 2 ? '#fff' : '#111'; X.fillRect(fx + c * 22, LANES[0] - 320 + r * 19, 22, 19); } X.restore();
+    for (let r = 0; r < 17; r++) for (let c = 0; c < 2; c++) { X.fillStyle = (r + c) % 2 ? '#fff' : '#111'; X.fillRect(fx + c * 22, LANES[1] - 320 + r * 19, 22, 19); X.fillRect(fx + c * 22, LANES[2] - 320 + r * 19, 22, 19); } }
+  // ---- coureurs ----
+  const names = C.names; const modeAt = [];
+  for (let i = 0; i < 3; i++) {
+    const ly = LANES[i], s = pos(i, t), v = spd(i, t); let x = 640 + (s - lead) * SC; x = Math.max(120, x); const y = LANES[i];
+    let mode = v > 1.2 ? 'run' : 'stand', o = { face: 'neutral' }; const ph = t * (7 + v * .8) + i;
+    if (i === 0 && t >= 6.3 && s < FIN) { mode = 'sit'; o.face = 'dead'; }
+    if (i === 0 && t < 6.3 && v > 1.2) o.face = 'happy';
+    if (i === 1) o.face = 'neutral';
+    if (i === 2) {
+      for (const [a, b] of FALLS) if (t >= a && t < b) { mode = 'fall'; o.fallA = 1.5 * ease((t - a) / .18); o.face = 'dead'; }
+      if (mode === 'run') o.face = lvl > 0 ? 'angry' : 'neutral';
+      if (lvl > 0 && mode === 'run') { o.glow = lvl > .5 ? '#ffb02e' : '#ffd23d'; o.gb = 30 + 40 * lvl; }
+      if (t >= 22.4 && s >= FIN - .5) { mode = 'stand'; o.up = true; o.face = 'happy'; o.glow = '#ffb02e'; o.gb = 70; }
+    }
+    if (i === 2 && mode === 'fall') {}
+    const col = i === 2 && lvl > .5 && mode !== 'fall' ? '#fff3c4' : COL[i];
+    const dying = (i !== 2 && t > 22.4 && v < .5) ? 'stand' : null;
+    if (dying && i === 1) { o.face = 'angry'; }
+    if (mode === 'fall') { // chute : sur le dos, au sol
+      X.save(); X.translate(0, -0); man(x + 70, y + 0, col, 'fall', ph, Object.assign({ fallA: 1.55 * ease((t - FALLS.find(f => t >= f[0] && t < f[1])[0]) / .18) }, o)); X.restore();
+    } else man(x, y, col, mode === 'run' && i === 2 && lvl > 0 && false ? 'run' : mode, ph, o);
+    if (i === 2) { const fl = (mode === 'fall') ? 0 : lvl; fire(x, y, fl, t, mode === 'run'); if (t >= FALLS[2][1] && t < FALLS[2][1] + .35) { X.fillStyle = `rgba(255,200,80,${.6 * (1 - (t - FALLS[2][1]) / .35)})`; X.fillRect(0, 0, W, H); } }
+    // étiquette du couloir
+    X.save(); X.globalAlpha = .95; fit(`${names[i]}`, 190, ly - 300, 40, COL[i], 300, { sw: 6, glow: COL[i], gb: 14 }); X.restore();
+    txt(`${Math.min(FIN, Math.round(s))} ${C.unit}`, 940, ly - 300, 38, '#fff', { sw: 6, align: 'center' });
+    // bulles
+    (C.bubbles[i] || []).forEach(b => { if (t >= b[0] && t < b[1]) bubble(b[2], x + 20, y - 370, b[3] || 34); });
+  }
+  X.restore();
+  // ---- sous-titres UNE ligne ----
+  const cap = (C.caps || []).find(c => t >= c[0] && t < c[1]);
+  if (cap) { const a = ease((t - cap[0]) / .25); X.save(); X.globalAlpha = a; X.translate(0, (1 - a) * 18); fit(cap[2], W / 2, 1745, 62, cap[3] || '#fff', 980, { sw: 8 }); X.restore(); }
+  if (t > 23.0) { const a = back((t - 23.0) / .5); X.save(); X.translate(W / 2, 1700); X.rotate(-.04); X.scale(a, a); fit(C.winTxt, 0, 0, 100, '#ffd23d', 960, { glow: '#ff8a00', gb: 40, sw: 11 }); X.restore(); }
+  if (t > 24.2) { const a = ease((t - 24.2) / .4); X.save(); X.globalAlpha = a; fit(C.endTxt, W / 2, 1830, 56, '#fff', 960, { sw: 8 }); X.restore(); }
+}
+</script>
+</body></html>

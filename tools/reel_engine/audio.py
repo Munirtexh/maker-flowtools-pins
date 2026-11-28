@@ -125,6 +125,10 @@ def main():
         from music2 import track as track2
         mix = track2(style[3:], dur, seed=int(dur * 10)) * 0.8
         if not loop: mix *= env(len(mix), 0.005, 0.5)
+    elif style and style.startswith('funk:'):  # funk brésilien/phonk original (course) : funk_music.py, drop = valeur après « funk: »
+        import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from funk_music import track as ftrack
+        mix = ftrack(dur, drop=float(style[5:] or 14)) * 0.9
     elif style and style.startswith('promo'):  # pub Cyber Sale : promo_music.py
         import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         from promo_music import track as ptrack
